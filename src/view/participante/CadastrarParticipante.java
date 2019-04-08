@@ -64,7 +64,7 @@ public class CadastrarParticipante extends javax.swing.JFrame {
 
         tfTelefone.setColumns(15);
 
-        jLabel6.setText("Adicionar Categorias");
+        jLabel6.setText("Adicionar Categorias:");
 
         tblCategoriaParticipante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,10 +80,27 @@ public class CadastrarParticipante extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblCategoriaParticipante);
 
         btAdicionarCategoria.setText("+");
+        btAdicionarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdicionarCategoriaActionPerformed(evt);
+            }
+        });
 
         btDeletarCategoria.setText("-");
+        btDeletarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDeletarCategoriaActionPerformed(evt);
+            }
+        });
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btGravar.setText("Gravar");
+        btGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGravarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,17 +137,20 @@ public class CadastrarParticipante extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btAdicionarCategoria)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btDeletarCategoria))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btGravar)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btAdicionarCategoria)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btDeletarCategoria)
+                                    .addGap(8, 8, 8))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,11 +181,28 @@ public class CadastrarParticipante extends javax.swing.JFrame {
                     .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btGravar)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btAdicionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarCategoriaActionPerformed
+        // TODO add your handling code here:
+        PARTICIPANTE_CONTROL.insertCategoryParticipantAction();
+    }//GEN-LAST:event_btAdicionarCategoriaActionPerformed
+
+    private void btDeletarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeletarCategoriaActionPerformed
+        // TODO add your handling code here:
+        PARTICIPANTE_CONTROL.deleteCategoryParticipantAction();
+    }//GEN-LAST:event_btDeletarCategoriaActionPerformed
+
+    private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
+        // TODO add your handling code here:
+        PARTICIPANTE_CONTROL.createParticipantAction();
+    }//GEN-LAST:event_btGravarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,6 +242,7 @@ public class CadastrarParticipante extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static final javax.swing.JButton btAdicionarCategoria = new javax.swing.JButton();
     public static final javax.swing.JButton btDeletarCategoria = new javax.swing.JButton();
+    public static final javax.swing.JButton btGravar = new javax.swing.JButton();
     private javax.swing.ButtonGroup buttonGroup1;
     public static final javax.swing.JComboBox<String> cbCategoria = new javax.swing.JComboBox<>();
     private javax.swing.JLabel jLabel1;
