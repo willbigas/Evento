@@ -29,6 +29,7 @@ public class ParticipanteControl {
     public static final String[] nomeDasCategorias = {"Exatas", "Programação", "Letras", "Ciencias"};
     Integer INDEX_SELECTED = 0;
 
+    private String TF_ID = "";
     private String TF_NOME = "";
     private String TF_EMAIL = "";
     private String TF_CPF = "";
@@ -40,14 +41,14 @@ public class ParticipanteControl {
         CATEGORY_TABLE = new CategoriaTableModel();
         PARTICIPANT_TABLE = new ParticipanteTableModel();
         PARTICIPANT_LIST = new ArrayList<>();
-        setModelOfTableCategory();
-        setModelOfTableParticipant();
         getParticipantOfDatabase();
+        setModelOfTableParticipant();
+        setModelOfTableCategory();
+
     }
 
     public void setModelOfTableCategory() {
         CadastrarParticipante.tblCategoriaParticipante.setModel(CATEGORY_TABLE);
-        EditarParticipante.tblCategoriaParticipante.setModel(CATEGORY_TABLE);
     }
 
     public void setModelOfTableParticipant() {
@@ -69,6 +70,18 @@ public class ParticipanteControl {
         TF_EMAIL = view.participante.CadastrarParticipante.tfEmail.getText();
         TF_CPF = view.participante.CadastrarParticipante.tfCpf.getText();
         TF_TELEFONE = view.participante.CadastrarParticipante.tfTelefone.getText();
+    }
+
+    private void getFieldsEdit() {
+//        TF_NOME = null;
+//        TF_EMAIL = null;
+//        TF_CPF = null;
+//        TF_TELEFONE = null;
+        TF_ID = view.participante.EditarParticipante.lblCodigoParticipant.getText();
+        TF_NOME = view.participante.EditarParticipante.tfNome.getText();
+        TF_EMAIL = view.participante.EditarParticipante.tfEmail.getText();
+        TF_CPF = view.participante.EditarParticipante.tfCpf.getText();
+        TF_TELEFONE = view.participante.EditarParticipante.tfTelefone.getText();
     }
 
     public void loadComboCategory() {
@@ -97,6 +110,18 @@ public class ParticipanteControl {
         CATEGORY_TABLE.removeObject(CadastrarParticipante.tblCategoriaParticipante.getSelectedRow());
     }
 
+    public void insertCategoryParticipantEditAction() {
+        String NomeCategoria = (String) EditarParticipante.cbCategoria.getSelectedItem();
+        Categoria catAdicionada = new Categoria();
+        catAdicionada.setId(Integer.MAX_VALUE);
+        catAdicionada.setNome(NomeCategoria);
+        CATEGORY_TABLE.addObject(catAdicionada);
+    }
+
+    public void deleteCategoryParticipantEditAction() {
+        CATEGORY_TABLE.removeObject(EditarParticipante.tblCategoriaParticipante.getSelectedRow());
+    }
+
     public void createParticipantAction() {
         getFieldsInsert();
         PARTICIPANT = new Participante();
@@ -110,7 +135,21 @@ public class ParticipanteControl {
         PARTICIPANT_TABLE.addObject(PARTICIPANT);
 
     }
-    
+
+    public void updateParticipantAction() {
+        getFieldsEdit();
+        PARTICIPANT = new Participante();
+        PARTICIPANT.setId(Integer.valueOf(TF_ID));
+        PARTICIPANT.setNome(TF_NOME);
+        PARTICIPANT.setCpf(TF_CPF);
+        PARTICIPANT.setEmail(TF_EMAIL);
+        PARTICIPANT.setTelefone(TF_TELEFONE);
+        PARTICIPANT.setCategorias(getCategorysAdded());
+        System.out.println("PARTICIPANTE DO UPDATE : + " + PARTICIPANT);
+        PARTICIPANT_DAO.alterar(PARTICIPANT);
+        PARTICIPANT_TABLE.updateObject(INDEX_SELECTED, PARTICIPANT);
+    }
+
     public void loadFieldsEditParticipantAction() {
         PARTICIPANT = PARTICIPANT_TABLE.getObject(GerenciarParticipante.tblParticipante.getSelectedRow());
         System.out.println("Usuario pegado da Tabela" + PARTICIPANT);
@@ -118,18 +157,25 @@ public class ParticipanteControl {
     }
 
     public void changeFieldsOnEdit() {
+        CATEGORY_TABLE = new CategoriaTableModel();
+        EditarParticipante.tblCategoriaParticipante.setModel(CATEGORY_TABLE);
+        view.participante.EditarParticipante.lblCodigoParticipant.setText(String.valueOf(PARTICIPANT.getId()));
         view.participante.EditarParticipante.tfNome.setText(PARTICIPANT.getNome());
         view.participante.EditarParticipante.tfEmail.setText(PARTICIPANT.getEmail());
         view.participante.EditarParticipante.tfCpf.setText(PARTICIPANT.getCpf());
         view.participante.EditarParticipante.tfTelefone.setText(PARTICIPANT.getTelefone());
-        CATEGORY_TABLE.clear();
-        CATEGORY_TABLE.addListOfObject(PARTICIPANT.getCategorias());
+        List<Categoria> catDoParticipant = CATEGORIA_DAO.listarCatDoParticipante(PARTICIPANT.getId());
+        System.out.println("Categorias do Participante" + catDoParticipant);
+        for (Categoria categoria : catDoParticipant) {
+            System.out.println(categoria);
+            CATEGORY_TABLE.addObject(categoria);
+        }
     }
 
     public void deleteParticipantAction() {
         PARTICIPANT = PARTICIPANT_TABLE.getObject(GerenciarParticipante.tblParticipante.getSelectedRow());
         if (PARTICIPANT_DAO.deletar(PARTICIPANT)) {
-            PARTICIPANT_TABLE.removeObject(getSelectedIndex());
+            PARTICIPANT_TABLE.removeObject(INDEX_SELECTED);
             JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");
         }
 
