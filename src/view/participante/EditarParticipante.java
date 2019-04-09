@@ -11,7 +11,7 @@ import control.ParticipanteControl;
  *
  * @author William
  */
-public class CadastrarParticipante extends javax.swing.JFrame {
+public class EditarParticipante extends javax.swing.JFrame {
     
     ParticipanteControl PARTICIPANTE_CONTROL;
     
@@ -19,7 +19,7 @@ public class CadastrarParticipante extends javax.swing.JFrame {
     /**
      * Creates new form CadastrarParticipante
      */
-    public CadastrarParticipante() {
+    public EditarParticipante() {
         initComponents();
         PARTICIPANTE_CONTROL = new ParticipanteControl();
         PARTICIPANTE_CONTROL.loadComboCategory();
@@ -201,7 +201,7 @@ public class CadastrarParticipante extends javax.swing.JFrame {
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
         // TODO add your handling code here:
-        PARTICIPANTE_CONTROL.createParticipantAction();
+        PARTICIPANTE_CONTROL.createParticipantAction(); // editar
     }//GEN-LAST:event_btGravarActionPerformed
 
     /**
@@ -221,20 +221,21 @@ public class CadastrarParticipante extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastrarParticipante().setVisible(true);
+                new EditarParticipante().setVisible(true);
             }
         });
     }

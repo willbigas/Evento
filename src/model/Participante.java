@@ -63,4 +63,9 @@ public class Participante {
         this.categorias = categorias;
     }
 
+    @Override
+    public String toString() {
+        return "Participante{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", telefone=" + telefone + ", categorias=" + categorias + '}';
+    }
+
 }

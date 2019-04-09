@@ -5,6 +5,7 @@
  */
 package view.participante;
 
+import control.ParticipanteControl;
 import evento.Evento;
 
 /**
@@ -12,12 +13,15 @@ import evento.Evento;
  * @author William
  */
 public class GerenciarParticipante extends javax.swing.JFrame {
+    
+    ParticipanteControl PARTICIPANT_CONTROL;
 
     /**
      * Creates new form ViewGerenciarUsuarios
      */
     public GerenciarParticipante() {
         initComponents();
+        PARTICIPANT_CONTROL = new ParticipanteControl();
     }
 
     /**
@@ -33,7 +37,7 @@ public class GerenciarParticipante extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Pesquisar:");
 
@@ -52,8 +56,18 @@ public class GerenciarParticipante extends javax.swing.JFrame {
         });
 
         btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
 
         btEditar.setText("Editar");
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarActionPerformed(evt);
+            }
+        });
 
         tblParticipante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,6 +141,19 @@ public class GerenciarParticipante extends javax.swing.JFrame {
         Evento.JanelaCadastrarParticipante();
         
     }//GEN-LAST:event_btNovoActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        // TODO add your handling code here:
+        PARTICIPANT_CONTROL.deleteParticipantAction();
+        
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+        // TODO add your handling code here:
+        PARTICIPANT_CONTROL.loadFieldsEditParticipantAction();
+        Evento.JanelaEditarParticipante();
+        PARTICIPANT_CONTROL.changeFieldsOnEdit();
+    }//GEN-LAST:event_btEditarActionPerformed
 
     /**
      * @param args the command line arguments

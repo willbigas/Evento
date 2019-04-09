@@ -1,10 +1,12 @@
 package evento;
 
+import javax.swing.JFrame;
 import view.GerenciarTelas;
 import view.categoria.CadastrarCategoria;
 import view.categoria.EditarCategoria;
 import view.categoria.GerenciarCategoria;
 import view.participante.CadastrarParticipante;
+import view.participante.EditarParticipante;
 import view.participante.GerenciarParticipante;
 import view.usuario.CadastrarUsuario;
 import view.usuario.EditarUsuario;
@@ -35,6 +37,7 @@ public class Evento {
     public static void JanelaPrincipal() {
         GerenciarTelas janelaGerenciarTelas = new GerenciarTelas();
         janelaGerenciarTelas.setTitle("JANELA PRINCIPAL");
+        janelaGerenciarTelas.setExtendedState(JFrame.MAXIMIZED_BOTH);
         janelaGerenciarTelas.setLocationRelativeTo(null);
         janelaGerenciarTelas.setVisible(true);
     }
@@ -92,6 +95,13 @@ public class Evento {
         janelaGerenciarParticipantes.setLocationRelativeTo(null);
         janelaGerenciarParticipantes.setVisible(true);
 
+    }
+    
+    public static void JanelaEditarParticipante() {
+        EditarParticipante janelaEditarParticipant = new EditarParticipante();
+        janelaEditarParticipant.setTitle("EDITAR PARTICIPANTE");
+        janelaEditarParticipant.setLocationRelativeTo(null);
+        janelaEditarParticipant.setVisible(true);
     }
 
     public static void JanelaCadastrarParticipante() {

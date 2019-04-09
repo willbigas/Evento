@@ -28,86 +28,81 @@ public class GerenciarTelas extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel1 = new javax.swing.JLabel();
-        btUsuarios = new javax.swing.JButton();
-        btParticipantes = new javax.swing.JButton();
-        btCategorias = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        menuUsuarios = new javax.swing.JMenuItem();
+        menuCategorias = new javax.swing.JMenuItem();
+        menuParticipantes = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
+        setResizable(false);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setText("JANELA PRINCIPAL");
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel2.setText("Gerenciador de Eventos");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        getContentPane().add(jLabel2, gridBagConstraints);
 
-        btUsuarios.setText("USUARIOS");
-        btUsuarios.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel4.setText("V1.0");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        getContentPane().add(jLabel4, gridBagConstraints);
+
+        jMenu1.setText("Menus");
+
+        menuUsuarios.setText("Usuarios");
+        menuUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btUsuariosActionPerformed(evt);
+                menuUsuariosActionPerformed(evt);
             }
         });
+        jMenu1.add(menuUsuarios);
 
-        btParticipantes.setText("PARTICIPANTES");
-
-        btCategorias.setText("CATEGORIAS");
-        btCategorias.addActionListener(new java.awt.event.ActionListener() {
+        menuCategorias.setText("Categorias");
+        menuCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCategoriasActionPerformed(evt);
+                menuCategoriasActionPerformed(evt);
             }
         });
+        jMenu1.add(menuCategorias);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setText("O que você deseja fazer?");
+        menuParticipantes.setText("Participantes");
+        menuParticipantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuParticipantesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuParticipantes);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel2)))
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCategorias)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel2)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUsuariosActionPerformed
-        // TODO add your handling code here:
+    private void menuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuariosActionPerformed
         Evento.JanelaGerenciarUsuarios();
-    }//GEN-LAST:event_btUsuariosActionPerformed
+    }//GEN-LAST:event_menuUsuariosActionPerformed
 
-    private void btCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCategoriasActionPerformed
+    private void menuCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoriasActionPerformed
         // TODO add your handling code here:
         Evento.JanelaGerenciarCategorias();
-    }//GEN-LAST:event_btCategoriasActionPerformed
+    }//GEN-LAST:event_menuCategoriasActionPerformed
+
+    private void menuParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuParticipantesActionPerformed
+        // TODO add your handling code here:
+        Evento.JanelaGerenciarParticipantes();
+    }//GEN-LAST:event_menuParticipantesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,10 +141,12 @@ public class GerenciarTelas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCategorias;
-    private javax.swing.JButton btParticipantes;
-    private javax.swing.JButton btUsuarios;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem menuCategorias;
+    private javax.swing.JMenuItem menuParticipantes;
+    private javax.swing.JMenuItem menuUsuarios;
     // End of variables declaration//GEN-END:variables
 }
