@@ -5,9 +5,9 @@ import evento.Evento;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Usuario;
-import model.tablemodel.UsuarioTableModel;
-import view.usuario.GerenciarUsuario;
+import model.User;
+import model.tablemodel.UserTableModel;
+import view.usuario.ManageUser;
 
 /**
  *
@@ -15,16 +15,16 @@ import view.usuario.GerenciarUsuario;
  */
 public class UsuarioControl {
 
-    Usuario USER;
-    List<Usuario> USER_LIST;
+    User USER;
+    List<User> USER_LIST;
     UsuarioDao USER_DAO;
-    UsuarioTableModel USER_TABLE;
+    UserTableModel USER_TABLE;
     Integer INDEX_SELECTED = 0;
 
     public UsuarioControl() {
         USER_DAO = new UsuarioDao();
         USER_LIST = new ArrayList<>();
-        USER_TABLE = new UsuarioTableModel();
+        USER_TABLE = new UserTableModel();
         getFieldsLogin();
         getUserOfDatabase();
         setModelOfTable();
@@ -36,25 +36,25 @@ public class UsuarioControl {
     private String LBL_ID = "";
 
     private void getFieldsLogin() {
-        TF_LOGIN = view.usuario.LoginUsuario.tfLogin.getText();
-        TF_PASSWORD = view.usuario.LoginUsuario.tfSenha.getText();
+        TF_LOGIN = view.usuario.LoginUser.tfLogin.getText();
+        TF_PASSWORD = view.usuario.LoginUser.tfSenha.getText();
     }
 
     private void getFieldsEdit() {
         TF_LOGIN = null;
         TF_PASSWORD = null;
         LBL_ID = null;
-        TF_LOGIN = view.usuario.EditarUsuario.tfLogin.getText();
-        TF_PASSWORD = view.usuario.EditarUsuario.tfSenha.getText();
-        LBL_ID = view.usuario.EditarUsuario.lblCodigoUsuario.getText();
+        TF_LOGIN = view.usuario.EditUser.tfLogin.getText();
+        TF_PASSWORD = view.usuario.EditUser.tfSenha.getText();
+        LBL_ID = view.usuario.EditUser.lblCodigoUsuario.getText();
     }
 
     private void getFieldsInsert() {
 
         TF_LOGIN = null;
         TF_PASSWORD = null;
-        TF_LOGIN = view.usuario.CadastrarUsuario.tfLogin.getText();
-        TF_PASSWORD = view.usuario.CadastrarUsuario.tfSenha.getText();
+        TF_LOGIN = view.usuario.CreateUser.tfLogin.getText();
+        TF_PASSWORD = view.usuario.CreateUser.tfSenha.getText();
     }
 
     public void getUserOfDatabase() {
@@ -64,14 +64,14 @@ public class UsuarioControl {
     }
 
     public void setModelOfTable() {
-        GerenciarUsuario.tblUsuario.setModel(USER_TABLE);
+        ManageUser.tblUsuario.setModel(USER_TABLE);
     }
 
     private Boolean loginValidate() {
         getFieldsLogin();
-        List<Usuario> usuariosDoBanco = USER_DAO.listar();
+        List<User> usuariosDoBanco = USER_DAO.listar();
 
-        for (Usuario usuario : usuariosDoBanco) {
+        for (User usuario : usuariosDoBanco) {
             if (usuario.getLogin().equals(TF_LOGIN) && usuario.getSenha().equals(TF_PASSWORD)) {
                 return true;
             }
@@ -89,7 +89,7 @@ public class UsuarioControl {
 
     public void InsertUserAction() {
         getFieldsInsert();
-        USER = new Usuario();
+        USER = new User();
         USER.setLogin(TF_LOGIN); // mudar campos
         USER.setSenha(TF_PASSWORD); // mudar campos
         int idUsuario = USER_DAO.cadastrar(USER);
@@ -104,24 +104,24 @@ public class UsuarioControl {
     }
 
     public int getSelectedIndex() {
-        return GerenciarUsuario.tblUsuario.getSelectedRow();
+        return ManageUser.tblUsuario.getSelectedRow();
     }
 
     public void loadFieldsEditUserAction() {
-        USER = USER_TABLE.getObject(GerenciarUsuario.tblUsuario.getSelectedRow());
+        USER = USER_TABLE.getObject(ManageUser.tblUsuario.getSelectedRow());
         System.out.println("Usuario pegado da Tabela" + USER);
         INDEX_SELECTED = getSelectedIndex();
     }
 
     public void changeFieldsOnEdit() {
-        view.usuario.EditarUsuario.tfLogin.setText(USER.getLogin());
-        view.usuario.EditarUsuario.tfSenha.setText(USER.getSenha());
-        view.usuario.EditarUsuario.lblCodigoUsuario.setText(String.valueOf(USER.getId()));
+        view.usuario.EditUser.tfLogin.setText(USER.getLogin());
+        view.usuario.EditUser.tfSenha.setText(USER.getSenha());
+        view.usuario.EditUser.lblCodigoUsuario.setText(String.valueOf(USER.getId()));
     }
 
     public void updateUserAction() {
         getFieldsEdit();
-        USER = new Usuario();
+        USER = new User();
         System.out.println("id do edit :  " + LBL_ID);
         USER.setId(Integer.valueOf(LBL_ID));
         USER.setLogin(TF_LOGIN);
@@ -137,7 +137,7 @@ public class UsuarioControl {
     }
 
     public void deleteUserAction() {
-        USER = USER_TABLE.getObject(GerenciarUsuario.tblUsuario.getSelectedRow());
+        USER = USER_TABLE.getObject(ManageUser.tblUsuario.getSelectedRow());
         if (USER_DAO.deletar(USER)) {
             USER_TABLE.removeObject(getSelectedIndex());
             JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");

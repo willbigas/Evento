@@ -6,27 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Usuario;
+import model.User;
 
 /**
  *
  * @author William
  */
-public class UsuarioDao extends Dao implements DaoI<Usuario> {
+public class UsuarioDao extends Dao implements DaoI<User> {
 
     public UsuarioDao() {
         super();
     }
 
     @Override
-    public List<Usuario> listar() {
+    public List<User> listar() {
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement("SELECT * FROM USUARIO");
             ResultSet result = stmt.executeQuery();
-            List<Usuario> lista = new ArrayList<>();
+            List<User> lista = new ArrayList<>();
             while (result.next()) {
-                Usuario user = new Usuario();
+                User user = new User();
                 user.setId(result.getInt("id"));
                 user.setLogin(result.getString("login"));
                 user.setSenha(result.getString("senha"));
@@ -40,7 +40,7 @@ public class UsuarioDao extends Dao implements DaoI<Usuario> {
     }
 
     @Override
-    public int cadastrar(Usuario obj) {
+    public int cadastrar(User obj) {
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(
@@ -63,7 +63,7 @@ public class UsuarioDao extends Dao implements DaoI<Usuario> {
     }
 
     @Override
-    public boolean alterar(Usuario obj) {
+    public boolean alterar(User obj) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "UPDATE USUARIO SET LOGIN = ? , SENHA = ? WHERE  id = ?");
@@ -78,7 +78,7 @@ public class UsuarioDao extends Dao implements DaoI<Usuario> {
     }
 
     @Override
-    public boolean deletar(Usuario obj) {
+    public boolean deletar(User obj) {
         try {
             PreparedStatement stmt = conexao.prepareStatement("DELETE FROM USUARIO WHERE ID = ?");
             stmt.setInt(1, obj.getId());
@@ -90,16 +90,16 @@ public class UsuarioDao extends Dao implements DaoI<Usuario> {
     }
 
     @Override
-    public List<Usuario> pesquisarPorTermo(String termo) {
+    public List<User> pesquisarPorTermo(String termo) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "SELECT ID, LOGIN, SENHA FROM USUARIO "
                     + "WHERE LOGIN LIKE ?");
             stmt.setString(1, "%" + termo + "%");
             ResultSet result = stmt.executeQuery();
-            List<Usuario> lista = new ArrayList<>();
+            List<User> lista = new ArrayList<>();
             while (result.next()) {
-                Usuario user = new Usuario();
+                User user = new User();
                 user.setId(result.getInt("id"));
                 user.setLogin(result.getString("login"));
                 user.setSenha(result.getString("senha"));
@@ -114,7 +114,7 @@ public class UsuarioDao extends Dao implements DaoI<Usuario> {
     }
 
     @Override
-    public Usuario lerPorId(int id) {
+    public User lerPorId(int id) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "SELECT ID, LOGIN , SENHA FROM USUARIO "
@@ -122,7 +122,7 @@ public class UsuarioDao extends Dao implements DaoI<Usuario> {
             stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-                Usuario user = new Usuario();
+                User user = new User();
                 user.setId(result.getInt("id"));
                 user.setLogin(result.getString("login"));
                 user.setSenha(result.getString("senha"));

@@ -4,9 +4,9 @@ import dao.CategoriaDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Categoria;
-import model.tablemodel.CategoriaTableModel;
-import view.categoria.GerenciarCategoria;
+import model.Category;
+import model.tablemodel.CategoryTableModel;
+import view.categoria.ManageCategory;
 
 /**
  *
@@ -14,16 +14,16 @@ import view.categoria.GerenciarCategoria;
  */
 public class CategoriaControl {
 
-    Categoria CATEGORY;
-    List<Categoria> CATEGORY_LIST;
+    Category CATEGORY;
+    List<Category> CATEGORY_LIST;
     CategoriaDao CATEGORY_DAO;
-    CategoriaTableModel CATEGORIA_TABLE;
+    CategoryTableModel CATEGORIA_TABLE;
     Integer INDEX_SELECTED = 0;
 
     public CategoriaControl() {
         CATEGORY_DAO = new CategoriaDao();
         CATEGORY_LIST = new ArrayList<>();
-        CATEGORIA_TABLE = new CategoriaTableModel();
+        CATEGORIA_TABLE = new CategoryTableModel();
         getUserOfDatabase();
         setModelOfTable();
 
@@ -36,13 +36,13 @@ public class CategoriaControl {
     private void getFieldsEdit() {
         TF_NOME = null;
         LBL_ID = null;
-        TF_NOME = view.categoria.EditarCategoria.tfNome.getText();
-        LBL_ID = view.categoria.EditarCategoria.lblCodigoCategoria.getText();
+        TF_NOME = view.categoria.EditCategory.tfNome.getText();
+        LBL_ID = view.categoria.EditCategory.lblCodigoCategoria.getText();
     }
 
     private void getFieldsInsert() {
         TF_NOME = null;
-        TF_NOME = view.categoria.CadastrarCategoria.tfNome.getText();
+        TF_NOME = view.categoria.CreateCategory.tfNome.getText();
     }
 
     public void getUserOfDatabase() {
@@ -52,12 +52,12 @@ public class CategoriaControl {
     }
 
     public void setModelOfTable() {
-        GerenciarCategoria.tblCategoria.setModel(CATEGORIA_TABLE);
+        ManageCategory.tblCategoria.setModel(CATEGORIA_TABLE);
     }
 
     public void InsertUserAction() {
         getFieldsInsert();
-        CATEGORY = new Categoria();
+        CATEGORY = new Category();
         CATEGORY.setNome(TF_NOME); // mudar campos
         int idCategoria = CATEGORY_DAO.cadastrar(CATEGORY);
         if (idCategoria != 0) {
@@ -71,23 +71,23 @@ public class CategoriaControl {
     }
 
     public int getSelectedIndex() {
-        return GerenciarCategoria.tblCategoria.getSelectedRow();
+        return ManageCategory.tblCategoria.getSelectedRow();
     }
 
     public void loadFieldsEditUserAction() {
-        CATEGORY = CATEGORIA_TABLE.getObject(GerenciarCategoria.tblCategoria.getSelectedRow());
+        CATEGORY = CATEGORIA_TABLE.getObject(ManageCategory.tblCategoria.getSelectedRow());
         System.out.println("Categoria pegada da Tabela" + CATEGORY);
         INDEX_SELECTED = getSelectedIndex();
     }
 
     public void changeFieldsOnEdit() {
-        view.categoria.EditarCategoria.tfNome.setText(CATEGORY.getNome());
-        view.categoria.EditarCategoria.lblCodigoCategoria.setText(String.valueOf(CATEGORY.getId()));
+        view.categoria.EditCategory.tfNome.setText(CATEGORY.getNome());
+        view.categoria.EditCategory.lblCodigoCategoria.setText(String.valueOf(CATEGORY.getId()));
     }
 
     public void updateUserAction() {
         getFieldsEdit();
-        CATEGORY = new Categoria();
+        CATEGORY = new Category();
         System.out.println("id do edit :  " + LBL_ID);
         CATEGORY.setId(Integer.valueOf(LBL_ID));
         CATEGORY.setNome(TF_NOME);
@@ -102,7 +102,7 @@ public class CategoriaControl {
     }
 
     public void deleteUserAction() {
-        CATEGORY = CATEGORIA_TABLE.getObject(GerenciarCategoria.tblCategoria.getSelectedRow());
+        CATEGORY = CATEGORIA_TABLE.getObject(ManageCategory.tblCategoria.getSelectedRow());
         if (CATEGORY_DAO.deletar(CATEGORY)) {
             CATEGORIA_TABLE.removeObject(getSelectedIndex());
             JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");

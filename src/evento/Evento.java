@@ -1,17 +1,17 @@
 package evento;
 
 import javax.swing.JFrame;
-import view.GerenciarTelas;
-import view.categoria.CadastrarCategoria;
-import view.categoria.EditarCategoria;
-import view.categoria.GerenciarCategoria;
-import view.participante.CadastrarParticipante;
-import view.participante.EditarParticipante;
-import view.participante.GerenciarParticipante;
-import view.usuario.CadastrarUsuario;
-import view.usuario.EditarUsuario;
-import view.usuario.GerenciarUsuario;
-import view.usuario.LoginUsuario;
+import view.MainWindow;
+import view.categoria.CreateCategory;
+import view.categoria.EditCategory;
+import view.categoria.ManageCategory;
+import view.participante.CreateParticipant;
+import view.participante.EditParticipant;
+import view.participante.ManageParticipant;
+import view.usuario.CreateUser;
+import view.usuario.EditUser;
+import view.usuario.ManageUser;
+import view.usuario.LoginUser;
 
 /**
  *
@@ -28,14 +28,14 @@ public class Evento {
 
     // Janela de Login
     public static void JanelaLogin() {
-        LoginUsuario janelaLogin = new LoginUsuario();
+        LoginUser janelaLogin = new LoginUser();
         janelaLogin.setTitle("JANELA DE LOGIN");
         janelaLogin.setLocationRelativeTo(null);
         janelaLogin.setVisible(true);
     }
 
     public static void JanelaPrincipal() {
-        GerenciarTelas janelaGerenciarTelas = new GerenciarTelas();
+        MainWindow janelaGerenciarTelas = new MainWindow();
         janelaGerenciarTelas.setTitle("JANELA PRINCIPAL");
         janelaGerenciarTelas.setExtendedState(JFrame.MAXIMIZED_BOTH);
         janelaGerenciarTelas.setLocationRelativeTo(null);
@@ -44,7 +44,7 @@ public class Evento {
 
     // JANELAS DE USUARIOS //
     public static void JanelaGerenciarUsuarios() {
-        GerenciarUsuario janelaGerenciarUsuarios = new GerenciarUsuario();
+        ManageUser janelaGerenciarUsuarios = new ManageUser();
         janelaGerenciarUsuarios.setTitle("GERENCIAR USUARIOS");
         janelaGerenciarUsuarios.setLocationRelativeTo(null);
         janelaGerenciarUsuarios.setVisible(true);
@@ -52,14 +52,14 @@ public class Evento {
     }
 
     public static void JanelaEditarUsuario() {
-        EditarUsuario janelaEditarUsuario = new EditarUsuario();
+        EditUser janelaEditarUsuario = new EditUser();
         janelaEditarUsuario.setTitle("EDITAR USUARIO");
         janelaEditarUsuario.setLocationRelativeTo(null);
         janelaEditarUsuario.setVisible(true);
     }
 
     public static void JanelaCadastrarUsuario() {
-        CadastrarUsuario janelaCadastrarUsuario = new CadastrarUsuario();
+        CreateUser janelaCadastrarUsuario = new CreateUser();
         janelaCadastrarUsuario.setTitle("CADASTRAR USUARIO");
         janelaCadastrarUsuario.setLocationRelativeTo(null);
         janelaCadastrarUsuario.setVisible(true);
@@ -67,7 +67,7 @@ public class Evento {
 
     // JANELAS DE CATEGORIAS
     public static void JanelaGerenciarCategorias() {
-        GerenciarCategoria janelaGerenciarCategorias = new GerenciarCategoria();
+        ManageCategory janelaGerenciarCategorias = new ManageCategory();
         janelaGerenciarCategorias.setTitle("GERENCIAR CATEGORIAS");
         janelaGerenciarCategorias.setLocationRelativeTo(null);
         janelaGerenciarCategorias.setVisible(true);
@@ -75,22 +75,22 @@ public class Evento {
     }
 
     public static void JanelaEditarCategoria() {
-        EditarCategoria janelaEditarCategoria = new EditarCategoria();
-        janelaEditarCategoria.setTitle("EDITAR USUARIO");
+        EditCategory janelaEditarCategoria = new EditCategory();
+        janelaEditarCategoria.setTitle("EDITAR CATEGORIA");
         janelaEditarCategoria.setLocationRelativeTo(null);
         janelaEditarCategoria.setVisible(true);
     }
 
     public static void JanelaCadastrarCategoria() {
-        CadastrarCategoria janelaCadastrarCategoria = new CadastrarCategoria();
-        janelaCadastrarCategoria.setTitle("CADASTRAR USUARIO");
+        CreateCategory janelaCadastrarCategoria = new CreateCategory();
+        janelaCadastrarCategoria.setTitle("CADASTRAR CATEGORIA");
         janelaCadastrarCategoria.setLocationRelativeTo(null);
         janelaCadastrarCategoria.setVisible(true);
     }
 
     // JANELAS DE PARTICIPANTES
     public static void JanelaGerenciarParticipantes() {
-        GerenciarParticipante janelaGerenciarParticipantes = new GerenciarParticipante();
+        ManageParticipant janelaGerenciarParticipantes = new ManageParticipant();
         janelaGerenciarParticipantes.setTitle("GERENCIAR PARTICIPANTES");
         janelaGerenciarParticipantes.setLocationRelativeTo(null);
         janelaGerenciarParticipantes.setVisible(true);
@@ -98,14 +98,14 @@ public class Evento {
     }
     
     public static void JanelaEditarParticipante() {
-        EditarParticipante janelaEditarParticipant = new EditarParticipante();
+        EditParticipant janelaEditarParticipant = new EditParticipant();
         janelaEditarParticipant.setTitle("EDITAR PARTICIPANTE");
         janelaEditarParticipant.setLocationRelativeTo(null);
         janelaEditarParticipant.setVisible(true);
     }
 
     public static void JanelaCadastrarParticipante() {
-        CadastrarParticipante janelaCadastrarParticipante = new CadastrarParticipante();
+        CreateParticipant janelaCadastrarParticipante = new CreateParticipant();
         janelaCadastrarParticipante.setTitle("CADASTRAR PARTICIPANTE");
         janelaCadastrarParticipante.setLocationRelativeTo(null);
         janelaCadastrarParticipante.setVisible(true);
