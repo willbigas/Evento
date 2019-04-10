@@ -22,7 +22,7 @@ public class ManageParticipant extends javax.swing.JFrame {
     public ManageParticipant() {
         initComponents();
         PARTICIPANT_CONTROL = new ParticipantControl();
-        PARTICIPANT_CONTROL.updateJTableParticipant();
+        PARTICIPANT_CONTROL.atualizaTabelaParticipante();
     }
 
     /**
@@ -133,7 +133,7 @@ public class ManageParticipant extends javax.swing.JFrame {
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
-        PARTICIPANT_CONTROL.deleteParticipantAction();
+        PARTICIPANT_CONTROL.deletarParticipanteAction();
 
     }//GEN-LAST:event_btExcluirActionPerformed
 

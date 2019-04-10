@@ -21,160 +21,160 @@ import view.participant.ManageParticipant;
  */
 public class ParticipantControl {
     
-    Participant PARTICIPANT;
-    ParticipantDao PARTICIPANT_DAO;
-    CategoryDao CATEGORY_DAO;
-    CategoryTableModel CATEGORY_TABLE;
-    ParticipantTableModel PARTICIPANT_TABLE;
-    List<Participant> PARTICIPANT_LIST;
-    List<Category> CATEGORY_LIST;
+    Participant participante;
+    ParticipantDao participanteDao;
+    CategoryDao categoriaDao;
+    CategoryTableModel categoriaTable;
+    ParticipantTableModel participanteTable;
+    List<Participant> listParticipantes;
+    List<Category> listCategorias;
     public static final String[] nomeDasCategorias = {"Exatas", "Programação", "Letras", "Ciencias"};
-    Integer INDEX_SELECTED = 0;
+    Integer linhaSelecionada = 0;
     
-    private String TF_ID = "";
-    private String TF_NOME = "";
-    private String TF_EMAIL = "";
-    private String TF_CPF = "";
-    private String TF_TELEFONE = "";
+    private String campoId = "";
+    private String campoNome = "";
+    private String campoEmail = "";
+    private String campoCpf = "";
+    private String campoTelefone = "";
     
     public ParticipantControl() {
-        CATEGORY_DAO = new CategoryDao();
-        PARTICIPANT_DAO = new ParticipantDao();
-        CATEGORY_TABLE = new CategoryTableModel();
-        PARTICIPANT_TABLE = new ParticipantTableModel();
-        PARTICIPANT_LIST = new ArrayList<>();
-        CATEGORY_LIST = new ArrayList<>();
-        updateJTableParticipant();
-        setModelOfTableParticipant();
-        setModelOfTableCategory();
+        categoriaDao = new CategoryDao();
+        participanteDao = new ParticipantDao();
+        categoriaTable = new CategoryTableModel();
+        participanteTable = new ParticipantTableModel();
+        listParticipantes = new ArrayList<>();
+        listCategorias = new ArrayList<>();
+        atualizaTabelaParticipante();
+        mudaModeloTabelaParticipante();
+        mudaModeloTabelaCategoria();
         
     }
     
-    public void setModelOfTableCategory() {
-        CreateParticipant.tblCategoriaParticipante.setModel(CATEGORY_TABLE);
+    public void mudaModeloTabelaCategoria() {
+        CreateParticipant.tblCategoriaParticipante.setModel(categoriaTable);
     }
     
-    public void setModelOfTableParticipant() {
-        ManageParticipant.tblParticipante.setModel(PARTICIPANT_TABLE);
+    public void mudaModeloTabelaParticipante() {
+        ManageParticipant.tblParticipante.setModel(participanteTable);
     }
     
-    public void updateJTableParticipant() {
-        PARTICIPANT_LIST = PARTICIPANT_DAO.listar();
-        PARTICIPANT_TABLE.clear();
-        PARTICIPANT_TABLE.addListOfObject(PARTICIPANT_LIST);
+    public void atualizaTabelaParticipante() {
+        listParticipantes = participanteDao.listar();
+        participanteTable.clear();
+        participanteTable.addListOfObject(listParticipantes);
     }
     
-    private void getFieldsInsert() {
-        TF_NOME = view.participant.CreateParticipant.tfNome.getText();
-        TF_EMAIL = view.participant.CreateParticipant.tfEmail.getText();
-        TF_CPF = view.participant.CreateParticipant.tfCpf.getText();
-        TF_TELEFONE = view.participant.CreateParticipant.tfTelefone.getText();
+    private void pegaCamposCriarParticipante() {
+        campoNome = view.participant.CreateParticipant.tfNome.getText();
+        campoEmail = view.participant.CreateParticipant.tfEmail.getText();
+        campoCpf = view.participant.CreateParticipant.tfCpf.getText();
+        campoTelefone = view.participant.CreateParticipant.tfTelefone.getText();
     }
     
-    private void getFieldsEdit() {
-        TF_ID = null;
-        TF_NOME = null;
-        TF_EMAIL = null;
-        TF_CPF = null;
-        TF_TELEFONE = null;
-        TF_ID = view.participant.ViewParticipant.lblCodigoParticipant.getText();
-        TF_NOME = view.participant.ViewParticipant.tfNome.getText();
-        TF_EMAIL = view.participant.ViewParticipant.tfEmail.getText();
-        TF_CPF = view.participant.ViewParticipant.tfCpf.getText();
-        TF_TELEFONE = view.participant.ViewParticipant.tfTelefone.getText();
+    private void pegaCamposEditarParticipante() {
+        campoId = null;
+        campoNome = null;
+        campoEmail = null;
+        campoCpf = null;
+        campoTelefone = null;
+        campoId = view.participant.ViewParticipant.lblCodigoParticipant.getText();
+        campoNome = view.participant.ViewParticipant.tfNome.getText();
+        campoEmail = view.participant.ViewParticipant.tfEmail.getText();
+        campoCpf = view.participant.ViewParticipant.tfCpf.getText();
+        campoTelefone = view.participant.ViewParticipant.tfTelefone.getText();
     }
     
-    public void loadComboCategory() {
+    public void carregaCategoriasNoComboBox() {
         DefaultComboBoxModel model = new DefaultComboBoxModel(nomeDasCategorias);
         CreateParticipant.cbCategoria.setModel(model);
     }
     
-    public void insertCategoryParticipantAction() {
+    public void adicionarCategoriasDoParticipanteAction() {
         String NomeCategoria = (String) CreateParticipant.cbCategoria.getSelectedItem();
         Category catAdicionada = new Category();
         catAdicionada.setId(Integer.MAX_VALUE);
         catAdicionada.setNome(NomeCategoria);
-        CATEGORY_TABLE.addObject(catAdicionada);
-        CATEGORY_LIST.add(catAdicionada);
+        categoriaTable.addObject(catAdicionada);
+        listCategorias.add(catAdicionada);
     }
     
-    public void deleteCategoryParticipantAction() {
-        CATEGORY_TABLE.removeObject(getSelectedIndexCategoryParticipant());
-        CATEGORY_LIST.remove(getSelectedIndexCategoryParticipant());
+    public void removerCategoriasDoParticipanteAction() {
+        categoriaTable.removeObject(pegaLinhaCategoriaDoParticipante());
+        listCategorias.remove(pegaLinhaCategoriaDoParticipante());
     }
     
-    public void createParticipantAction() {
-        getFieldsInsert();
-        createEntityParticipant();
-        int idInserido = PARTICIPANT_DAO.cadastrar(PARTICIPANT);
-        insertEntityOnBdAndTable(idInserido);
-        CATEGORY_LIST = null;
-        clearFields();
+    public void criarParticipanteAction() {
+        pegaCamposCriarParticipante();
+        criarParticipante();
+        int idInserido = participanteDao.cadastrar(participante);
+        criaNovoParticipante(idInserido);
+        listCategorias = null;
+        limparCamposCriarParticipante();
     }
     
-    private void insertEntityOnBdAndTable(int idInserido) {
+    private void criaNovoParticipante(int idInserido) {
         if (idInserido != 0) {
-            PARTICIPANT.setId(idInserido);
-            PARTICIPANT_TABLE.addObject(PARTICIPANT);
+            participante.setId(idInserido);
+            participanteTable.addObject(participante);
             OptionPane.msgInfo(Text.SUCESS_CREATE);
         } else {
             OptionPane.msgError(Text.ERROR_CREATE);
         }
     }
     
-    private void createEntityParticipant() {
-        PARTICIPANT = new Participant();
-        PARTICIPANT.setId(Integer.MAX_VALUE);
-        PARTICIPANT.setNome(TF_NOME);
-        PARTICIPANT.setCpf(TF_CPF);
-        PARTICIPANT.setEmail(TF_EMAIL);
-        PARTICIPANT.setTelefone(TF_TELEFONE);
-        PARTICIPANT.setCategorias(CATEGORY_LIST);
+    private void criarParticipante() {
+        participante = new Participant();
+        participante.setId(Integer.MAX_VALUE);
+        participante.setNome(campoNome);
+        participante.setCpf(campoCpf);
+        participante.setEmail(campoEmail);
+        participante.setTelefone(campoTelefone);
+        participante.setCategorias(listCategorias);
     }
     
     public void loadFieldsViewParticipantAction() {
-        PARTICIPANT_TABLE = new ParticipantTableModel();
-        updateJTableParticipant();
-        PARTICIPANT = PARTICIPANT_TABLE.getObject(ManageParticipant.tblParticipante.getSelectedRow());
-        INDEX_SELECTED = getSelectedIndexParticipant();
+        participanteTable = new ParticipantTableModel();
+        atualizaTabelaParticipante();
+        participante = participanteTable.getObject(ManageParticipant.tblParticipante.getSelectedRow());
+        linhaSelecionada = pegaLinhaSelecionadaParticipante();
     }
     
     public void changeFieldsOnView() {
-        CATEGORY_TABLE = new CategoryTableModel();
-        ViewParticipant.tblCategoriaParticipante.setModel(CATEGORY_TABLE);
-        view.participant.ViewParticipant.lblCodigoParticipant.setText(String.valueOf(PARTICIPANT.getId()));
-        view.participant.ViewParticipant.tfNome.setText(PARTICIPANT.getNome());
-        view.participant.ViewParticipant.tfEmail.setText(PARTICIPANT.getEmail());
-        view.participant.ViewParticipant.tfCpf.setText(PARTICIPANT.getCpf());
-        view.participant.ViewParticipant.tfTelefone.setText(PARTICIPANT.getTelefone());
-        CATEGORY_TABLE.addListOfObject(CATEGORY_DAO.listarCatDoParticipante(PARTICIPANT.getId()));
+        categoriaTable = new CategoryTableModel();
+        ViewParticipant.tblCategoriaParticipante.setModel(categoriaTable);
+        view.participant.ViewParticipant.lblCodigoParticipant.setText(String.valueOf(participante.getId()));
+        view.participant.ViewParticipant.tfNome.setText(participante.getNome());
+        view.participant.ViewParticipant.tfEmail.setText(participante.getEmail());
+        view.participant.ViewParticipant.tfCpf.setText(participante.getCpf());
+        view.participant.ViewParticipant.tfTelefone.setText(participante.getTelefone());
+        categoriaTable.addListOfObject(categoriaDao.listarCatDoParticipante(participante.getId()));
     }
     
-    public void deleteParticipantAction() {
-        PARTICIPANT = PARTICIPANT_TABLE.getObject(getSelectedIndexParticipant());
-        if (PARTICIPANT_DAO.deletar(PARTICIPANT)) {
-            PARTICIPANT_TABLE.removeObject(INDEX_SELECTED);
+    public void deletarParticipanteAction() {
+        participante = participanteTable.getObject(pegaLinhaSelecionadaParticipante());
+        if (participanteDao.deletar(participante)) {
+            participanteTable.removeObject(linhaSelecionada);
             OptionPane.msgInfo(Text.SUCESS_DELETE);
         } else {
             OptionPane.msgInfo(Text.CATEGORY_DEPENDENCY);
         }
-        updateJTableParticipant();
+        atualizaTabelaParticipante();
         
     }
     
-    public int getSelectedIndexParticipant() {
+    public int pegaLinhaSelecionadaParticipante() {
         return ManageParticipant.tblParticipante.getSelectedRow();
     }
     
-    public int getSelectedIndexCategoryParticipant() {
+    public int pegaLinhaCategoriaDoParticipante() {
         return CreateParticipant.tblCategoriaParticipante.getSelectedRow();
     }
     
-    public void clearFields() {
+    public void limparCamposCriarParticipante() {
         view.participant.CreateParticipant.tfNome.setText(null);
         view.participant.CreateParticipant.tfCpf.setText(null);
         view.participant.CreateParticipant.tfEmail.setText(null);
         view.participant.CreateParticipant.tfTelefone.setText(null);
-        CATEGORY_TABLE.clear();
+        categoriaTable.clear();
     }
 }

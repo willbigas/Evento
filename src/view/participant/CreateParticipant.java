@@ -23,7 +23,7 @@ public class CreateParticipant extends javax.swing.JFrame {
     public CreateParticipant() {
         initComponents();
         PARTICIPANTE_CONTROL = new ParticipantControl();
-        PARTICIPANTE_CONTROL.loadComboCategory();
+        PARTICIPANTE_CONTROL.carregaCategoriasNoComboBox();
     }
 
     /**
@@ -192,17 +192,17 @@ public class CreateParticipant extends javax.swing.JFrame {
 
     private void btAdicionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarCategoriaActionPerformed
         // TODO add your handling code here:
-        PARTICIPANTE_CONTROL.insertCategoryParticipantAction();
+        PARTICIPANTE_CONTROL.adicionarCategoriasDoParticipanteAction();
     }//GEN-LAST:event_btAdicionarCategoriaActionPerformed
 
     private void btDeletarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeletarCategoriaActionPerformed
         // TODO add your handling code here:
-        PARTICIPANTE_CONTROL.deleteCategoryParticipantAction();
+        PARTICIPANTE_CONTROL.removerCategoriasDoParticipanteAction();
     }//GEN-LAST:event_btDeletarCategoriaActionPerformed
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
         // TODO add your handling code here:
-        PARTICIPANTE_CONTROL.createParticipantAction();
+        PARTICIPANTE_CONTROL.criarParticipanteAction();
     }//GEN-LAST:event_btGravarActionPerformed
 
     /**

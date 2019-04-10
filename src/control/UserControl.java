@@ -15,19 +15,19 @@ import view.user.ManageUser;
  */
 public class UserControl {
 
-    User USER;
-    List<User> USER_LIST;
-    UserDao USER_DAO;
-    UserTableModel USER_TABLE;
-    Integer INDEX_SELECTED = 0;
+    User usuario;
+    List<User> listUsuarios;
+    UserDao usuarioDao;
+    UserTableModel usuarioTable;
+    Integer linhaSelecionada = 0;
 
     public UserControl() {
-        USER_DAO = new UserDao();
-        USER_LIST = new ArrayList<>();
-        USER_TABLE = new UserTableModel();
-        getFieldsLogin();
-        updateJTableUser();
-        setModelOfTable();
+        usuarioDao = new UserDao();
+        listUsuarios = new ArrayList<>();
+        usuarioTable = new UserTableModel();
+        pegaCamposLogin();
+        atualizaJtableUsuario();
+        mudaModeloDaTabela();
 
     }
 
@@ -35,31 +35,31 @@ public class UserControl {
     private String TF_PASSWORD = "";
     private String LBL_ID = "";
 
-    private void getFieldsLogin() {
+    private void pegaCamposLogin() {
         TF_LOGIN = view.user.LoginUser.tfLogin.getText();
         TF_PASSWORD = view.user.LoginUser.tfSenha.getText();
     }
 
-    private void getFields() {
+    private void pegaCamposFormUsuario() {
         TF_LOGIN = null;
         TF_PASSWORD = null;
         TF_LOGIN = view.user.CreateUser.tfLogin.getText();
         TF_PASSWORD = view.user.CreateUser.tfSenha.getText();
     }
 
-    public void updateJTableUser() {
-        USER_LIST = USER_DAO.listar();
-        USER_TABLE.clear();
-        USER_TABLE.addListOfObject(USER_LIST);
+    public void atualizaJtableUsuario() {
+        listUsuarios = usuarioDao.listar();
+        usuarioTable.clear();
+        usuarioTable.addListOfObject(listUsuarios);
     }
 
-    public void setModelOfTable() {
-        ManageUser.tblUsuario.setModel(USER_TABLE);
+    public void mudaModeloDaTabela() {
+        ManageUser.tblUsuario.setModel(usuarioTable);
     }
 
-    private Boolean loginValidate() {
-        getFieldsLogin();
-        List<User> usuariosDoBanco = USER_DAO.listar();
+    private Boolean validaLogin() {
+        pegaCamposLogin();
+        List<User> usuariosDoBanco = usuarioDao.listar();
 
         for (User usuario : usuariosDoBanco) {
             if (usuario.getLogin().equals(TF_LOGIN) && usuario.getSenha().equals(TF_PASSWORD)) {
@@ -69,86 +69,85 @@ public class UserControl {
         return false;
     }
 
-    public void loginAction() {
-        if (loginValidate()) {
+    public void efetuaLoginAction() {
+        if (validaLogin()) {
             Main.JanelaPrincipal();
         } else {
             JOptionPane.showMessageDialog(null, "Usuario ou Senha incorretos!");
         }
     }
 
-    public void createUserAction() {
-        getFields();
-        USER = new User();
-        USER.setLogin(TF_LOGIN); // mudar campos
-        USER.setSenha(TF_PASSWORD); // mudar campos
-        int idUsuario = USER_DAO.cadastrar(USER);
+    public void criarUsuarioAction() {
+        pegaCamposFormUsuario();
+        usuario = new User();
+        usuario.setLogin(TF_LOGIN); // mudar campos
+        usuario.setSenha(TF_PASSWORD); // mudar campos
+        int idUsuario = usuarioDao.cadastrar(usuario);
         if (idUsuario != 0) {
-            USER.setId(idUsuario);
-            USER_TABLE.addObject(USER);
+            usuario.setId(idUsuario);
+            usuarioTable.addObject(usuario);
             JOptionPane.showMessageDialog(null, "Inserido com Sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Não conseguir Inserir!");
         }
-        USER = null;
+        usuario = null;
     }
 
-    public int getSelectedIndex() {
+    public int pegaLinhaSelecionada() {
         return ManageUser.tblUsuario.getSelectedRow();
     }
 
     public User pegaUsuarioSelecionadoDaTabela() {
         if (ManageUser.tblUsuario.getSelectedRow() == - 1) {
-            INDEX_SELECTED = -1;
+            linhaSelecionada = -1;
             return null;
         } else {
-            USER = USER_TABLE.getObject(ManageUser.tblUsuario.getSelectedRow());
-            System.out.println("Usuario pegado da Tabela" + USER);
-            INDEX_SELECTED = getSelectedIndex();
-            return USER;
+            usuario = usuarioTable.getObject(ManageUser.tblUsuario.getSelectedRow());
+            System.out.println("Usuario pegado da Tabela" + usuario);
+            linhaSelecionada = pegaLinhaSelecionada();
+            return usuario;
 
         }
 
     }
 
     public int pegaLinhaSelecionadaDaTabela() {
-        return INDEX_SELECTED;
+        return linhaSelecionada;
     }
 
-    public void updateUserAction(User user, int index) {
-        getFields();
+    public void atualizarUsuarioAction(User user, int index) {
+        pegaCamposFormUsuario();
         System.out.println("id do edit :  " + LBL_ID);
-        boolean inserido = USER_DAO.alterar(user);
+        boolean inserido = usuarioDao.alterar(user);
         if (inserido) {
-            USER_TABLE.updateObject(INDEX_SELECTED, user);
+            usuarioTable.updateObject(linhaSelecionada, user);
             JOptionPane.showMessageDialog(null, "Alterado com Sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Não conseguir Alterar!");
         }
-        USER = null;
+        usuario = null;
     }
 
-    public void searchUserAction() {
+    public void procurarUsuarioAction() {
         String pesquisa = view.user.ManageUser.tfPesquisar.getText();
-        List<User> usuariosPesquisados = USER_DAO.pesquisarPorTermo(pesquisa);
-        USER_TABLE.clear();
-        USER_TABLE.addListOfObject(usuariosPesquisados);
+        List<User> usuariosPesquisados = usuarioDao.pesquisarPorTermo(pesquisa);
+        usuarioTable.clear();
+        usuarioTable.addListOfObject(usuariosPesquisados);
     }
 
-    public void deleteUserAction() {
-        USER = USER_TABLE.getObject(ManageUser.tblUsuario.getSelectedRow());
-        if (USER_DAO.deletar(USER)) {
-            USER_TABLE.removeObject(getSelectedIndex());
+    public void deletarUsuarioAction() {
+        usuario = usuarioTable.getObject(ManageUser.tblUsuario.getSelectedRow());
+        if (usuarioDao.deletar(usuario)) {
+            usuarioTable.removeObject(pegaLinhaSelecionada());
             JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");
         }
 
     }
-
-    public void gravarUsuario(User usuario, int index) {
+    public void gravarUsuarioAction(User usuario, int index) {
         if (index == -1) {
-            createUserAction();
+            criarUsuarioAction();
         } else {
-            updateUserAction(usuario, index);
+            atualizarUsuarioAction(usuario, index);
         }
     }
 

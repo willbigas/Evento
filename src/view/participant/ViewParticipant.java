@@ -21,7 +21,7 @@ public class ViewParticipant extends javax.swing.JFrame {
     public ViewParticipant() {
         initComponents();
         PARTICIPANTE_CONTROL = new ParticipantControl();
-        PARTICIPANTE_CONTROL.loadComboCategory();
+        PARTICIPANTE_CONTROL.carregaCategoriasNoComboBox();
         tfCpf.setEnabled(false);
         tblCategoriaParticipante.setEnabled(false);
 

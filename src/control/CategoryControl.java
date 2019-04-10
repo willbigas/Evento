@@ -16,56 +16,56 @@ import view.category.ManageCategory;
  */
 public class CategoryControl {
 
-    Category CATEGORY;
-    List<Category> CATEGORY_LIST;
-    CategoryDao CATEGORY_DAO;
-    CategoryTableModel CATEGORIA_TABLE;
-    Integer INDEX_SELECTED = 0;
+    Category categoria;
+    List<Category> listCategorias;
+    CategoryDao categoriaDao;
+    CategoryTableModel categoriaTable;
+    Integer linhaSelecionada = 0;
 
     public CategoryControl() {
-        CATEGORY_DAO = new CategoryDao();
-        CATEGORY_LIST = new ArrayList<>();
-        CATEGORIA_TABLE = new CategoryTableModel();
-        updateJTableCategory();
-        setModelOfTable();
+        categoriaDao = new CategoryDao();
+        listCategorias = new ArrayList<>();
+        categoriaTable = new CategoryTableModel();
+        atualizarJTableCategoria();
+        mudaModeloDaTable();
 
     }
 
-    public void updateJTableCategory() {
-        CATEGORY_LIST = CATEGORY_DAO.listar();
-        CATEGORIA_TABLE.clear();
-        CATEGORIA_TABLE.addListOfObject(CATEGORY_LIST);
+    public void atualizarJTableCategoria() {
+        listCategorias = categoriaDao.listar();
+        categoriaTable.clear();
+        categoriaTable.addListOfObject(listCategorias);
     }
 
-    public void setModelOfTable() {
-        ManageCategory.tblCategoria.setModel(CATEGORIA_TABLE);
+    public void mudaModeloDaTable() {
+        ManageCategory.tblCategoria.setModel(categoriaTable);
     }
 
-    public int getSelectedIndex() {
+    public int pegaIndexSelecionada() {
         return ManageCategory.tblCategoria.getSelectedRow();
     }
 
-    public void searchCategoryAction() {
+    public void pesquisarCategoriaAction() {
         String pesquisa = view.category.ManageCategory.tfPesquisar.getText();
-        List<Category> categoriasPesquisadas = CATEGORY_DAO.pesquisarPorTermo(pesquisa);
-        CATEGORIA_TABLE.clear();
-        CATEGORIA_TABLE.addListOfObject(categoriasPesquisadas);
+        List<Category> categoriasPesquisadas = categoriaDao.pesquisarPorTermo(pesquisa);
+        categoriaTable.clear();
+        categoriaTable.addListOfObject(categoriasPesquisadas);
     }
 
-    public void deleteCategoryAction() {
-        if (getSelectedIndex() == -1) {
+    public void deletarCategoriaAction() {
+        if (pegaIndexSelecionada() == -1) {
             OptionPane.msgInfo(Text.NOT_SELECTED_INPUT);
             return;
         }
-        CATEGORY = CATEGORIA_TABLE.getObject(getSelectedIndex());
-        if (CATEGORY == null) {
+        categoria = categoriaTable.getObject(pegaIndexSelecionada());
+        if (categoria == null) {
             OptionPane.msgInfo(Text.NOT_SELECTED_INPUT);
             return;
         }
         int result = OptionPane.msgConfirm(Text.ACTION_IRREVERSIBLE);
         if (result == JOptionPane.YES_OPTION) {
-            if (CATEGORY_DAO.deletar(CATEGORY)) {
-                CATEGORIA_TABLE.removeObject(getSelectedIndex());
+            if (categoriaDao.deletar(categoria)) {
+                categoriaTable.removeObject(pegaIndexSelecionada());
                 OptionPane.msgInfo(Text.SUCESS_DELETE);
             } else {
                 OptionPane.msgError(Text.ERROR_DELETE);

@@ -104,12 +104,12 @@ public class ManageCategory extends javax.swing.JFrame {
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
-        CATEGORIA_CONTROL.deleteCategoryAction();
+        CATEGORIA_CONTROL.deletarCategoriaAction();
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
         // TODO add your handling code here:
-        CATEGORIA_CONTROL.searchCategoryAction();
+        CATEGORIA_CONTROL.pesquisarCategoriaAction();
     }//GEN-LAST:event_tfPesquisarKeyReleased
 
     /**

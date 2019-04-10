@@ -127,7 +127,7 @@ public class CreateUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         usuario.setLogin(tfLogin.getText());
         usuario.setSenha(tfSenha.getText());
-        USUARIO_CONTROL.gravarUsuario(usuario, indexSelecionadaDoUser);
+        USUARIO_CONTROL.gravarUsuarioAction(usuario, indexSelecionadaDoUser);
         limparCampos();
     }//GEN-LAST:event_btGravarActionPerformed
 

@@ -101,7 +101,7 @@ public class LoginUser extends javax.swing.JFrame {
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        USUARIO_CONTROL.loginAction();
+        USUARIO_CONTROL.efetuaLoginAction();
         
     }//GEN-LAST:event_btEntrarActionPerformed
 
