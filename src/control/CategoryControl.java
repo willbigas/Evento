@@ -1,30 +1,30 @@
 package control;
 
-import dao.CategoriaDao;
+import dao.CategoryDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Category;
 import model.tablemodel.CategoryTableModel;
-import view.categoria.ManageCategory;
+import view.category.ManageCategory;
 
 /**
  *
  * @author William
  */
-public class CategoriaControl {
+public class CategoryControl {
 
     Category CATEGORY;
     List<Category> CATEGORY_LIST;
-    CategoriaDao CATEGORY_DAO;
+    CategoryDao CATEGORY_DAO;
     CategoryTableModel CATEGORIA_TABLE;
     Integer INDEX_SELECTED = 0;
 
-    public CategoriaControl() {
-        CATEGORY_DAO = new CategoriaDao();
+    public CategoryControl() {
+        CATEGORY_DAO = new CategoryDao();
         CATEGORY_LIST = new ArrayList<>();
         CATEGORIA_TABLE = new CategoryTableModel();
-        getUserOfDatabase();
+        updateJTableCategory();
         setModelOfTable();
 
     }
@@ -36,16 +36,16 @@ public class CategoriaControl {
     private void getFieldsEdit() {
         TF_NOME = null;
         LBL_ID = null;
-        TF_NOME = view.categoria.EditCategory.tfNome.getText();
-        LBL_ID = view.categoria.EditCategory.lblCodigoCategoria.getText();
+        TF_NOME = view.category.EditCategory.tfNome.getText();
+        LBL_ID = view.category.EditCategory.lblCodigoCategoria.getText();
     }
 
     private void getFieldsInsert() {
         TF_NOME = null;
-        TF_NOME = view.categoria.CreateCategory.tfNome.getText();
+        TF_NOME = view.category.CreateCategory.tfNome.getText();
     }
 
-    public void getUserOfDatabase() {
+    public void updateJTableCategory() {
         CATEGORY_LIST = CATEGORY_DAO.listar();
         CATEGORIA_TABLE.clear();
         CATEGORIA_TABLE.addListOfObject(CATEGORY_LIST);
@@ -81,8 +81,8 @@ public class CategoriaControl {
     }
 
     public void changeFieldsOnEdit() {
-        view.categoria.EditCategory.tfNome.setText(CATEGORY.getNome());
-        view.categoria.EditCategory.lblCodigoCategoria.setText(String.valueOf(CATEGORY.getId()));
+        view.category.EditCategory.tfNome.setText(CATEGORY.getNome());
+        view.category.EditCategory.lblCodigoCategoria.setText(String.valueOf(CATEGORY.getId()));
     }
 
     public void updateUserAction() {

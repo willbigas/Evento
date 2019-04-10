@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.participante;
+package view.participant;
 
-import control.ParticipanteControl;
+import control.ParticipantControl;
+import evento.Main;
 
 /**
  *
@@ -13,7 +14,7 @@ import control.ParticipanteControl;
  */
 public class CreateParticipant extends javax.swing.JFrame {
     
-    ParticipanteControl PARTICIPANTE_CONTROL;
+    ParticipantControl PARTICIPANTE_CONTROL;
     
 
     /**
@@ -21,7 +22,7 @@ public class CreateParticipant extends javax.swing.JFrame {
      */
     public CreateParticipant() {
         initComponents();
-        PARTICIPANTE_CONTROL = new ParticipanteControl();
+        PARTICIPANTE_CONTROL = new ParticipantControl();
         PARTICIPANTE_CONTROL.loadComboCategory();
     }
 

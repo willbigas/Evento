@@ -12,9 +12,9 @@ import model.User;
  *
  * @author William
  */
-public class UsuarioDao extends Dao implements DaoI<User> {
+public class UserDao extends Dao implements DaoI<User> {
 
-    public UsuarioDao() {
+    public UserDao() {
         super();
     }
 

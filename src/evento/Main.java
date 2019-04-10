@@ -2,22 +2,22 @@ package evento;
 
 import javax.swing.JFrame;
 import view.MainWindow;
-import view.categoria.CreateCategory;
-import view.categoria.EditCategory;
-import view.categoria.ManageCategory;
-import view.participante.CreateParticipant;
-import view.participante.EditParticipant;
-import view.participante.ManageParticipant;
-import view.usuario.CreateUser;
-import view.usuario.EditUser;
-import view.usuario.ManageUser;
-import view.usuario.LoginUser;
+import view.category.CreateCategory;
+import view.category.EditCategory;
+import view.category.ManageCategory;
+import view.participant.CreateParticipant;
+import view.participant.EditParticipant;
+import view.participant.ManageParticipant;
+import view.user.CreateUser;
+import view.user.EditUser;
+import view.user.ManageUser;
+import view.user.LoginUser;
 
 /**
  *
  * @author William
  */
-public class Evento {
+public class Main {
 
     /**
      * @param args the command line arguments

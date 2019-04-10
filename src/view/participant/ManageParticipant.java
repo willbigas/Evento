@@ -3,25 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.participante;
+package view.participant;
 
-import control.ParticipanteControl;
-import evento.Evento;
+import control.ParticipantControl;
+import evento.Main;
 
 /**
  *
  * @author William
  */
 public class ManageParticipant extends javax.swing.JFrame {
-    
-    ParticipanteControl PARTICIPANT_CONTROL;
+
+    ParticipantControl PARTICIPANT_CONTROL;
 
     /**
      * Creates new form ViewGerenciarUsuarios
      */
     public ManageParticipant() {
         initComponents();
-        PARTICIPANT_CONTROL = new ParticipanteControl();
+        PARTICIPANT_CONTROL = new ParticipantControl();
+        PARTICIPANT_CONTROL.updateJTableParticipant();
     }
 
     /**
@@ -48,24 +49,24 @@ public class ManageParticipant extends javax.swing.JFrame {
             }
         });
 
-        btNovo.setText("Novo");
+        btNovo.setText("+");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);
             }
         });
 
-        btExcluir.setText("Excluir");
+        btExcluir.setText("-");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
             }
         });
 
-        btEditar.setText("Editar");
-        btEditar.addActionListener(new java.awt.event.ActionListener() {
+        btVisualizar.setText("Visualizar");
+        btVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarActionPerformed(evt);
+                btVisualizarActionPerformed(evt);
             }
         });
 
@@ -90,27 +91,24 @@ public class ManageParticipant extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(121, 121, 121)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEditar)
+                        .addComponent(btExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btExcluir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btVisualizar)))
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +120,8 @@ public class ManageParticipant extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNovo)
-                    .addComponent(btExcluir)
-                    .addComponent(btEditar))
+                    .addComponent(btVisualizar)
+                    .addComponent(btExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -138,22 +136,22 @@ public class ManageParticipant extends javax.swing.JFrame {
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
-        Evento.JanelaCadastrarParticipante();
-        
+        Main.JanelaCadastrarParticipante();
+
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
         PARTICIPANT_CONTROL.deleteParticipantAction();
-        
+
     }//GEN-LAST:event_btExcluirActionPerformed
 
-    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+    private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
         // TODO add your handling code here:
         PARTICIPANT_CONTROL.loadFieldsEditParticipantAction();
-        Evento.JanelaEditarParticipante();
+        Main.JanelaEditarParticipante();
         PARTICIPANT_CONTROL.changeFieldsOnEdit();
-    }//GEN-LAST:event_btEditarActionPerformed
+    }//GEN-LAST:event_btVisualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,9 +204,9 @@ public class ManageParticipant extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static final javax.swing.JButton btEditar = new javax.swing.JButton();
     public static final javax.swing.JButton btExcluir = new javax.swing.JButton();
     public static final javax.swing.JButton btNovo = new javax.swing.JButton();
+    public static final javax.swing.JButton btVisualizar = new javax.swing.JButton();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

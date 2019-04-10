@@ -1,7 +1,7 @@
-package view.categoria;
+package view.category;
 
-import control.CategoriaControl;
-import evento.Evento;
+import control.CategoryControl;
+import evento.Main;
 
 /**
  *
@@ -9,14 +9,14 @@ import evento.Evento;
  */
 public class ManageCategory extends javax.swing.JFrame {
     
-    CategoriaControl CATEGORIA_CONTROL;
+    CategoryControl CATEGORIA_CONTROL;
     
     /**
      * Creates new form ViewGerenciarUsuarios
      */
     public ManageCategory() {
         initComponents();
-        CATEGORIA_CONTROL = new CategoriaControl();
+        CATEGORIA_CONTROL = new CategoryControl();
     }
 
     /**
@@ -133,13 +133,13 @@ public class ManageCategory extends javax.swing.JFrame {
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
-        Evento.JanelaCadastrarCategoria();
+        Main.JanelaCadastrarCategoria();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         // TODO add your handling code here:
         CATEGORIA_CONTROL.loadFieldsEditUserAction();
-        Evento.JanelaEditarCategoria();
+        Main.JanelaEditarCategoria();
         CATEGORIA_CONTROL.changeFieldsOnEdit();
     }//GEN-LAST:event_btEditarActionPerformed
 

@@ -1,7 +1,7 @@
-package view.usuario;
+package view.user;
 
-import control.UsuarioControl;
-import evento.Evento;
+import control.UserControl;
+import evento.Main;
 
 /**
  *
@@ -9,14 +9,14 @@ import evento.Evento;
  */
 public class ManageUser extends javax.swing.JFrame {
 
-    UsuarioControl USUARIO_CONTROL;
+    UserControl USUARIO_CONTROL;
 
     /**
      * Creates new form ViewGerenciarUsuarios
      */
     public ManageUser() {
         initComponents();
-        USUARIO_CONTROL = new UsuarioControl();
+        USUARIO_CONTROL = new UserControl();
 
     }
 
@@ -134,12 +134,12 @@ public class ManageUser extends javax.swing.JFrame {
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
-        Evento.JanelaCadastrarUsuario();
+        Main.JanelaCadastrarUsuario();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         USUARIO_CONTROL.loadFieldsEditUserAction();
-        Evento.JanelaEditarUsuario();
+        Main.JanelaEditarUsuario();
         USUARIO_CONTROL.changeFieldsOnEdit();
 
 

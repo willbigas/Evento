@@ -1,6 +1,6 @@
-package view.usuario;
+package view.user;
 
-import control.UsuarioControl;
+import control.UserControl;
 
 /**
  *
@@ -8,14 +8,14 @@ import control.UsuarioControl;
  */
 public class LoginUser extends javax.swing.JFrame {
     
-    UsuarioControl USUARIO_CONTROL;
+    UserControl USUARIO_CONTROL;
 
     /**
      * Creates new form ViewLoginUsuario
      */
     public LoginUser() {
         initComponents();
-        USUARIO_CONTROL = new UsuarioControl();
+        USUARIO_CONTROL = new UserControl();
     }
 
     /**

@@ -13,20 +13,20 @@ import model.Participant;
  *
  * @author William
  */
-public class ParticipanteDao extends Dao implements DaoI<Participant> {
+public class ParticipantDao extends Dao implements DaoI<Participant> {
 
-    CategoriaDao categoriaDao;
+    CategoryDao categoriaDao;
 
-    public ParticipanteDao() {
+    public ParticipantDao() {
         super();
-        categoriaDao = new CategoriaDao();
+        categoriaDao = new CategoryDao();
     }
 
     @Override
     public List<Participant> listar() {
         try {
             PreparedStatement stmt;
-            stmt = conexao.prepareStatement("SELECT * FROM PARTICIPANTE");
+            stmt = conexao.prepareStatement("SELECT * FROM PARTICIPANTE ORDER BY ID");
             ResultSet result = stmt.executeQuery();
             List<Participant> lista = new ArrayList<>();
             while (result.next()) {

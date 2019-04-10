@@ -5,7 +5,7 @@
  */
 package view;
 
-import evento.Evento;
+import evento.Main;
 
 /**
  *
@@ -91,17 +91,17 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuariosActionPerformed
-        Evento.JanelaGerenciarUsuarios();
+        Main.JanelaGerenciarUsuarios();
     }//GEN-LAST:event_menuUsuariosActionPerformed
 
     private void menuCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoriasActionPerformed
         // TODO add your handling code here:
-        Evento.JanelaGerenciarCategorias();
+        Main.JanelaGerenciarCategorias();
     }//GEN-LAST:event_menuCategoriasActionPerformed
 
     private void menuParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuParticipantesActionPerformed
         // TODO add your handling code here:
-        Evento.JanelaGerenciarParticipantes();
+        Main.JanelaGerenciarParticipantes();
     }//GEN-LAST:event_menuParticipantesActionPerformed
 
     /**
