@@ -8,6 +8,7 @@ public class Category {
 
     private Integer id;
     private String nome;
+    private Integer codigoParticipante;
 
     public Integer getId() {
         return id;
@@ -23,6 +24,14 @@ public class Category {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Integer getCodigoParticipante() {
+        return codigoParticipante;
+    }
+
+    public void setCodigoParticipante(Integer codigoParticipante) {
+        this.codigoParticipante = codigoParticipante;
     }
 
     @Override

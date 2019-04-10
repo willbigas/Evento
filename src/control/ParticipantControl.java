@@ -5,7 +5,6 @@ import dao.ParticipantDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 import model.Category;
 import model.Participant;
 import model.tablemodel.CategoryTableModel;
@@ -13,7 +12,7 @@ import model.tablemodel.ParticipantTableModel;
 import util.OptionPane;
 import util.Text;
 import view.participant.CreateParticipant;
-import view.participant.EditParticipant;
+import view.participant.ViewParticipant;
 import view.participant.ManageParticipant;
 
 /**
@@ -73,11 +72,16 @@ public class ParticipantControl {
     }
     
     private void getFieldsEdit() {
-        TF_ID = view.participant.EditParticipant.lblCodigoParticipant.getText();
-        TF_NOME = view.participant.EditParticipant.tfNome.getText();
-        TF_EMAIL = view.participant.EditParticipant.tfEmail.getText();
-        TF_CPF = view.participant.EditParticipant.tfCpf.getText();
-        TF_TELEFONE = view.participant.EditParticipant.tfTelefone.getText();
+        TF_ID = null;
+        TF_NOME = null;
+        TF_EMAIL = null;
+        TF_CPF = null;
+        TF_TELEFONE = null;
+        TF_ID = view.participant.ViewParticipant.lblCodigoParticipant.getText();
+        TF_NOME = view.participant.ViewParticipant.tfNome.getText();
+        TF_EMAIL = view.participant.ViewParticipant.tfEmail.getText();
+        TF_CPF = view.participant.ViewParticipant.tfCpf.getText();
+        TF_TELEFONE = view.participant.ViewParticipant.tfTelefone.getText();
     }
     
     public void loadComboCategory() {
@@ -107,7 +111,7 @@ public class ParticipantControl {
         CATEGORY_LIST = null;
         clearFields();
     }
-
+    
     private void insertEntityOnBdAndTable(int idInserido) {
         if (idInserido != 0) {
             PARTICIPANT.setId(idInserido);
@@ -117,7 +121,7 @@ public class ParticipantControl {
             OptionPane.msgError(Text.ERROR_CREATE);
         }
     }
-
+    
     private void createEntityParticipant() {
         PARTICIPANT = new Participant();
         PARTICIPANT.setId(Integer.MAX_VALUE);
@@ -128,31 +132,33 @@ public class ParticipantControl {
         PARTICIPANT.setCategorias(CATEGORY_LIST);
     }
     
-    public void loadFieldsEditParticipantAction() {
+    public void loadFieldsViewParticipantAction() {
         PARTICIPANT_TABLE = new ParticipantTableModel();
         updateJTableParticipant();
         PARTICIPANT = PARTICIPANT_TABLE.getObject(ManageParticipant.tblParticipante.getSelectedRow());
-        System.out.println("Participante pegado da Tabela" + PARTICIPANT);
         INDEX_SELECTED = getSelectedIndexParticipant();
     }
     
-    public void changeFieldsOnEdit() {
+    public void changeFieldsOnView() {
         CATEGORY_TABLE = new CategoryTableModel();
-        EditParticipant.tblCategoriaParticipante.setModel(CATEGORY_TABLE);
-        view.participant.EditParticipant.lblCodigoParticipant.setText(String.valueOf(PARTICIPANT.getId()));
-        view.participant.EditParticipant.tfNome.setText(PARTICIPANT.getNome());
-        view.participant.EditParticipant.tfEmail.setText(PARTICIPANT.getEmail());
-        view.participant.EditParticipant.tfCpf.setText(PARTICIPANT.getCpf());
-        view.participant.EditParticipant.tfTelefone.setText(PARTICIPANT.getTelefone());
+        ViewParticipant.tblCategoriaParticipante.setModel(CATEGORY_TABLE);
+        view.participant.ViewParticipant.lblCodigoParticipant.setText(String.valueOf(PARTICIPANT.getId()));
+        view.participant.ViewParticipant.tfNome.setText(PARTICIPANT.getNome());
+        view.participant.ViewParticipant.tfEmail.setText(PARTICIPANT.getEmail());
+        view.participant.ViewParticipant.tfCpf.setText(PARTICIPANT.getCpf());
+        view.participant.ViewParticipant.tfTelefone.setText(PARTICIPANT.getTelefone());
         CATEGORY_TABLE.addListOfObject(CATEGORY_DAO.listarCatDoParticipante(PARTICIPANT.getId()));
     }
     
     public void deleteParticipantAction() {
-        PARTICIPANT = PARTICIPANT_TABLE.getObject(ManageParticipant.tblParticipante.getSelectedRow());
+        PARTICIPANT = PARTICIPANT_TABLE.getObject(getSelectedIndexParticipant());
         if (PARTICIPANT_DAO.deletar(PARTICIPANT)) {
             PARTICIPANT_TABLE.removeObject(INDEX_SELECTED);
-            JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");
+            OptionPane.msgInfo(Text.SUCESS_DELETE);
+        } else {
+            OptionPane.msgInfo(Text.CATEGORY_DEPENDENCY);
         }
+        updateJTableParticipant();
         
     }
     

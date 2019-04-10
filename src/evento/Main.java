@@ -2,11 +2,9 @@ package evento;
 
 import javax.swing.JFrame;
 import view.MainWindow;
-import view.category.CreateCategory;
-import view.category.EditCategory;
 import view.category.ManageCategory;
 import view.participant.CreateParticipant;
-import view.participant.EditParticipant;
+import view.participant.ViewParticipant;
 import view.participant.ManageParticipant;
 import view.user.CreateUser;
 import view.user.EditUser;
@@ -74,20 +72,6 @@ public class Main {
 
     }
 
-    public static void JanelaEditarCategoria() {
-        EditCategory janelaEditarCategoria = new EditCategory();
-        janelaEditarCategoria.setTitle("EDITAR CATEGORIA");
-        janelaEditarCategoria.setLocationRelativeTo(null);
-        janelaEditarCategoria.setVisible(true);
-    }
-
-    public static void JanelaCadastrarCategoria() {
-        CreateCategory janelaCadastrarCategoria = new CreateCategory();
-        janelaCadastrarCategoria.setTitle("CADASTRAR CATEGORIA");
-        janelaCadastrarCategoria.setLocationRelativeTo(null);
-        janelaCadastrarCategoria.setVisible(true);
-    }
-
     // JANELAS DE PARTICIPANTES
     public static void JanelaGerenciarParticipantes() {
         ManageParticipant janelaGerenciarParticipantes = new ManageParticipant();
@@ -96,9 +80,9 @@ public class Main {
         janelaGerenciarParticipantes.setVisible(true);
 
     }
-    
+
     public static void JanelaEditarParticipante() {
-        EditParticipant janelaEditarParticipant = new EditParticipant();
+        ViewParticipant janelaEditarParticipant = new ViewParticipant();
         janelaEditarParticipant.setTitle("EDITAR PARTICIPANTE");
         janelaEditarParticipant.setLocationRelativeTo(null);
         janelaEditarParticipant.setVisible(true);

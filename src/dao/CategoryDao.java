@@ -14,6 +14,7 @@ import model.Category;
  */
 public class CategoryDao extends Dao implements DaoI<Category> {
 
+
     public CategoryDao() {
         //Contrutor da super classe Dao. Faz a conexão.
         super();
@@ -30,6 +31,7 @@ public class CategoryDao extends Dao implements DaoI<Category> {
                 Category c = new Category();
                 c.setId(result.getInt("id"));
                 c.setNome(result.getString("nome"));
+                c.setCodigoParticipante(result.getInt("fk_participante"));
                 lista.add(c);
             }
             return lista;

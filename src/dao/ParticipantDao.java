@@ -15,11 +15,11 @@ import model.Participant;
  */
 public class ParticipantDao extends Dao implements DaoI<Participant> {
 
-    CategoryDao categoriaDao;
+    CategoryDao categoriaDao = new CategoryDao();
 
     public ParticipantDao() {
         super();
-        categoriaDao = new CategoryDao();
+
     }
 
     @Override
@@ -136,7 +136,7 @@ public class ParticipantDao extends Dao implements DaoI<Participant> {
     public Participant lerPorId(int id) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
-                    + "SELECT ID, LOGIN , SENHA FROM USUARIO "
+                    + "SELECT * FROM participant "
                     + "WHERE id = ?");
             stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();

@@ -31,21 +31,6 @@ public class CategoryControl {
 
     }
 
-    private String TF_NOME = "";
-    private String LBL_ID = "";
-
-    private void getFieldsEdit() {
-        TF_NOME = null;
-        LBL_ID = null;
-        TF_NOME = view.category.EditCategory.tfNome.getText();
-        LBL_ID = view.category.EditCategory.lblCodigoCategoria.getText();
-    }
-
-    private void getFieldsInsert() {
-        TF_NOME = null;
-        TF_NOME = view.category.CreateCategory.tfNome.getText();
-    }
-
     public void updateJTableCategory() {
         CATEGORY_LIST = CATEGORY_DAO.listar();
         CATEGORIA_TABLE.clear();
@@ -56,52 +41,16 @@ public class CategoryControl {
         ManageCategory.tblCategoria.setModel(CATEGORIA_TABLE);
     }
 
-    public void InsertUserAction() {
-        getFieldsInsert();
-        CATEGORY = new Category();
-        CATEGORY.setNome(TF_NOME); // mudar campos
-        int idCategoria = CATEGORY_DAO.cadastrar(CATEGORY);
-        if (idCategoria != 0) {
-            CATEGORY.setId(idCategoria);
-            CATEGORIA_TABLE.addObject(CATEGORY);
-            OptionPane.msgInfo(Text.SUCESS_CREATE);
-        } else {
-            OptionPane.msgError(Text.ERROR_CREATE);
-        }
-        CATEGORY = null;
-    }
-
     public int getSelectedIndex() {
         return ManageCategory.tblCategoria.getSelectedRow();
     }
 
-    public void loadFieldsEditUserAction() {
-        CATEGORY = CATEGORIA_TABLE.getObject(ManageCategory.tblCategoria.getSelectedRow());
-        INDEX_SELECTED = getSelectedIndex();
-    }
-
-    public void changeFieldsOnEdit() {
-        view.category.EditCategory.tfNome.setText(CATEGORY.getNome());
-        view.category.EditCategory.lblCodigoCategoria.setText(String.valueOf(CATEGORY.getId()));
-    }
-
-    public void updateUserAction() {
-        getFieldsEdit();
-        CATEGORY = new Category();
-        CATEGORY.setId(Integer.valueOf(LBL_ID));
-        CATEGORY.setNome(TF_NOME);
-        boolean inserido = CATEGORY_DAO.alterar(CATEGORY);
-        if (inserido) {
-            CATEGORIA_TABLE.updateObject(INDEX_SELECTED, CATEGORY);
-            OptionPane.msgInfo(Text.SUCESS_EDIT);
-        } else {
-            OptionPane.msgError(Text.ERROR_EDIT);
+    public void deleteCategoryAction() {
+        if (getSelectedIndex() == -1) {
+            OptionPane.msgInfo(Text.NOT_SELECTED_INPUT);
+            return;
         }
-        CATEGORY = null;
-    }
-
-    public void deleteUserAction() {
-        CATEGORY = CATEGORIA_TABLE.getObject(ManageCategory.tblCategoria.getSelectedRow());
+        CATEGORY = CATEGORIA_TABLE.getObject(getSelectedIndex());
         if (CATEGORY == null) {
             OptionPane.msgInfo(Text.NOT_SELECTED_INPUT);
             return;
@@ -114,7 +63,7 @@ public class CategoryControl {
             } else {
                 OptionPane.msgError(Text.ERROR_DELETE);
             }
-        } 
+        }
 
     }
 

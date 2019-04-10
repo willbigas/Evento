@@ -32,10 +32,12 @@ public class Text {
 
     // Item not selected
     public static final String NOT_SELECTED_PRODUCT = "Nenhum Produto Selecionado!";
-    public static final String NOT_SELECTED_INPUT = "Nenhuma Entrada Selecionado!";
+    public static final String NOT_SELECTED_INPUT = "Nenhuma Linha Selecionada!";
 
     // Information // question
     public static final String ACTION_IRREVERSIBLE = "Você deseja Realmente excluir? esta acao e irreversivel";
+    public static final String CATEGORY_DEPENDENCY = "Existem Categorias vinculadas a esse Participante,"
+            + " Por favor navegue até o contexto de Categorias e Remova as dependencias!";
 
     // Nothing found
     public static final String NOTHING_FOUND_VALUE = "Nenhum valor total encontrado!";

@@ -11,12 +11,13 @@ public class CategoryTableModel extends AbstractTableModel implements ActionsTab
     // Constantes representando o índice das colunas
     private static final int ID = 0;
     private static final int NOME = 1;
+    private static final int PARTICIPANTE = 2;
 
     // Lista de Objetos<Produtos> a serem exibidos na tela.
     private List<Category> linhas;
 
     // Colunas da Tabela (View)
-    private String[] colunas = {"ID", "NOME"};
+    private String[] colunas = {"ID", "NOME", "COD.Participante"};
 
     // Cria um ProdutoTableModel sem nenhuma linha
     public CategoryTableModel() {
@@ -50,6 +51,8 @@ public class CategoryTableModel extends AbstractTableModel implements ActionsTab
                 return Integer.class;
             case NOME:
                 return String.class;
+            case PARTICIPANTE:
+                return Integer.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -63,6 +66,8 @@ public class CategoryTableModel extends AbstractTableModel implements ActionsTab
                 return categoria.getId();
             case NOME:
                 return categoria.getNome();
+            case PARTICIPANTE:
+                return categoria.getCodigoParticipante();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -77,6 +82,9 @@ public class CategoryTableModel extends AbstractTableModel implements ActionsTab
                 break;
             case NOME:
                 categoria.setNome((String) valor);
+                break;
+            case PARTICIPANTE:
+                categoria.setCodigoParticipante(Integer.valueOf((String) valor));
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");

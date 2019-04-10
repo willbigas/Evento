@@ -148,9 +148,9 @@ public class ManageParticipant extends javax.swing.JFrame {
 
     private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
         // TODO add your handling code here:
-        PARTICIPANT_CONTROL.loadFieldsEditParticipantAction();
+        PARTICIPANT_CONTROL.loadFieldsViewParticipantAction();
         Main.JanelaEditarParticipante();
-        PARTICIPANT_CONTROL.changeFieldsOnEdit();
+        PARTICIPANT_CONTROL.changeFieldsOnView();
     }//GEN-LAST:event_btVisualizarActionPerformed
 
     /**
