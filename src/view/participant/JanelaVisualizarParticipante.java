@@ -11,14 +11,14 @@ import control.ParticipantControl;
  *
  * @author William
  */
-public class ViewParticipant extends javax.swing.JFrame {
+public class JanelaVisualizarParticipante extends javax.swing.JFrame {
 
     ParticipantControl PARTICIPANTE_CONTROL;
 
     /**
      * Creates new form CadastrarParticipante
      */
-    public ViewParticipant() {
+    public JanelaVisualizarParticipante() {
         initComponents();
         PARTICIPANTE_CONTROL = new ParticipantControl();
         PARTICIPANTE_CONTROL.carregaCategoriasNoComboBox();
@@ -192,14 +192,22 @@ public class ViewParticipant extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewParticipant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaVisualizarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewParticipant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaVisualizarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewParticipant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaVisualizarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewParticipant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaVisualizarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -212,7 +220,7 @@ public class ViewParticipant extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewParticipant().setVisible(true);
+                new JanelaVisualizarParticipante().setVisible(true);
             }
         });
     }

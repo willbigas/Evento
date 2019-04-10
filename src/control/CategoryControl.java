@@ -6,9 +6,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Category;
 import model.tablemodel.CategoryTableModel;
-import util.OptionPane;
-import util.Text;
-import view.category.ManageCategory;
+import util.Mensagem;
+import util.Texto;
+import view.category.JanelaGerenciarCategoria;
 
 /**
  *
@@ -38,15 +38,15 @@ public class CategoryControl {
     }
 
     public void mudaModeloDaTable() {
-        ManageCategory.tblCategoria.setModel(categoriaTable);
+        JanelaGerenciarCategoria.tblCategoria.setModel(categoriaTable);
     }
 
     public int pegaIndexSelecionada() {
-        return ManageCategory.tblCategoria.getSelectedRow();
+        return JanelaGerenciarCategoria.tblCategoria.getSelectedRow();
     }
 
     public void pesquisarCategoriaAction() {
-        String pesquisa = view.category.ManageCategory.tfPesquisar.getText();
+        String pesquisa = view.category.JanelaGerenciarCategoria.tfPesquisar.getText();
         List<Category> categoriasPesquisadas = categoriaDao.pesquisarPorTermo(pesquisa);
         categoriaTable.clear();
         categoriaTable.addListOfObject(categoriasPesquisadas);
@@ -54,21 +54,21 @@ public class CategoryControl {
 
     public void deletarCategoriaAction() {
         if (pegaIndexSelecionada() == -1) {
-            OptionPane.msgInfo(Text.NOT_SELECTED_INPUT);
+            Mensagem.msgInfo(Texto.NOT_SELECTED_INPUT);
             return;
         }
         categoria = categoriaTable.getObject(pegaIndexSelecionada());
         if (categoria == null) {
-            OptionPane.msgInfo(Text.NOT_SELECTED_INPUT);
+            Mensagem.msgInfo(Texto.NOT_SELECTED_INPUT);
             return;
         }
-        int result = OptionPane.msgConfirm(Text.ACTION_IRREVERSIBLE);
+        int result = Mensagem.msgConfirm(Texto.ACTION_IRREVERSIBLE);
         if (result == JOptionPane.YES_OPTION) {
             if (categoriaDao.deletar(categoria)) {
                 categoriaTable.removeObject(pegaIndexSelecionada());
-                OptionPane.msgInfo(Text.SUCESS_DELETE);
+                Mensagem.msgInfo(Texto.SUCESS_DELETE);
             } else {
-                OptionPane.msgError(Text.ERROR_DELETE);
+                Mensagem.msgError(Texto.ERROR_DELETE);
             }
         }
 

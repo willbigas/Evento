@@ -12,7 +12,7 @@ import model.User;
  *
  * @author William
  */
-public class CreateUser extends javax.swing.JFrame {
+public class JanelaCriaUsuario extends javax.swing.JFrame {
     
     UserControl USUARIO_CONTROL;
     User usuario = null;
@@ -21,13 +21,13 @@ public class CreateUser extends javax.swing.JFrame {
     /**
      * Creates new form EditarUsuario
      */
-    public CreateUser() {
+    public JanelaCriaUsuario() {
         initComponents();
         USUARIO_CONTROL = new UserControl();
         
     }
     
-    public CreateUser(User user, int indexSelecionada) {
+    public JanelaCriaUsuario(User user, int indexSelecionada) {
         initComponents();
         indexSelecionadaDoUser = indexSelecionada;
         USUARIO_CONTROL = new UserControl();
@@ -153,14 +153,18 @@ public class CreateUser extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaCriaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaCriaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaCriaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaCriaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -169,7 +173,7 @@ public class CreateUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateUser().setVisible(true);
+                new JanelaCriaUsuario().setVisible(true);
             }
         });
     }

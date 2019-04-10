@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.User;
 import model.tablemodel.UserTableModel;
-import view.user.ManageUser;
+import view.user.JanelaGerenciarUsuario;
 
 /**
  *
@@ -36,15 +36,15 @@ public class UserControl {
     private String LBL_ID = "";
 
     private void pegaCamposLogin() {
-        TF_LOGIN = view.user.LoginUser.tfLogin.getText();
-        TF_PASSWORD = view.user.LoginUser.tfSenha.getText();
+        TF_LOGIN = view.user.JanelaLoginUsuario.tfLogin.getText();
+        TF_PASSWORD = view.user.JanelaLoginUsuario.tfSenha.getText();
     }
 
     private void pegaCamposFormUsuario() {
         TF_LOGIN = null;
         TF_PASSWORD = null;
-        TF_LOGIN = view.user.CreateUser.tfLogin.getText();
-        TF_PASSWORD = view.user.CreateUser.tfSenha.getText();
+        TF_LOGIN = view.user.JanelaCriaUsuario.tfLogin.getText();
+        TF_PASSWORD = view.user.JanelaCriaUsuario.tfSenha.getText();
     }
 
     public void atualizaJtableUsuario() {
@@ -54,7 +54,7 @@ public class UserControl {
     }
 
     public void mudaModeloDaTabela() {
-        ManageUser.tblUsuario.setModel(usuarioTable);
+        JanelaGerenciarUsuario.tblUsuario.setModel(usuarioTable);
     }
 
     private Boolean validaLogin() {
@@ -94,15 +94,15 @@ public class UserControl {
     }
 
     public int pegaLinhaSelecionada() {
-        return ManageUser.tblUsuario.getSelectedRow();
+        return JanelaGerenciarUsuario.tblUsuario.getSelectedRow();
     }
 
     public User pegaUsuarioSelecionadoDaTabela() {
-        if (ManageUser.tblUsuario.getSelectedRow() == - 1) {
+        if (JanelaGerenciarUsuario.tblUsuario.getSelectedRow() == - 1) {
             linhaSelecionada = -1;
             return null;
         } else {
-            usuario = usuarioTable.getObject(ManageUser.tblUsuario.getSelectedRow());
+            usuario = usuarioTable.getObject(JanelaGerenciarUsuario.tblUsuario.getSelectedRow());
             System.out.println("Usuario pegado da Tabela" + usuario);
             linhaSelecionada = pegaLinhaSelecionada();
             return usuario;
@@ -129,14 +129,14 @@ public class UserControl {
     }
 
     public void procurarUsuarioAction() {
-        String pesquisa = view.user.ManageUser.tfPesquisar.getText();
+        String pesquisa = view.user.JanelaGerenciarUsuario.tfPesquisar.getText();
         List<User> usuariosPesquisados = usuarioDao.pesquisarPorTermo(pesquisa);
         usuarioTable.clear();
         usuarioTable.addListOfObject(usuariosPesquisados);
     }
 
     public void deletarUsuarioAction() {
-        usuario = usuarioTable.getObject(ManageUser.tblUsuario.getSelectedRow());
+        usuario = usuarioTable.getObject(JanelaGerenciarUsuario.tblUsuario.getSelectedRow());
         if (usuarioDao.deletar(usuario)) {
             usuarioTable.removeObject(pegaLinhaSelecionada());
             JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");

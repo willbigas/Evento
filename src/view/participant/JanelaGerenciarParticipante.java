@@ -12,14 +12,14 @@ import evento.Main;
  *
  * @author William
  */
-public class ManageParticipant extends javax.swing.JFrame {
+public class JanelaGerenciarParticipante extends javax.swing.JFrame {
 
     ParticipantControl PARTICIPANT_CONTROL;
 
     /**
      * Creates new form ViewGerenciarUsuarios
      */
-    public ManageParticipant() {
+    public JanelaGerenciarParticipante() {
         initComponents();
         PARTICIPANT_CONTROL = new ParticipantControl();
         PARTICIPANT_CONTROL.atualizaTabelaParticipante();
@@ -161,14 +161,30 @@ public class ManageParticipant extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageParticipant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageParticipant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageParticipant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageParticipant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -189,7 +205,7 @@ public class ManageParticipant extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageParticipant().setVisible(true);
+                new JanelaGerenciarParticipante().setVisible(true);
             }
         });
     }

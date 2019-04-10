@@ -4,10 +4,10 @@ package util;
  *
  * @author Will
  */
-public class Text {
+public class Texto {
 
     /**
-     * CRUD Text
+     * CRUD Texto
      */
     // Sucess
     public static final String SUCESS_CREATE = "Cadastrado com Sucesso!";
