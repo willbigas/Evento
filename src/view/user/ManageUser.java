@@ -2,6 +2,7 @@ package view.user;
 
 import control.UserControl;
 import evento.Main;
+import model.User;
 
 /**
  *
@@ -44,7 +45,7 @@ public class ManageUser extends javax.swing.JFrame {
             }
         });
 
-        btNovo.setText("Novo");
+        btNovo.setText("Visualizar");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);
@@ -55,13 +56,6 @@ public class ManageUser extends javax.swing.JFrame {
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
-            }
-        });
-
-        btEditar.setText("Editar");
-        btEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarActionPerformed(evt);
             }
         });
 
@@ -93,16 +87,14 @@ public class ManageUser extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(57, 57, 57)
                         .addComponent(btNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btExcluir))
+                        .addComponent(btExcluir)
+                        .addGap(36, 36, 36))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(121, 121, 121)
                 .addComponent(jLabel2)
@@ -118,8 +110,7 @@ public class ManageUser extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNovo)
-                    .addComponent(btExcluir)
-                    .addComponent(btEditar))
+                    .addComponent(btExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -130,21 +121,32 @@ public class ManageUser extends javax.swing.JFrame {
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
-        Main.JanelaCadastrarUsuario();
-        
+        int index;
+        User user = USUARIO_CONTROL.pegaUsuarioSelecionadoDaTabela();
+        index = verificaSeObjetoVeioNulo(user);
+        Main.JanelaCadastrarUsuario(user, index);
+        removeSelecaoDaLinha();
+
     }//GEN-LAST:event_btNovoActionPerformed
 
-    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        USUARIO_CONTROL.loadFieldsEditUserAction();
-        Main.JanelaEditarUsuario();
-        USUARIO_CONTROL.changeFieldsOnEdit();
+    private void removeSelecaoDaLinha() {
+        tblUsuario.getSelectionModel().clearSelection();
+    }
 
-
-    }//GEN-LAST:event_btEditarActionPerformed
+    private int verificaSeObjetoVeioNulo(User user) {
+        int index;
+        if (user == null) {
+            index = -1;
+        } else {
+            index = USUARIO_CONTROL.pegaLinhaSelecionadaDaTabela();
+        }
+        return index;
+    }
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
         USUARIO_CONTROL.deleteUserAction();
+        removeSelecaoDaLinha();
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
@@ -195,7 +197,6 @@ public class ManageUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static final javax.swing.JButton btEditar = new javax.swing.JButton();
     public static final javax.swing.JButton btExcluir = new javax.swing.JButton();
     public static final javax.swing.JButton btNovo = new javax.swing.JButton();
     private javax.swing.JLabel jLabel1;

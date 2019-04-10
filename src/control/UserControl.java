@@ -40,17 +40,7 @@ public class UserControl {
         TF_PASSWORD = view.user.LoginUser.tfSenha.getText();
     }
 
-    private void getFieldsEdit() {
-        TF_LOGIN = null;
-        TF_PASSWORD = null;
-        LBL_ID = null;
-        TF_LOGIN = view.user.EditUser.tfLogin.getText();
-        TF_PASSWORD = view.user.EditUser.tfSenha.getText();
-        LBL_ID = view.user.EditUser.lblCodigoUsuario.getText();
-    }
-
-    private void getFieldsInsert() {
-
+    private void getFields() {
         TF_LOGIN = null;
         TF_PASSWORD = null;
         TF_LOGIN = view.user.CreateUser.tfLogin.getText();
@@ -87,8 +77,8 @@ public class UserControl {
         }
     }
 
-    public void InsertUserAction() {
-        getFieldsInsert();
+    public void createUserAction() {
+        getFields();
         USER = new User();
         USER.setLogin(TF_LOGIN); // mudar campos
         USER.setSenha(TF_PASSWORD); // mudar campos
@@ -107,28 +97,30 @@ public class UserControl {
         return ManageUser.tblUsuario.getSelectedRow();
     }
 
-    public void loadFieldsEditUserAction() {
-        USER = USER_TABLE.getObject(ManageUser.tblUsuario.getSelectedRow());
-        System.out.println("Usuario pegado da Tabela" + USER);
-        INDEX_SELECTED = getSelectedIndex();
+    public User pegaUsuarioSelecionadoDaTabela() {
+        if (ManageUser.tblUsuario.getSelectedRow() == - 1) {
+            INDEX_SELECTED = -1;
+            return null;
+        } else {
+            USER = USER_TABLE.getObject(ManageUser.tblUsuario.getSelectedRow());
+            System.out.println("Usuario pegado da Tabela" + USER);
+            INDEX_SELECTED = getSelectedIndex();
+            return USER;
+
+        }
+
     }
 
-    public void changeFieldsOnEdit() {
-        view.user.EditUser.tfLogin.setText(USER.getLogin());
-        view.user.EditUser.tfSenha.setText(USER.getSenha());
-        view.user.EditUser.lblCodigoUsuario.setText(String.valueOf(USER.getId()));
+    public int pegaLinhaSelecionadaDaTabela() {
+        return INDEX_SELECTED;
     }
 
-    public void updateUserAction() {
-        getFieldsEdit();
-        USER = new User();
+    public void updateUserAction(User user, int index) {
+        getFields();
         System.out.println("id do edit :  " + LBL_ID);
-        USER.setId(Integer.valueOf(LBL_ID));
-        USER.setLogin(TF_LOGIN);
-        USER.setSenha(TF_PASSWORD);
-        boolean inserido = USER_DAO.alterar(USER);
+        boolean inserido = USER_DAO.alterar(user);
         if (inserido) {
-            USER_TABLE.updateObject(INDEX_SELECTED, USER);
+            USER_TABLE.updateObject(INDEX_SELECTED, user);
             JOptionPane.showMessageDialog(null, "Alterado com Sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Não conseguir Alterar!");
@@ -150,6 +142,14 @@ public class UserControl {
             JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");
         }
 
+    }
+
+    public void gravarUsuario(User usuario, int index) {
+        if (index == -1) {
+            createUserAction();
+        } else {
+            updateUserAction(usuario, index);
+        }
     }
 
 }

@@ -1,13 +1,13 @@
 package evento;
 
 import javax.swing.JFrame;
+import model.User;
 import view.MainWindow;
 import view.category.ManageCategory;
 import view.participant.CreateParticipant;
 import view.participant.ViewParticipant;
 import view.participant.ManageParticipant;
 import view.user.CreateUser;
-import view.user.EditUser;
 import view.user.ManageUser;
 import view.user.LoginUser;
 
@@ -49,15 +49,8 @@ public class Main {
 
     }
 
-    public static void JanelaEditarUsuario() {
-        EditUser janelaEditarUsuario = new EditUser();
-        janelaEditarUsuario.setTitle("EDITAR USUARIO");
-        janelaEditarUsuario.setLocationRelativeTo(null);
-        janelaEditarUsuario.setVisible(true);
-    }
-
-    public static void JanelaCadastrarUsuario() {
-        CreateUser janelaCadastrarUsuario = new CreateUser();
+    public static void JanelaCadastrarUsuario(User user , int indexSelecionada) {
+        CreateUser janelaCadastrarUsuario = new CreateUser(user , indexSelecionada);
         janelaCadastrarUsuario.setTitle("CADASTRAR USUARIO");
         janelaCadastrarUsuario.setLocationRelativeTo(null);
         janelaCadastrarUsuario.setVisible(true);

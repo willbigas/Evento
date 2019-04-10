@@ -6,6 +6,7 @@
 package view.user;
 
 import control.UserControl;
+import model.User;
 
 /**
  *
@@ -14,6 +15,8 @@ import control.UserControl;
 public class CreateUser extends javax.swing.JFrame {
     
     UserControl USUARIO_CONTROL;
+    User usuario = null;
+    int indexSelecionadaDoUser;
 
     /**
      * Creates new form EditarUsuario
@@ -22,6 +25,22 @@ public class CreateUser extends javax.swing.JFrame {
         initComponents();
         USUARIO_CONTROL = new UserControl();
         
+    }
+    
+    public CreateUser(User user, int indexSelecionada) {
+        initComponents();
+        indexSelecionadaDoUser = indexSelecionada;
+        USUARIO_CONTROL = new UserControl();
+        if (user == null) {
+            System.out.println("Usuario nulo:" + user);
+            usuario = user;
+            usuario = null;
+        } else {
+            System.out.println("Usuario não nulo: " + user);
+            usuario = user;
+            tfLogin.setText(user.getLogin());
+            tfSenha.setText(user.getSenha());
+        }
     }
 
     /**
@@ -106,10 +125,16 @@ public class CreateUser extends javax.swing.JFrame {
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
         // TODO add your handling code here:
-        USUARIO_CONTROL.InsertUserAction();
-        
-        
+        usuario.setLogin(tfLogin.getText());
+        usuario.setSenha(tfSenha.getText());
+        USUARIO_CONTROL.gravarUsuario(usuario, indexSelecionadaDoUser);
+        limparCampos();
     }//GEN-LAST:event_btGravarActionPerformed
+
+    private void limparCampos() {
+        tfLogin.setText(null);
+        tfSenha.setText(null);
+    }
 
     /**
      * @param args the command line arguments
