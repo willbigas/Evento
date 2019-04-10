@@ -6,6 +6,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Category;
 import model.tablemodel.CategoryTableModel;
+import util.OptionPane;
+import util.Text;
 import view.category.ManageCategory;
 
 /**
@@ -31,7 +33,6 @@ public class CategoryControl {
 
     private String TF_NOME = "";
     private String LBL_ID = "";
-
 
     private void getFieldsEdit() {
         TF_NOME = null;
@@ -63,9 +64,9 @@ public class CategoryControl {
         if (idCategoria != 0) {
             CATEGORY.setId(idCategoria);
             CATEGORIA_TABLE.addObject(CATEGORY);
-            JOptionPane.showMessageDialog(null, "Inserido com Sucesso!");
+            OptionPane.msgInfo(Text.SUCESS_CREATE);
         } else {
-            JOptionPane.showMessageDialog(null, "Não conseguir Inserir!");
+            OptionPane.msgError(Text.ERROR_CREATE);
         }
         CATEGORY = null;
     }
@@ -76,7 +77,6 @@ public class CategoryControl {
 
     public void loadFieldsEditUserAction() {
         CATEGORY = CATEGORIA_TABLE.getObject(ManageCategory.tblCategoria.getSelectedRow());
-        System.out.println("Categoria pegada da Tabela" + CATEGORY);
         INDEX_SELECTED = getSelectedIndex();
     }
 
@@ -88,25 +88,33 @@ public class CategoryControl {
     public void updateUserAction() {
         getFieldsEdit();
         CATEGORY = new Category();
-        System.out.println("id do edit :  " + LBL_ID);
         CATEGORY.setId(Integer.valueOf(LBL_ID));
         CATEGORY.setNome(TF_NOME);
         boolean inserido = CATEGORY_DAO.alterar(CATEGORY);
         if (inserido) {
             CATEGORIA_TABLE.updateObject(INDEX_SELECTED, CATEGORY);
-            JOptionPane.showMessageDialog(null, "Alterado com Sucesso!");
+            OptionPane.msgInfo(Text.SUCESS_EDIT);
         } else {
-            JOptionPane.showMessageDialog(null, "Não conseguir Alterar!");
+            OptionPane.msgError(Text.ERROR_EDIT);
         }
         CATEGORY = null;
     }
 
     public void deleteUserAction() {
         CATEGORY = CATEGORIA_TABLE.getObject(ManageCategory.tblCategoria.getSelectedRow());
-        if (CATEGORY_DAO.deletar(CATEGORY)) {
-            CATEGORIA_TABLE.removeObject(getSelectedIndex());
-            JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");
+        if (CATEGORY == null) {
+            OptionPane.msgInfo(Text.NOT_SELECTED_INPUT);
+            return;
         }
+        int result = OptionPane.msgConfirm(Text.ACTION_IRREVERSIBLE);
+        if (result == JOptionPane.YES_OPTION) {
+            if (CATEGORY_DAO.deletar(CATEGORY)) {
+                CATEGORIA_TABLE.removeObject(getSelectedIndex());
+                OptionPane.msgInfo(Text.SUCESS_DELETE);
+            } else {
+                OptionPane.msgError(Text.ERROR_DELETE);
+            }
+        } 
 
     }
 
