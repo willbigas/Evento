@@ -136,6 +136,13 @@ public class UserControl {
         USER = null;
     }
 
+    public void searchUserAction() {
+        String pesquisa = view.user.ManageUser.tfPesquisar.getText();
+        List<User> usuariosPesquisados = USER_DAO.pesquisarPorTermo(pesquisa);
+        USER_TABLE.clear();
+        USER_TABLE.addListOfObject(usuariosPesquisados);
+    }
+
     public void deleteUserAction() {
         USER = USER_TABLE.getObject(ManageUser.tblUsuario.getSelectedRow());
         if (USER_DAO.deletar(USER)) {

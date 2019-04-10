@@ -38,9 +38,9 @@ public class ManageUser extends javax.swing.JFrame {
         jLabel1.setText("Pesquisar:");
 
         tfPesquisar.setColumns(15);
-        tfPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPesquisarActionPerformed(evt);
+        tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfPesquisarKeyReleased(evt);
             }
         });
 
@@ -128,13 +128,10 @@ public class ManageUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPesquisarActionPerformed
-
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
         Main.JanelaCadastrarUsuario();
+        
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
@@ -149,6 +146,11 @@ public class ManageUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         USUARIO_CONTROL.deleteUserAction();
     }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
+        // TODO add your handling code here:
+        USUARIO_CONTROL.searchUserAction();
+    }//GEN-LAST:event_tfPesquisarKeyReleased
 
     /**
      * @param args the command line arguments

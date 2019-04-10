@@ -43,11 +43,6 @@ public class ManageParticipant extends javax.swing.JFrame {
         jLabel1.setText("Pesquisar:");
 
         tfPesquisar.setColumns(15);
-        tfPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPesquisarActionPerformed(evt);
-            }
-        });
 
         btNovo.setText("+");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -129,10 +124,6 @@ public class ManageParticipant extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPesquisarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:

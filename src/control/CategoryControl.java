@@ -45,6 +45,13 @@ public class CategoryControl {
         return ManageCategory.tblCategoria.getSelectedRow();
     }
 
+    public void searchCategoryAction() {
+        String pesquisa = view.category.ManageCategory.tfPesquisar.getText();
+        List<Category> categoriasPesquisadas = CATEGORY_DAO.pesquisarPorTermo(pesquisa);
+        CATEGORIA_TABLE.clear();
+        CATEGORIA_TABLE.addListOfObject(categoriasPesquisadas);
+    }
+
     public void deleteCategoryAction() {
         if (getSelectedIndex() == -1) {
             OptionPane.msgInfo(Text.NOT_SELECTED_INPUT);

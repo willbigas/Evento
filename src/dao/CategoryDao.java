@@ -14,7 +14,6 @@ import model.Category;
  */
 public class CategoryDao extends Dao implements DaoI<Category> {
 
-
     public CategoryDao() {
         //Contrutor da super classe Dao. Faz a conexão.
         super();
@@ -101,15 +100,17 @@ public class CategoryDao extends Dao implements DaoI<Category> {
     public List<Category> pesquisarPorTermo(String termo) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
-                    + "SELECT id, nome FROM categoria "
-                    + "WHERE nome LIKE ?");
+                    + "SELECT id, nome , fk_participante FROM categoria "
+                    + "WHERE (NOME LIKE ? or fk_participante = ?)");
             stmt.setString(1, "%" + termo + "%");
+            stmt.setString(2, termo);
             ResultSet result = stmt.executeQuery();
             List<Category> lista = new ArrayList<>();
             while (result.next()) {
                 Category c = new Category();
                 c.setId(result.getInt("id"));
                 c.setNome(result.getString("nome"));
+                c.setCodigoParticipante(result.getInt("fk_participante"));
                 lista.add(c);
             }
             return lista;

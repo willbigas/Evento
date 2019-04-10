@@ -36,9 +36,9 @@ public class ManageCategory extends javax.swing.JFrame {
         jLabel1.setText("Pesquisar:");
 
         tfPesquisar.setColumns(15);
-        tfPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPesquisarActionPerformed(evt);
+        tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfPesquisarKeyReleased(evt);
             }
         });
 
@@ -102,14 +102,15 @@ public class ManageCategory extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPesquisarActionPerformed
-
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
         CATEGORIA_CONTROL.deleteCategoryAction();
     }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
+        // TODO add your handling code here:
+        CATEGORIA_CONTROL.searchCategoryAction();
+    }//GEN-LAST:event_tfPesquisarKeyReleased
 
     /**
      * @param args the command line arguments
