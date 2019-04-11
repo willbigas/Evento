@@ -48,7 +48,7 @@ public class UsuarioControle {
 
     public boolean efetuaLoginAction() {
         if (validaLogin()) {
-            Principal.JanelaPrincipal();
+            Principal.JanelaGerenciarParticipantes();
             return true;
         } else {
             Mensagem.msgInfo(Texto.ERROR_LOGIN_INCORRECT);

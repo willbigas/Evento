@@ -1,10 +1,5 @@
 package evento;
 
-import javax.swing.JFrame;
-import visao.JanelaGerenciarTelas;
-import view.categoria.JanelaGerenciarCategoria;
-import view.participante.JanelaCriarParticipante;
-import view.participante.JanelaVisualizarParticipante;
 import view.participante.JanelaGerenciarParticipante;
 import view.usuario.JanelaLoginUsuario;
 
@@ -29,23 +24,6 @@ public class Principal {
         janelaLogin.setVisible(true);
     }
 
-    public static void JanelaPrincipal() {
-        JanelaGerenciarTelas janelaGerenciarTelas = new JanelaGerenciarTelas();
-        janelaGerenciarTelas.setTitle("JANELA PRINCIPAL");
-        janelaGerenciarTelas.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        janelaGerenciarTelas.setLocationRelativeTo(null);
-        janelaGerenciarTelas.setVisible(true);
-    }
-
-    // JANELAS DE CATEGORIAS
-    public static void JanelaGerenciarCategorias() {
-        JanelaGerenciarCategoria janelaGerenciarCategorias = new JanelaGerenciarCategoria();
-        janelaGerenciarCategorias.setTitle("GERENCIAR CATEGORIAS");
-        janelaGerenciarCategorias.setLocationRelativeTo(null);
-        janelaGerenciarCategorias.setVisible(true);
-
-    }
-
     // JANELAS DE PARTICIPANTES
     public static void JanelaGerenciarParticipantes() {
         JanelaGerenciarParticipante janelaGerenciarParticipantes = new JanelaGerenciarParticipante();
@@ -54,19 +32,4 @@ public class Principal {
         janelaGerenciarParticipantes.setVisible(true);
 
     }
-
-    public static void JanelaEditarParticipante() {
-        JanelaVisualizarParticipante janelaEditarParticipant = new JanelaVisualizarParticipante();
-        janelaEditarParticipant.setTitle("EDITAR PARTICIPANTE");
-        janelaEditarParticipant.setLocationRelativeTo(null);
-        janelaEditarParticipant.setVisible(true);
-    }
-
-    public static void JanelaCadastrarParticipante() {
-        JanelaCriarParticipante janelaCadastrarParticipante = new JanelaCriarParticipante();
-        janelaCadastrarParticipante.setTitle("CADASTRAR PARTICIPANTE");
-        janelaCadastrarParticipante.setLocationRelativeTo(null);
-        janelaCadastrarParticipante.setVisible(true);
-    }
-
 }
