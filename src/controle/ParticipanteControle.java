@@ -54,10 +54,18 @@ public class ParticipanteControle {
         listParticipantes = participanteDao.listar();
         participanteTable.clear();
         participanteTable.addListOfObject(listParticipantes);
+        atualizaLabelTotal();
+
+    }
+
+    private void atualizaLabelTotal() {
+        JanelaGerenciarParticipante.lblTotalParticipantesAtivos.setText(String.valueOf(JanelaGerenciarParticipante.tblParticipante.getRowCount()));
+        List<Participante> totalDeParticipantes = participanteDao.listarComDesativado();
+        Integer quantList = totalDeParticipantes.size();
+        JanelaGerenciarParticipante.lblTotalParticipantes.setText(String.valueOf(quantList));
     }
 
     private boolean pegaCamposGerenciarParticipante() {
-
         campoNome = view.participante.JanelaGerenciarParticipante.tfNome.getText();
         campoEmail = view.participante.JanelaGerenciarParticipante.tfEmail.getText();
         campoCpf = view.participante.JanelaGerenciarParticipante.tfCpf.getText();
@@ -108,6 +116,7 @@ public class ParticipanteControle {
             participante.setId(idInserido);
             participanteTable.addObject(participante);
             listParticipantes.add(participante);
+            atualizaLabelTotal();
             limpaCamposCadastrarParticipante();
             limpaCamposGerenciarParticipante();
             Mensagem.msgInfo(Texto.SUCESS_CREATE);
@@ -194,6 +203,7 @@ public class ParticipanteControle {
             participanteTable.updateObject(pegaLinhaSelecionadaParticipante(), participante);
             listParticipantes.remove(pegaLinhaSelecionadaParticipante());
             atualizaTabelaParticipante();
+            atualizaLabelTotal();
             Mensagem.msgInfo(Texto.SUCESS_DISABLE);
         } else {
             Mensagem.msgInfo(Texto.ERROR_DISABLE);

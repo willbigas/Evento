@@ -169,4 +169,28 @@ public class ParticipanteDao extends Dao implements DaoI<Participante> {
         }
 
     }
+    public List<Participante> listarComDesativado() {
+        try {
+            PreparedStatement stmt;
+            stmt = conexao.prepareStatement("select * from participante order by id");
+            ResultSet result = stmt.executeQuery();
+            List<Participante> lista = new ArrayList<>();
+            while (result.next()) {
+                Participante participante = new Participante();
+                participante.setId(result.getInt("id"));
+                participante.setNome(result.getString("nome"));
+                participante.setCpf(result.getString("cpf"));
+                participante.setEmail(result.getString("email"));
+                participante.setTelefone(result.getString("telefone"));
+                participante.setAtivo(result.getBoolean("ativo"));
+                List<Categoria> listCategorias = categoriaDao.listarCatDoParticipante(result.getInt("id"));
+                participante.setCategorias(listCategorias);
+                lista.add(participante);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }
