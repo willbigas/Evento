@@ -111,9 +111,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participante> {
     @Override
     public List<Participante> pesquisarPorTermo(String termo) {
         try {
-            PreparedStatement stmt = conexao.prepareStatement(""
-                    + "SELECT * FROM PARTICIPANTE "
-                    + "WHERE NOME LIKE ? and where ativo is true");
+            PreparedStatement stmt = conexao.prepareStatement("select * FROM participante where (nome LIKE ? and ativo is true) order by id ");
             stmt.setString(1, "%" + termo + "%");
             ResultSet result = stmt.executeQuery();
             List<Participante> lista = new ArrayList<>();

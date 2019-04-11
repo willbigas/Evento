@@ -110,7 +110,7 @@ public class ParticipanteControle {
         JanelaGerenciarParticipante.checkProgramacao.setSelected(false);
         JanelaGerenciarParticipante.checkLetras.setSelected(false);
         JanelaGerenciarParticipante.checkCiencias.setSelected(false);
-        
+
         for (Categoria categoria : listCategorias) {
             if (categoria.getNome().equals(nomeDasCategorias[0])) {
                 JanelaGerenciarParticipante.checkExatas.setSelected(true);
@@ -171,5 +171,12 @@ public class ParticipanteControle {
             }
         }
         System.out.println(listCategorias);
+    }
+
+    public void pesquisarAction() {
+        listParticipantes.clear();
+        listParticipantes = participanteDao.pesquisarPorTermo(JanelaGerenciarParticipante.tfPesquisar.getText());
+        participanteTable.clear();
+        participanteTable.addListOfObject(listParticipantes);
     }
 }
