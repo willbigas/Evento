@@ -4,9 +4,9 @@ import interfaces.ActionsTableModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import model.Participant;
+import model.Participante;
 
-public class ParticipantTableModel extends AbstractTableModel implements ActionsTableModel<Participant> {
+public class ParticipanteTableModel extends AbstractTableModel implements ActionsTableModel<Participante> {
 
     // Constantes representando o índice das colunas
     private static final int ID = 0;
@@ -16,18 +16,18 @@ public class ParticipantTableModel extends AbstractTableModel implements Actions
     private static final int TELEFONE = 4;
 
     // Lista de Objetos<Produtos> a serem exibidos na tela.
-    private List<Participant> linhas;
+    private List<Participante> linhas;
 
     // Colunas da Tabela (View)
     private String[] colunas = {"ID", "NOME", "CPF", "EMAIL", "TELEFONE"};
 
     // Cria um ProdutoTableModel sem nenhuma linha
-    public ParticipantTableModel() {
+    public ParticipanteTableModel() {
         linhas = new ArrayList<>();
     }
 
     // Cria um ProdutoTableModel contendo a lista recebida por parâmetro 
-    public ParticipantTableModel(List<Participant> listParticipantes) {
+    public ParticipanteTableModel(List<Participante> listParticipantes) {
         linhas = listParticipantes;
     }
 
@@ -89,7 +89,7 @@ public class ParticipantTableModel extends AbstractTableModel implements Actions
      */
     @Override
     public Object getValueAt(int linha, int coluna) {
-        Participant participante = linhas.get(linha);
+        Participante participante = linhas.get(linha);
         switch (coluna) {
             case ID:
                 return participante.getId();
@@ -115,7 +115,7 @@ public class ParticipantTableModel extends AbstractTableModel implements Actions
      */
     @Override
     public void setValueAt(Object valor, int linha, int coluna) {
-        Participant participante = linhas.get(linha);
+        Participante participante = linhas.get(linha);
         switch (coluna) {
             case ID:
                 participante.setId(Integer.valueOf((String) valor));
@@ -148,7 +148,7 @@ public class ParticipantTableModel extends AbstractTableModel implements Actions
      * @return
      */
     @Override
-    public Participant getObject(int indiceLinha) {
+    public Participante getObject(int indiceLinha) {
         return linhas.get(indiceLinha);
     }
 
@@ -158,7 +158,7 @@ public class ParticipantTableModel extends AbstractTableModel implements Actions
      * @param produto
      */
     @Override
-    public void addObject(Participant produto) {
+    public void addObject(Participante produto) {
         linhas.add(produto);
         int ultimoIndice = getRowCount() - 1; // linhas -1
         fireTableRowsInserted(ultimoIndice, ultimoIndice); // atualiza insert
@@ -182,7 +182,7 @@ public class ParticipantTableModel extends AbstractTableModel implements Actions
      * @param p
      */
     @Override
-    public void updateObject(int indiceLinha, Participant p) {
+    public void updateObject(int indiceLinha, Participante p) {
         linhas.set(indiceLinha, p);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }
@@ -193,7 +193,7 @@ public class ParticipantTableModel extends AbstractTableModel implements Actions
      * @param participantes
      */
     @Override
-    public void addListOfObject(List<Participant> participantes) {
+    public void addListOfObject(List<Participante> participantes) {
         int indice = getRowCount();
         linhas.addAll(participantes);
         fireTableRowsInserted(indice, indice + participantes.size());

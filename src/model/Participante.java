@@ -6,14 +6,14 @@ import java.util.List;
  *
  * @author William
  */
-public class Participant {
+public class Participante {
 
     private Integer id;
     private String nome;
     private String cpf;
     private String email;
     private String telefone;
-    private List<Category> categorias;
+    private List<Categoria> categorias;
 
     public Integer getId() {
         return id;
@@ -55,11 +55,11 @@ public class Participant {
         this.telefone = telefone;
     }
 
-    public List<Category> getCategorias() {
+    public List<Categoria> getCategorias() {
         return categorias;
     }
 
-    public void setCategorias(List<Category> categorias) {
+    public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
 

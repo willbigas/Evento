@@ -4,9 +4,9 @@ import interfaces.ActionsTableModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import model.Category;
+import model.Categoria;
 
-public class CategoryTableModel extends AbstractTableModel implements ActionsTableModel<Category> {
+public class CategoriaTableModel extends AbstractTableModel implements ActionsTableModel<Categoria> {
 
     // Constantes representando o índice das colunas
     private static final int ID = 0;
@@ -14,18 +14,18 @@ public class CategoryTableModel extends AbstractTableModel implements ActionsTab
     private static final int PARTICIPANTE = 2;
 
     // Lista de Objetos<Produtos> a serem exibidos na tela.
-    private List<Category> linhas;
+    private List<Categoria> linhas;
 
     // Colunas da Tabela (View)
     private String[] colunas = {"ID", "NOME", "COD.Participante"};
 
     // Cria um ProdutoTableModel sem nenhuma linha
-    public CategoryTableModel() {
+    public CategoriaTableModel() {
         linhas = new ArrayList<>();
     }
 
     // Cria um ProdutoTableModel contendo a lista recebida por parâmetro 
-    public CategoryTableModel(List<Category> listCategorias) {
+    public CategoriaTableModel(List<Categoria> listCategorias) {
         linhas = listCategorias;
     }
 
@@ -60,7 +60,7 @@ public class CategoryTableModel extends AbstractTableModel implements ActionsTab
 
     @Override
     public Object getValueAt(int linha, int coluna) {
-        Category categoria = linhas.get(linha);
+        Categoria categoria = linhas.get(linha);
         switch (coluna) {
             case ID:
                 return categoria.getId();
@@ -75,7 +75,7 @@ public class CategoryTableModel extends AbstractTableModel implements ActionsTab
 
     @Override
     public void setValueAt(Object valor, int linha, int coluna) {
-        Category categoria = linhas.get(linha);
+        Categoria categoria = linhas.get(linha);
         switch (coluna) {
             case ID:
                 categoria.setId(Integer.valueOf((String) valor));
@@ -95,12 +95,12 @@ public class CategoryTableModel extends AbstractTableModel implements ActionsTab
     }
 
     @Override
-    public Category getObject(int indiceLinha) {
+    public Categoria getObject(int indiceLinha) {
         return linhas.get(indiceLinha);
     }
 
     @Override
-    public void addObject(Category categoria) {
+    public void addObject(Categoria categoria) {
         linhas.add(categoria);
         int ultimoIndice = getRowCount() - 1; // linhas -1
         fireTableRowsInserted(ultimoIndice, ultimoIndice); // atualiza insert
@@ -113,13 +113,13 @@ public class CategoryTableModel extends AbstractTableModel implements ActionsTab
     }
 
     @Override
-    public void updateObject(int indiceLinha, Category categoria) {
+    public void updateObject(int indiceLinha, Categoria categoria) {
         linhas.set(indiceLinha, categoria);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }
 
     @Override
-    public void addListOfObject(List<Category> categorias) {
+    public void addListOfObject(List<Categoria> categorias) {
         int indice = getRowCount();
         linhas.addAll(categorias);
         fireTableRowsInserted(indice, indice + categorias.size());

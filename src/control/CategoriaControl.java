@@ -4,28 +4,28 @@ import dao.CategoriaDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Category;
-import model.tablemodel.CategoryTableModel;
+import model.Categoria;
+import model.tablemodel.CategoriaTableModel;
 import util.Mensagem;
 import util.Texto;
-import view.category.JanelaGerenciarCategoria;
+import view.categoria.JanelaGerenciarCategoria;
 
 /**
  *
  * @author William
  */
-public class CategoryControl {
+public class CategoriaControl {
 
-    Category categoria;
-    List<Category> listCategorias;
+    Categoria categoria;
+    List<Categoria> listCategorias;
     CategoriaDao categoriaDao;
-    CategoryTableModel categoriaTable;
+    CategoriaTableModel categoriaTable;
     Integer linhaSelecionada = 0;
 
-    public CategoryControl() {
+    public CategoriaControl() {
         categoriaDao = new CategoriaDao();
         listCategorias = new ArrayList<>();
-        categoriaTable = new CategoryTableModel();
+        categoriaTable = new CategoriaTableModel();
         atualizarJTableCategoria();
         mudaModeloDaTable();
 
@@ -46,8 +46,8 @@ public class CategoryControl {
     }
 
     public void pesquisarCategoriaAction() {
-        String pesquisa = view.category.JanelaGerenciarCategoria.tfPesquisar.getText();
-        List<Category> categoriasPesquisadas = categoriaDao.pesquisarPorTermo(pesquisa);
+        String pesquisa = view.categoria.JanelaGerenciarCategoria.tfPesquisar.getText();
+        List<Categoria> categoriasPesquisadas = categoriaDao.pesquisarPorTermo(pesquisa);
         categoriaTable.clear();
         categoriaTable.addListOfObject(categoriasPesquisadas);
     }

@@ -5,28 +5,28 @@ import evento.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.User;
-import model.tablemodel.UserTableModel;
+import model.Usuario;
+import model.tablemodel.UsuarioTableModel;
 import util.Mensagem;
 import util.Texto;
-import view.user.JanelaGerenciarUsuario;
+import view.usuario.JanelaGerenciarUsuario;
 
 /**
  *
  * @author William
  */
-public class UserControl {
+public class UsuarioControl {
 
-    User usuario;
-    List<User> listUsuarios;
+    Usuario usuario;
+    List<Usuario> listUsuarios;
     UsuarioDao usuarioDao;
-    UserTableModel usuarioTable;
+    UsuarioTableModel usuarioTable;
     Integer linhaSelecionada = 0;
 
-    public UserControl() {
+    public UsuarioControl() {
         usuarioDao = new UsuarioDao();
         listUsuarios = new ArrayList<>();
-        usuarioTable = new UserTableModel();
+        usuarioTable = new UsuarioTableModel();
         pegaCamposLogin();
         atualizaJtableUsuario();
         mudaModeloDaTabela();
@@ -38,15 +38,15 @@ public class UserControl {
     private String LBL_ID = "";
 
     private void pegaCamposLogin() {
-        TF_LOGIN = view.user.JanelaLoginUsuario.tfLogin.getText();
-        TF_PASSWORD = view.user.JanelaLoginUsuario.tfSenha.getText();
+        TF_LOGIN = view.usuario.JanelaLoginUsuario.tfLogin.getText();
+        TF_PASSWORD = view.usuario.JanelaLoginUsuario.tfSenha.getText();
     }
 
     private void pegaCamposFormUsuario() {
         TF_LOGIN = null;
         TF_PASSWORD = null;
-        TF_LOGIN = view.user.JanelaCriaUsuario.tfLogin.getText();
-        TF_PASSWORD = view.user.JanelaCriaUsuario.tfSenha.getText();
+        TF_LOGIN = view.usuario.JanelaCriaUsuario.tfLogin.getText();
+        TF_PASSWORD = view.usuario.JanelaCriaUsuario.tfSenha.getText();
     }
 
     public void atualizaJtableUsuario() {
@@ -61,9 +61,9 @@ public class UserControl {
 
     private Boolean validaLogin() {
         pegaCamposLogin();
-        List<User> usuariosDoBanco = usuarioDao.listar();
+        List<Usuario> usuariosDoBanco = usuarioDao.listar();
 
-        for (User usuario : usuariosDoBanco) {
+        for (Usuario usuario : usuariosDoBanco) {
             if (usuario.getLogin().equals(TF_LOGIN) && usuario.getSenha().equals(TF_PASSWORD)) {
                 return true;
             }
@@ -83,7 +83,7 @@ public class UserControl {
 
     public void criarUsuarioAction() {
         pegaCamposFormUsuario();
-        usuario = new User();
+        usuario = new Usuario();
         usuario.setLogin(TF_LOGIN); // mudar campos
         usuario.setSenha(TF_PASSWORD); // mudar campos
         int idUsuario = usuarioDao.cadastrar(usuario);
@@ -101,7 +101,7 @@ public class UserControl {
         return JanelaGerenciarUsuario.tblUsuario.getSelectedRow();
     }
 
-    public User pegaUsuarioSelecionadoDaTabela() {
+    public Usuario pegaUsuarioSelecionadoDaTabela() {
         if (JanelaGerenciarUsuario.tblUsuario.getSelectedRow() == - 1) {
             linhaSelecionada = -1;
             return null;
@@ -119,7 +119,7 @@ public class UserControl {
         return linhaSelecionada;
     }
 
-    public void atualizarUsuarioAction(User user, int index) {
+    public void atualizarUsuarioAction(Usuario user, int index) {
         pegaCamposFormUsuario();
         System.out.println("id do edit :  " + LBL_ID);
         boolean inserido = usuarioDao.alterar(user);
@@ -133,8 +133,8 @@ public class UserControl {
     }
 
     public void procurarUsuarioAction() {
-        String pesquisa = view.user.JanelaGerenciarUsuario.tfPesquisar.getText();
-        List<User> usuariosPesquisados = usuarioDao.pesquisarPorTermo(pesquisa);
+        String pesquisa = view.usuario.JanelaGerenciarUsuario.tfPesquisar.getText();
+        List<Usuario> usuariosPesquisados = usuarioDao.pesquisarPorTermo(pesquisa);
         usuarioTable.clear();
         usuarioTable.addListOfObject(usuariosPesquisados);
     }
@@ -147,7 +147,8 @@ public class UserControl {
         }
 
     }
-    public void gravarUsuarioAction(User usuario, int index) {
+
+    public void gravarUsuarioAction(Usuario usuario, int index) {
         if (index == -1) {
             criarUsuarioAction();
         } else {

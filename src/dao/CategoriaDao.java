@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Category;
+import model.Categoria;
 
 /**
  *
  * @author William
  */
-public class CategoriaDao extends Dao implements DaoI<Category> {
+public class CategoriaDao extends Dao implements DaoI<Categoria> {
 
     public CategoriaDao() {
         //Contrutor da super classe Dao. Faz a conexão.
@@ -20,14 +20,14 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
     }
 
     @Override
-    public List<Category> listar() {
+    public List<Categoria> listar() {
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement("SELECT * FROM categoria");
             ResultSet result = stmt.executeQuery();
-            List<Category> lista = new ArrayList<>();
+            List<Categoria> lista = new ArrayList<>();
             while (result.next()) {
-                Category c = new Category();
+                Categoria c = new Categoria();
                 c.setId(result.getInt("id"));
                 c.setNome(result.getString("nome"));
                 c.setCodigoParticipante(result.getInt("fk_participante"));
@@ -49,7 +49,7 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
      * @return int
      */
     @Override
-    public int cadastrar(Category obj) {
+    public int cadastrar(Categoria obj) {
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(
@@ -71,7 +71,7 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
     }
 
     @Override
-    public boolean alterar(Category obj) {
+    public boolean alterar(Categoria obj) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "UPDATE categoria SET nome = ? WHERE  id = ?");
@@ -85,7 +85,7 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
     }
 
     @Override
-    public boolean deletar(Category obj) {
+    public boolean deletar(Categoria obj) {
         try {
             PreparedStatement stmt = conexao.prepareStatement("DELETE from categoria WHERE id = ?");
             stmt.setInt(1, obj.getId());
@@ -97,7 +97,7 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
     }
 
     @Override
-    public List<Category> pesquisarPorTermo(String termo) {
+    public List<Categoria> pesquisarPorTermo(String termo) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "SELECT id, nome , fk_participante FROM categoria "
@@ -105,9 +105,9 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
             stmt.setString(1, "%" + termo + "%");
             stmt.setString(2, termo);
             ResultSet result = stmt.executeQuery();
-            List<Category> lista = new ArrayList<>();
+            List<Categoria> lista = new ArrayList<>();
             while (result.next()) {
-                Category c = new Category();
+                Categoria c = new Categoria();
                 c.setId(result.getInt("id"));
                 c.setNome(result.getString("nome"));
                 c.setCodigoParticipante(result.getInt("fk_participante"));
@@ -122,7 +122,7 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
     }
 
     @Override
-    public Category lerPorId(int id) {
+    public Categoria lerPorId(int id) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "SELECT id, nome FROM categoria "
@@ -130,7 +130,7 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
             stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-                Category c = new Category();
+                Categoria c = new Categoria();
                 c.setId(result.getInt("id"));
                 c.setNome(result.getString("nome"));
                 return c;
@@ -143,7 +143,7 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
         }
     }
 
-    public Category pesquisarPorParticipante(int id) {
+    public Categoria pesquisarPorParticipante(int id) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "SELECT id, nome , fk_participante FROM categoria "
@@ -151,7 +151,7 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
             stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-                Category c = new Category();
+                Categoria c = new Categoria();
                 c.setId(result.getInt("id"));
                 c.setNome(result.getString("nome"));
                 return c;
@@ -164,15 +164,15 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
         }
     }
 
-    public List<Category> listarCatDoParticipante(int id) {
+    public List<Categoria> listarCatDoParticipante(int id) {
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement("SELECT * FROM categoria where fk_participante = ?");
             stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();
-            List<Category> lista = new ArrayList<>();
+            List<Categoria> lista = new ArrayList<>();
             while (result.next()) {
-                Category c = new Category();
+                Categoria c = new Categoria();
                 c.setId(result.getInt("id"));
                 c.setNome(result.getString("nome"));
                 lista.add(c);
@@ -184,7 +184,7 @@ public class CategoriaDao extends Dao implements DaoI<Category> {
         }
     }
 
-    public int cadastrarComParticipante(Category obj, int id) {
+    public int cadastrarComParticipante(Categoria obj, int id) {
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(

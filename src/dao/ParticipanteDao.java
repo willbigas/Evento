@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Category;
-import model.Participant;
+import model.Categoria;
+import model.Participante;
 
 /**
  *
  * @author William
  */
-public class ParticipanteDao extends Dao implements DaoI<Participant> {
+public class ParticipanteDao extends Dao implements DaoI<Participante> {
 
     CategoriaDao categoriaDao = new CategoriaDao();
 
@@ -23,20 +23,20 @@ public class ParticipanteDao extends Dao implements DaoI<Participant> {
     }
 
     @Override
-    public List<Participant> listar() {
+    public List<Participante> listar() {
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement("SELECT * FROM PARTICIPANTE ORDER BY ID");
             ResultSet result = stmt.executeQuery();
-            List<Participant> lista = new ArrayList<>();
+            List<Participante> lista = new ArrayList<>();
             while (result.next()) {
-                Participant participante = new Participant();
+                Participante participante = new Participante();
                 participante.setId(result.getInt("id"));
                 participante.setNome(result.getString("nome"));
                 participante.setCpf(result.getString("cpf"));
                 participante.setEmail(result.getString("email"));
                 participante.setTelefone(result.getString("telefone"));
-                List<Category> listCategorias = categoriaDao.listarCatDoParticipante(result.getInt("id"));
+                List<Categoria> listCategorias = categoriaDao.listarCatDoParticipante(result.getInt("id"));
                 participante.setCategorias(listCategorias);
                 lista.add(participante);
             }
@@ -48,7 +48,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participant> {
     }
 
     @Override
-    public int cadastrar(Participant obj) {
+    public int cadastrar(Participante obj) {
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(
@@ -77,7 +77,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participant> {
     }
 
     @Override
-    public boolean alterar(Participant obj) {
+    public boolean alterar(Participante obj) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "UPDATE PARTICIPANTE SET NOME = ? , CPF = ? , EMAIL = ? , TELEFONE = ? WHERE  id = ?");
@@ -94,7 +94,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participant> {
     }
 
     @Override
-    public boolean deletar(Participant obj) {
+    public boolean deletar(Participante obj) {
         try {
             PreparedStatement stmt = conexao.prepareStatement("DELETE FROM PARTICIPANTE WHERE ID = ?");
             stmt.setInt(1, obj.getId());
@@ -106,16 +106,16 @@ public class ParticipanteDao extends Dao implements DaoI<Participant> {
     }
 
     @Override
-    public List<Participant> pesquisarPorTermo(String termo) {
+    public List<Participante> pesquisarPorTermo(String termo) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "SELECT * FROM PARTICIPANTE "
                     + "WHERE NOME LIKE ?");
             stmt.setString(1, "%" + termo + "%");
             ResultSet result = stmt.executeQuery();
-            List<Participant> lista = new ArrayList<>();
+            List<Participante> lista = new ArrayList<>();
             while (result.next()) {
-                Participant participante = new Participant();
+                Participante participante = new Participante();
                 participante.setId(result.getInt("id"));
                 participante.setNome(result.getString("nome"));
                 participante.setCpf(result.getString("cpf"));
@@ -133,7 +133,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participant> {
     }
 
     @Override
-    public Participant lerPorId(int id) {
+    public Participante lerPorId(int id) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "SELECT * FROM participant "
@@ -141,7 +141,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participant> {
             stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-                Participant participante = new Participant();
+                Participante participante = new Participante();
                 participante.setId(result.getInt("id"));
                 participante.setNome(result.getString("nome"));
                 participante.setCpf(result.getString("cpf"));
@@ -158,9 +158,9 @@ public class ParticipanteDao extends Dao implements DaoI<Participant> {
         }
     }
 
-    private void gravarCategorias(Participant obj, int id) throws SQLException {
+    private void gravarCategorias(Participante obj, int id) throws SQLException {
         if (obj.getCategorias() != null && !obj.getCategorias().isEmpty()) {
-            for (Category categoria : obj.getCategorias()) {
+            for (Categoria categoria : obj.getCategorias()) {
                 categoriaDao.cadastrarComParticipante(categoria, id);
             }
         }

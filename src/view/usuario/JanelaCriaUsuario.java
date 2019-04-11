@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.user;
+package view.usuario;
 
-import control.UserControl;
-import model.User;
+import control.UsuarioControl;
+import model.Usuario;
 
 /**
  *
@@ -14,8 +14,8 @@ import model.User;
  */
 public class JanelaCriaUsuario extends javax.swing.JFrame {
     
-    UserControl USUARIO_CONTROL;
-    User usuario = null;
+    UsuarioControl USUARIO_CONTROL;
+    Usuario usuario = null;
     int indexSelecionadaDoUser;
 
     /**
@@ -23,14 +23,14 @@ public class JanelaCriaUsuario extends javax.swing.JFrame {
      */
     public JanelaCriaUsuario() {
         initComponents();
-        USUARIO_CONTROL = new UserControl();
+        USUARIO_CONTROL = new UsuarioControl();
         
     }
     
-    public JanelaCriaUsuario(User user, int indexSelecionada) {
+    public JanelaCriaUsuario(Usuario user, int indexSelecionada) {
         initComponents();
         indexSelecionadaDoUser = indexSelecionada;
-        USUARIO_CONTROL = new UserControl();
+        USUARIO_CONTROL = new UsuarioControl();
         if (user == null) {
             System.out.println("Usuario nulo:" + user);
             usuario = user;

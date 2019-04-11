@@ -5,29 +5,29 @@ import dao.ParticipanteDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import model.Category;
-import model.Participant;
-import model.tablemodel.CategoryTableModel;
-import model.tablemodel.ParticipantTableModel;
+import model.Categoria;
+import model.Participante;
+import model.tablemodel.CategoriaTableModel;
+import model.tablemodel.ParticipanteTableModel;
 import util.Mensagem;
 import util.Texto;
-import view.participant.JanelaCriarParticipante;
-import view.participant.JanelaVisualizarParticipante;
-import view.participant.JanelaGerenciarParticipante;
+import view.participante.JanelaCriarParticipante;
+import view.participante.JanelaVisualizarParticipante;
+import view.participante.JanelaGerenciarParticipante;
 
 /**
  *
  * @author William
  */
-public class ParticipantControl {
+public class ParticipanteControl {
     
-    Participant participante;
+    Participante participante;
     ParticipanteDao participanteDao;
     CategoriaDao categoriaDao;
-    CategoryTableModel categoriaTable;
-    ParticipantTableModel participanteTable;
-    List<Participant> listParticipantes;
-    List<Category> listCategorias;
+    CategoriaTableModel categoriaTable;
+    ParticipanteTableModel participanteTable;
+    List<Participante> listParticipantes;
+    List<Categoria> listCategorias;
     public static final String[] nomeDasCategorias = {"Exatas", "Programação", "Letras", "Ciencias"};
     Integer linhaSelecionada = 0;
     
@@ -37,11 +37,11 @@ public class ParticipantControl {
     private String campoCpf = "";
     private String campoTelefone = "";
     
-    public ParticipantControl() {
+    public ParticipanteControl() {
         categoriaDao = new CategoriaDao();
         participanteDao = new ParticipanteDao();
-        categoriaTable = new CategoryTableModel();
-        participanteTable = new ParticipantTableModel();
+        categoriaTable = new CategoriaTableModel();
+        participanteTable = new ParticipanteTableModel();
         listParticipantes = new ArrayList<>();
         listCategorias = new ArrayList<>();
         atualizaTabelaParticipante();
@@ -65,10 +65,10 @@ public class ParticipantControl {
     }
     
     private void pegaCamposCriarParticipante() {
-        campoNome = view.participant.JanelaCriarParticipante.tfNome.getText();
-        campoEmail = view.participant.JanelaCriarParticipante.tfEmail.getText();
-        campoCpf = view.participant.JanelaCriarParticipante.tfCpf.getText();
-        campoTelefone = view.participant.JanelaCriarParticipante.tfTelefone.getText();
+        campoNome = view.participante.JanelaCriarParticipante.tfNome.getText();
+        campoEmail = view.participante.JanelaCriarParticipante.tfEmail.getText();
+        campoCpf = view.participante.JanelaCriarParticipante.tfCpf.getText();
+        campoTelefone = view.participante.JanelaCriarParticipante.tfTelefone.getText();
     }
     
     private void pegaCamposEditarParticipante() {
@@ -77,11 +77,11 @@ public class ParticipantControl {
         campoEmail = null;
         campoCpf = null;
         campoTelefone = null;
-        campoId = view.participant.JanelaVisualizarParticipante.lblCodigoParticipant.getText();
-        campoNome = view.participant.JanelaVisualizarParticipante.tfNome.getText();
-        campoEmail = view.participant.JanelaVisualizarParticipante.tfEmail.getText();
-        campoCpf = view.participant.JanelaVisualizarParticipante.tfCpf.getText();
-        campoTelefone = view.participant.JanelaVisualizarParticipante.tfTelefone.getText();
+        campoId = view.participante.JanelaVisualizarParticipante.lblCodigoParticipant.getText();
+        campoNome = view.participante.JanelaVisualizarParticipante.tfNome.getText();
+        campoEmail = view.participante.JanelaVisualizarParticipante.tfEmail.getText();
+        campoCpf = view.participante.JanelaVisualizarParticipante.tfCpf.getText();
+        campoTelefone = view.participante.JanelaVisualizarParticipante.tfTelefone.getText();
     }
     
     public void carregaCategoriasNoComboBox() {
@@ -91,7 +91,7 @@ public class ParticipantControl {
     
     public void adicionarCategoriasDoParticipanteAction() {
         String NomeCategoria = (String) JanelaCriarParticipante.cbCategoria.getSelectedItem();
-        Category catAdicionada = new Category();
+        Categoria catAdicionada = new Categoria();
         catAdicionada.setId(Integer.MAX_VALUE);
         catAdicionada.setNome(NomeCategoria);
         categoriaTable.addObject(catAdicionada);
@@ -123,7 +123,7 @@ public class ParticipantControl {
     }
     
     private void criarParticipante() {
-        participante = new Participant();
+        participante = new Participante();
         participante.setId(Integer.MAX_VALUE);
         participante.setNome(campoNome);
         participante.setCpf(campoCpf);
@@ -133,20 +133,20 @@ public class ParticipantControl {
     }
     
     public void carregaCamposVisualizarAction() {
-        participanteTable = new ParticipantTableModel();
+        participanteTable = new ParticipanteTableModel();
         atualizaTabelaParticipante();
         participante = participanteTable.getObject(JanelaGerenciarParticipante.tblParticipante.getSelectedRow());
         linhaSelecionada = pegaLinhaSelecionadaParticipante();
     }
     
     public void modificaCamposNoVisualizar() {
-        categoriaTable = new CategoryTableModel();
+        categoriaTable = new CategoriaTableModel();
         JanelaVisualizarParticipante.tblCategoriaParticipante.setModel(categoriaTable);
-        view.participant.JanelaVisualizarParticipante.lblCodigoParticipant.setText(String.valueOf(participante.getId()));
-        view.participant.JanelaVisualizarParticipante.tfNome.setText(participante.getNome());
-        view.participant.JanelaVisualizarParticipante.tfEmail.setText(participante.getEmail());
-        view.participant.JanelaVisualizarParticipante.tfCpf.setText(participante.getCpf());
-        view.participant.JanelaVisualizarParticipante.tfTelefone.setText(participante.getTelefone());
+        view.participante.JanelaVisualizarParticipante.lblCodigoParticipant.setText(String.valueOf(participante.getId()));
+        view.participante.JanelaVisualizarParticipante.tfNome.setText(participante.getNome());
+        view.participante.JanelaVisualizarParticipante.tfEmail.setText(participante.getEmail());
+        view.participante.JanelaVisualizarParticipante.tfCpf.setText(participante.getCpf());
+        view.participante.JanelaVisualizarParticipante.tfTelefone.setText(participante.getTelefone());
         categoriaTable.addListOfObject(categoriaDao.listarCatDoParticipante(participante.getId()));
     }
     
@@ -171,10 +171,10 @@ public class ParticipantControl {
     }
     
     public void limparCamposCriarParticipante() {
-        view.participant.JanelaCriarParticipante.tfNome.setText(null);
-        view.participant.JanelaCriarParticipante.tfCpf.setText(null);
-        view.participant.JanelaCriarParticipante.tfEmail.setText(null);
-        view.participant.JanelaCriarParticipante.tfTelefone.setText(null);
+        view.participante.JanelaCriarParticipante.tfNome.setText(null);
+        view.participante.JanelaCriarParticipante.tfCpf.setText(null);
+        view.participante.JanelaCriarParticipante.tfEmail.setText(null);
+        view.participante.JanelaCriarParticipante.tfTelefone.setText(null);
         categoriaTable.clear();
     }
 }

@@ -4,7 +4,7 @@ package model;
  *
  * @author William
  */
-public class Category {
+public class Categoria {
 
     private Integer id;
     private String nome;

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.participant;
+package view.participante;
 
-import control.ParticipantControl;
+import control.ParticipanteControl;
 
 /**
  *
@@ -13,14 +13,14 @@ import control.ParticipantControl;
  */
 public class JanelaVisualizarParticipante extends javax.swing.JFrame {
 
-    ParticipantControl PARTICIPANTE_CONTROL;
+    ParticipanteControl PARTICIPANTE_CONTROL;
 
     /**
      * Creates new form CadastrarParticipante
      */
     public JanelaVisualizarParticipante() {
         initComponents();
-        PARTICIPANTE_CONTROL = new ParticipantControl();
+        PARTICIPANTE_CONTROL = new ParticipanteControl();
         PARTICIPANTE_CONTROL.carregaCategoriasNoComboBox();
         tfCpf.setEnabled(false);
         tblCategoriaParticipante.setEnabled(false);

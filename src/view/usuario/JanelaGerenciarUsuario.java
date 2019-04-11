@@ -1,30 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package view.participant;
+package view.usuario;
 
-import control.ParticipantControl;
+import control.UsuarioControl;
 import evento.Principal;
-import util.Mensagem;
-import util.Texto;
+import model.Usuario;
 
 /**
  *
  * @author William
  */
-public class JanelaGerenciarParticipante extends javax.swing.JFrame {
+public class JanelaGerenciarUsuario extends javax.swing.JFrame {
 
-    ParticipantControl PARTICIPANT_CONTROL;
+    UsuarioControl USUARIO_CONTROL;
 
     /**
      * Creates new form ViewGerenciarUsuarios
      */
-    public JanelaGerenciarParticipante() {
+    public JanelaGerenciarUsuario() {
         initComponents();
-        PARTICIPANT_CONTROL = new ParticipantControl();
-        PARTICIPANT_CONTROL.atualizaTabelaParticipante();
+        USUARIO_CONTROL = new UsuarioControl();
+
     }
 
     /**
@@ -46,29 +40,27 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
         jLabel1.setText("Pesquisar:");
 
         tfPesquisar.setColumns(15);
+        tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfPesquisarKeyReleased(evt);
+            }
+        });
 
-        btNovo.setText("+");
+        btNovo.setText("Visualizar/Editar");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);
             }
         });
 
-        btExcluir.setText("-");
+        btExcluir.setText("Excluir");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
             }
         });
 
-        btVisualizar.setText("Visualizar");
-        btVisualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btVisualizarActionPerformed(evt);
-            }
-        });
-
-        tblParticipante.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -79,10 +71,10 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblParticipante);
+        jScrollPane1.setViewportView(tblUsuario);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setText("Gerenciar Participantes");
+        jLabel2.setText("GERENCIAR USUARIOS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,19 +86,17 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btNovo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btVisualizar)))
-                .addGap(12, 12, 12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btExcluir)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +108,6 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNovo)
-                    .addComponent(btVisualizar)
                     .addComponent(btExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,27 +119,38 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
-        Principal.JanelaCadastrarParticipante();
+        int index;
+        Usuario user = USUARIO_CONTROL.pegaUsuarioSelecionadoDaTabela();
+        index = verificaSeObjetoVeioNulo(user);
+        Principal.JanelaCadastrarUsuario(user, index);
+        removeSelecaoDaLinha();
 
     }//GEN-LAST:event_btNovoActionPerformed
 
+    private void removeSelecaoDaLinha() {
+        tblUsuario.getSelectionModel().clearSelection();
+    }
+
+    private int verificaSeObjetoVeioNulo(Usuario user) {
+        int index;
+        if (user == null) {
+            index = -1;
+        } else {
+            index = USUARIO_CONTROL.pegaLinhaSelecionadaDaTabela();
+        }
+        return index;
+    }
+
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
-        PARTICIPANT_CONTROL.deletarParticipanteAction();
-
+        USUARIO_CONTROL.deletarUsuarioAction();
+        removeSelecaoDaLinha();
     }//GEN-LAST:event_btExcluirActionPerformed
 
-    private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
+    private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
         // TODO add your handling code here:
-       int indexSelecionada = PARTICIPANT_CONTROL.pegaLinhaSelecionadaParticipante();
-       if (indexSelecionada == -1) {
-           Mensagem.msgInfo(Texto.NOT_SELECTED_INPUT);
-           return;
-       }
-        PARTICIPANT_CONTROL.carregaCamposVisualizarAction();
-        Principal.JanelaEditarParticipante();
-        PARTICIPANT_CONTROL.modificaCamposNoVisualizar();
-    }//GEN-LAST:event_btVisualizarActionPerformed
+        USUARIO_CONTROL.procurarUsuarioAction();
+    }//GEN-LAST:event_tfPesquisarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -169,30 +169,14 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JanelaGerenciarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JanelaGerenciarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JanelaGerenciarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JanelaGerenciarParticipante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -213,7 +197,7 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JanelaGerenciarParticipante().setVisible(true);
+                new JanelaGerenciarUsuario().setVisible(true);
             }
         });
     }
@@ -221,11 +205,10 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static final javax.swing.JButton btExcluir = new javax.swing.JButton();
     public static final javax.swing.JButton btNovo = new javax.swing.JButton();
-    public static final javax.swing.JButton btVisualizar = new javax.swing.JButton();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public static final javax.swing.JTable tblParticipante = new javax.swing.JTable();
+    public static final javax.swing.JTable tblUsuario = new javax.swing.JTable();
     public static final javax.swing.JTextField tfPesquisar = new javax.swing.JTextField();
     // End of variables declaration//GEN-END:variables
 }

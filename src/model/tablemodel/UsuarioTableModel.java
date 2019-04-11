@@ -4,9 +4,9 @@ import interfaces.ActionsTableModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import model.User;
+import model.Usuario;
 
-public class UserTableModel extends AbstractTableModel implements ActionsTableModel<User> {
+public class UsuarioTableModel extends AbstractTableModel implements ActionsTableModel<Usuario> {
 
     // Constantes representando o índice das colunas
     private static final int ID = 0;
@@ -14,18 +14,18 @@ public class UserTableModel extends AbstractTableModel implements ActionsTableMo
     private static final int SENHA = 2;
 
     // Lista de Objetos<Produtos> a serem exibidos na tela.
-    private List<User> linhas;
+    private List<Usuario> linhas;
 
     // Colunas da Tabela (View)
     private String[] colunas = {"ID", "LOGIN"};
 
     // Cria um ProdutoTableModel sem nenhuma linha
-    public UserTableModel() {
+    public UsuarioTableModel() {
         linhas = new ArrayList<>();
     }
 
     // Cria um ProdutoTableModel contendo a lista recebida por parâmetro 
-    public UserTableModel(List<User> listUsuarios) {
+    public UsuarioTableModel(List<Usuario> listUsuarios) {
         linhas = listUsuarios;
     }
 
@@ -60,7 +60,7 @@ public class UserTableModel extends AbstractTableModel implements ActionsTableMo
 
     @Override
     public Object getValueAt(int linha, int coluna) {
-        User usuario = linhas.get(linha);
+        Usuario usuario = linhas.get(linha);
         switch (coluna) {
             case ID:
                 return usuario.getId();
@@ -75,7 +75,7 @@ public class UserTableModel extends AbstractTableModel implements ActionsTableMo
 
     @Override
     public void setValueAt(Object valor, int linha, int coluna) {
-        User usuario = linhas.get(linha);
+        Usuario usuario = linhas.get(linha);
         switch (coluna) {
             case ID:
                 usuario.setId(Integer.valueOf((String) valor));
@@ -95,12 +95,12 @@ public class UserTableModel extends AbstractTableModel implements ActionsTableMo
     }
 
     @Override
-    public User getObject(int indiceLinha) {
+    public Usuario getObject(int indiceLinha) {
         return linhas.get(indiceLinha);
     }
 
     @Override
-    public void addObject(User usuario) {
+    public void addObject(Usuario usuario) {
         linhas.add(usuario);
         int ultimoIndice = getRowCount() - 1; // linhas -1
         fireTableRowsInserted(ultimoIndice, ultimoIndice); // atualiza insert
@@ -113,13 +113,13 @@ public class UserTableModel extends AbstractTableModel implements ActionsTableMo
     }
 
     @Override
-    public void updateObject(int indiceLinha, User u) {
+    public void updateObject(int indiceLinha, Usuario u) {
         linhas.set(indiceLinha, u);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }
 
     @Override
-    public void addListOfObject(List<User> usuarios) {
+    public void addListOfObject(List<Usuario> usuarios) {
         int indice = getRowCount();
         linhas.addAll(usuarios);
         fireTableRowsInserted(indice, indice + usuarios.size());

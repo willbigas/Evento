@@ -4,7 +4,7 @@ package model;
  *
  * @author William
  */
-public class User {
+public class Usuario {
 
     private Integer id;
     private String login;

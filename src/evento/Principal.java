@@ -1,15 +1,15 @@
 package evento;
 
 import javax.swing.JFrame;
-import model.User;
+import model.Usuario;
 import view.JanelaGerenciarTelas;
-import view.category.JanelaGerenciarCategoria;
-import view.participant.JanelaCriarParticipante;
-import view.participant.JanelaVisualizarParticipante;
-import view.participant.JanelaGerenciarParticipante;
-import view.user.JanelaCriaUsuario;
-import view.user.JanelaGerenciarUsuario;
-import view.user.JanelaLoginUsuario;
+import view.categoria.JanelaGerenciarCategoria;
+import view.participante.JanelaCriarParticipante;
+import view.participante.JanelaVisualizarParticipante;
+import view.participante.JanelaGerenciarParticipante;
+import view.usuario.JanelaCriaUsuario;
+import view.usuario.JanelaGerenciarUsuario;
+import view.usuario.JanelaLoginUsuario;
 
 /**
  *
@@ -49,8 +49,8 @@ public class Principal {
 
     }
 
-    public static void JanelaCadastrarUsuario(User user , int indexSelecionada) {
-        JanelaCriaUsuario janelaCadastrarUsuario = new JanelaCriaUsuario(user , indexSelecionada);
+    public static void JanelaCadastrarUsuario(Usuario user, int indexSelecionada) {
+        JanelaCriaUsuario janelaCadastrarUsuario = new JanelaCriaUsuario(user, indexSelecionada);
         janelaCadastrarUsuario.setTitle("CADASTRAR USUARIO");
         janelaCadastrarUsuario.setLocationRelativeTo(null);
         janelaCadastrarUsuario.setVisible(true);
