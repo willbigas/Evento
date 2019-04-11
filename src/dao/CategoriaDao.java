@@ -12,9 +12,9 @@ import model.Category;
  *
  * @author William
  */
-public class CategoryDao extends Dao implements DaoI<Category> {
+public class CategoriaDao extends Dao implements DaoI<Category> {
 
-    public CategoryDao() {
+    public CategoriaDao() {
         //Contrutor da super classe Dao. Faz a conexão.
         super();
     }

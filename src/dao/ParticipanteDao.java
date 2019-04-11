@@ -13,11 +13,11 @@ import model.Participant;
  *
  * @author William
  */
-public class ParticipantDao extends Dao implements DaoI<Participant> {
+public class ParticipanteDao extends Dao implements DaoI<Participant> {
 
-    CategoryDao categoriaDao = new CategoryDao();
+    CategoriaDao categoriaDao = new CategoriaDao();
 
-    public ParticipantDao() {
+    public ParticipanteDao() {
         super();
 
     }

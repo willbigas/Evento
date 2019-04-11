@@ -2,7 +2,7 @@ package evento;
 
 import javax.swing.JFrame;
 import model.User;
-import view.Principal;
+import view.JanelaGerenciarTelas;
 import view.category.JanelaGerenciarCategoria;
 import view.participant.JanelaCriarParticipante;
 import view.participant.JanelaVisualizarParticipante;
@@ -15,7 +15,7 @@ import view.user.JanelaLoginUsuario;
  *
  * @author William
  */
-public class Main {
+public class Principal {
 
     /**
      * @param args the command line arguments
@@ -33,7 +33,7 @@ public class Main {
     }
 
     public static void JanelaPrincipal() {
-        Principal janelaGerenciarTelas = new Principal();
+        JanelaGerenciarTelas janelaGerenciarTelas = new JanelaGerenciarTelas();
         janelaGerenciarTelas.setTitle("JANELA PRINCIPAL");
         janelaGerenciarTelas.setExtendedState(JFrame.MAXIMIZED_BOTH);
         janelaGerenciarTelas.setLocationRelativeTo(null);

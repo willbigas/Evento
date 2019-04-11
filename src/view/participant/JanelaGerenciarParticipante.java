@@ -6,7 +6,7 @@
 package view.participant;
 
 import control.ParticipantControl;
-import evento.Main;
+import evento.Principal;
 import util.Mensagem;
 import util.Texto;
 
@@ -130,7 +130,7 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
-        Main.JanelaCadastrarParticipante();
+        Principal.JanelaCadastrarParticipante();
 
     }//GEN-LAST:event_btNovoActionPerformed
 
@@ -148,7 +148,7 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
            return;
        }
         PARTICIPANT_CONTROL.carregaCamposVisualizarAction();
-        Main.JanelaEditarParticipante();
+        Principal.JanelaEditarParticipante();
         PARTICIPANT_CONTROL.modificaCamposNoVisualizar();
     }//GEN-LAST:event_btVisualizarActionPerformed
 

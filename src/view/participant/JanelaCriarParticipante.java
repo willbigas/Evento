@@ -6,7 +6,7 @@
 package view.participant;
 
 import control.ParticipantControl;
-import evento.Main;
+import evento.Principal;
 
 /**
  *

@@ -1,6 +1,6 @@
 package control;
 
-import dao.CategoryDao;
+import dao.CategoriaDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,12 +18,12 @@ public class CategoryControl {
 
     Category categoria;
     List<Category> listCategorias;
-    CategoryDao categoriaDao;
+    CategoriaDao categoriaDao;
     CategoryTableModel categoriaTable;
     Integer linhaSelecionada = 0;
 
     public CategoryControl() {
-        categoriaDao = new CategoryDao();
+        categoriaDao = new CategoriaDao();
         listCategorias = new ArrayList<>();
         categoriaTable = new CategoryTableModel();
         atualizarJTableCategoria();

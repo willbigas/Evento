@@ -1,7 +1,7 @@
 package control;
 
-import dao.CategoryDao;
-import dao.ParticipantDao;
+import dao.CategoriaDao;
+import dao.ParticipanteDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -22,8 +22,8 @@ import view.participant.JanelaGerenciarParticipante;
 public class ParticipantControl {
     
     Participant participante;
-    ParticipantDao participanteDao;
-    CategoryDao categoriaDao;
+    ParticipanteDao participanteDao;
+    CategoriaDao categoriaDao;
     CategoryTableModel categoriaTable;
     ParticipantTableModel participanteTable;
     List<Participant> listParticipantes;
@@ -38,8 +38,8 @@ public class ParticipantControl {
     private String campoTelefone = "";
     
     public ParticipantControl() {
-        categoriaDao = new CategoryDao();
-        participanteDao = new ParticipantDao();
+        categoriaDao = new CategoriaDao();
+        participanteDao = new ParticipanteDao();
         categoriaTable = new CategoryTableModel();
         participanteTable = new ParticipantTableModel();
         listParticipantes = new ArrayList<>();

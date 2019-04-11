@@ -1,7 +1,7 @@
 package control;
 
-import dao.UserDao;
-import evento.Main;
+import dao.UsuarioDao;
+import evento.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,12 +19,12 @@ public class UserControl {
 
     User usuario;
     List<User> listUsuarios;
-    UserDao usuarioDao;
+    UsuarioDao usuarioDao;
     UserTableModel usuarioTable;
     Integer linhaSelecionada = 0;
 
     public UserControl() {
-        usuarioDao = new UserDao();
+        usuarioDao = new UsuarioDao();
         listUsuarios = new ArrayList<>();
         usuarioTable = new UserTableModel();
         pegaCamposLogin();
@@ -73,7 +73,7 @@ public class UserControl {
 
     public boolean efetuaLoginAction() {
         if (validaLogin()) {
-            Main.JanelaPrincipal();
+            Principal.JanelaPrincipal();
             return true;
         } else {
             Mensagem.msgInfo(Texto.ERROR_LOGIN_INCORRECT);

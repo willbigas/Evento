@@ -1,7 +1,7 @@
 package view.user;
 
 import control.UserControl;
-import evento.Main;
+import evento.Principal;
 import model.User;
 
 /**
@@ -122,7 +122,7 @@ public class JanelaGerenciarUsuario extends javax.swing.JFrame {
         int index;
         User user = USUARIO_CONTROL.pegaUsuarioSelecionadoDaTabela();
         index = verificaSeObjetoVeioNulo(user);
-        Main.JanelaCadastrarUsuario(user, index);
+        Principal.JanelaCadastrarUsuario(user, index);
         removeSelecaoDaLinha();
 
     }//GEN-LAST:event_btNovoActionPerformed

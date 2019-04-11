@@ -5,18 +5,18 @@
  */
 package view;
 
-import evento.Main;
+import evento.Principal;
 
 /**
  *
  * @author William
  */
-public class Principal extends javax.swing.JFrame {
+public class JanelaGerenciarTelas extends javax.swing.JFrame {
 
     /**
      * Creates new form GerenciarEvento
      */
-    public Principal() {
+    public JanelaGerenciarTelas() {
         initComponents();
     }
 
@@ -91,17 +91,17 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuariosActionPerformed
-        Main.JanelaGerenciarUsuarios();
+        Principal.JanelaGerenciarUsuarios();
     }//GEN-LAST:event_menuUsuariosActionPerformed
 
     private void menuCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoriasActionPerformed
         // TODO add your handling code here:
-        Main.JanelaGerenciarCategorias();
+        Principal.JanelaGerenciarCategorias();
     }//GEN-LAST:event_menuCategoriasActionPerformed
 
     private void menuParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuParticipantesActionPerformed
         // TODO add your handling code here:
-        Main.JanelaGerenciarParticipantes();
+        Principal.JanelaGerenciarParticipantes();
     }//GEN-LAST:event_menuParticipantesActionPerformed
 
     /**
@@ -121,14 +121,22 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarTelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarTelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarTelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JanelaGerenciarTelas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -141,7 +149,7 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                new JanelaGerenciarTelas().setVisible(true);
             }
         });
     }
