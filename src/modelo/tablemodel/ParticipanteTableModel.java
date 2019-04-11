@@ -28,7 +28,7 @@ public class ParticipanteTableModel extends AbstractTableModel implements AcoesT
 
     // Cria um ProdutoTableModel contendo a lista recebida por parâmetro 
     public ParticipanteTableModel(List<Participante> listParticipantes) {
-        linhas = listParticipantes;
+        linhas = new ArrayList<>(listParticipantes);
     }
 
     /**
@@ -129,7 +129,7 @@ public class ParticipanteTableModel extends AbstractTableModel implements AcoesT
             case EMAIL:
                 participante.setEmail((String) valor);
                 break;
-             case TELEFONE:
+            case TELEFONE:
                 participante.setTelefone((String) valor);
                 break;
             default:

@@ -5,7 +5,7 @@
  */
 package view.participante;
 
-import controle.ParticipanteControl;
+import controle.ParticipanteControle;
 
 /**
  *
@@ -13,14 +13,14 @@ import controle.ParticipanteControl;
  */
 public class JanelaCriarParticipante extends javax.swing.JFrame {
 
-    ParticipanteControl PARTICIPANTE_CONTROL;
+    ParticipanteControle PARTICIPANTE_CONTROL;
 
     /**
      * Creates new form CadastrarParticipante
      */
     public JanelaCriarParticipante() {
         initComponents();
-        PARTICIPANTE_CONTROL = new ParticipanteControl();
+        PARTICIPANTE_CONTROL = new ParticipanteControle();
         PARTICIPANTE_CONTROL.carregaCategoriasNoComboBox();
 
         tblCategoriaParticipante.getColumnModel().getColumn(0).setMinWidth(0);

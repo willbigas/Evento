@@ -14,7 +14,7 @@ import view.categoria.JanelaGerenciarCategoria;
  *
  * @author William
  */
-public class CategoriaControl {
+public class CategoriaControle {
 
     Categoria categoria;
     List<Categoria> listCategorias;
@@ -22,7 +22,7 @@ public class CategoriaControl {
     CategoriaTableModel categoriaTable;
     Integer linhaSelecionada = 0;
 
-    public CategoriaControl() {
+    public CategoriaControle() {
         categoriaDao = new CategoriaDao();
         listCategorias = new ArrayList<>();
         categoriaTable = new CategoriaTableModel();

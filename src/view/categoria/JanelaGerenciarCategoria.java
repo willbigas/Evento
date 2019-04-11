@@ -1,6 +1,6 @@
 package view.categoria;
 
-import controle.CategoriaControl;
+import controle.CategoriaControle;
 
 /**
  *
@@ -8,14 +8,14 @@ import controle.CategoriaControl;
  */
 public class JanelaGerenciarCategoria extends javax.swing.JFrame {
     
-    CategoriaControl CATEGORIA_CONTROL;
+    CategoriaControle CATEGORIA_CONTROL;
     
     /**
      * Creates new form ViewGerenciarUsuarios
      */
     public JanelaGerenciarCategoria() {
         initComponents();
-        CATEGORIA_CONTROL = new CategoriaControl();
+        CATEGORIA_CONTROL = new CategoriaControle();
     }
 
     /**

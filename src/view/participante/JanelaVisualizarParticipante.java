@@ -5,7 +5,7 @@
  */
 package view.participante;
 
-import controle.ParticipanteControl;
+import controle.ParticipanteControle;
 
 /**
  *
@@ -13,16 +13,19 @@ import controle.ParticipanteControl;
  */
 public class JanelaVisualizarParticipante extends javax.swing.JFrame {
 
-    ParticipanteControl PARTICIPANTE_CONTROL;
+    ParticipanteControle PARTICIPANTE_CONTROL;
 
     /**
      * Creates new form CadastrarParticipante
      */
     public JanelaVisualizarParticipante() {
         initComponents();
-        PARTICIPANTE_CONTROL = new ParticipanteControl();
+        PARTICIPANTE_CONTROL = new ParticipanteControle();
         PARTICIPANTE_CONTROL.carregaCategoriasNoComboBox();
-        tfCpf.setEnabled(false);
+        tfCpf.setEditable(false);
+        tfEmail.setEditable(false);
+        tfNome.setEditable(false);
+        tfTelefone.setEditable(false);
         tblCategoriaParticipante.setEnabled(false);
 
     }

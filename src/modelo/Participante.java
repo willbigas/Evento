@@ -14,6 +14,7 @@ public class Participante {
     private String email;
     private String telefone;
     private List<Categoria> categorias;
+    private boolean ativo;
 
     public Integer getId() {
         return id;
@@ -63,6 +64,13 @@ public class Participante {
         this.categorias = categorias;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
     @Override
     public String toString() {
         return "Participante{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", telefone=" + telefone + ", categorias=" + categorias + '}';

@@ -10,6 +10,7 @@ nome varchar(50) NOT NULL,
 cpf varchar(11) NOT NULL,
 email varchar(50) NOT NULL,
 telefone varchar(9) NOT NULL,
+ativo boolean not null,
 PRIMARY KEY (id));
 
 CREATE TABLE usuario(

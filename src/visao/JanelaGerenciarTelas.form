@@ -9,14 +9,6 @@
             <Property name="text" type="java.lang.String" value="Menus"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuUsuarios">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Usuarios"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuUsuariosActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuCategorias">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Categorias"/>

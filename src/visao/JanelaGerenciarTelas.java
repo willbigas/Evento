@@ -34,7 +34,6 @@ public class JanelaGerenciarTelas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        menuUsuarios = new javax.swing.JMenuItem();
         menuCategorias = new javax.swing.JMenuItem();
         menuParticipantes = new javax.swing.JMenuItem();
 
@@ -59,14 +58,6 @@ public class JanelaGerenciarTelas extends javax.swing.JFrame {
 
         jMenu1.setText("Menus");
 
-        menuUsuarios.setText("Usuarios");
-        menuUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuUsuariosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(menuUsuarios);
-
         menuCategorias.setText("Categorias");
         menuCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,10 +80,6 @@ public class JanelaGerenciarTelas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void menuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuariosActionPerformed
-        Principal.JanelaGerenciarUsuarios();
-    }//GEN-LAST:event_menuUsuariosActionPerformed
 
     private void menuCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoriasActionPerformed
         // TODO add your handling code here:
@@ -161,6 +148,5 @@ public class JanelaGerenciarTelas extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuCategorias;
     private javax.swing.JMenuItem menuParticipantes;
-    private javax.swing.JMenuItem menuUsuarios;
     // End of variables declaration//GEN-END:variables
 }

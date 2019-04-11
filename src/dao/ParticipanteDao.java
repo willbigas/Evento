@@ -26,7 +26,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participante> {
     public List<Participante> listar() {
         try {
             PreparedStatement stmt;
-            stmt = conexao.prepareStatement("SELECT * FROM PARTICIPANTE ORDER BY ID");
+            stmt = conexao.prepareStatement("select * from participante where ativo is true order by id");
             ResultSet result = stmt.executeQuery();
             List<Participante> lista = new ArrayList<>();
             while (result.next()) {
@@ -36,6 +36,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participante> {
                 participante.setCpf(result.getString("cpf"));
                 participante.setEmail(result.getString("email"));
                 participante.setTelefone(result.getString("telefone"));
+                participante.setAtivo(result.getBoolean("ativo"));
                 List<Categoria> listCategorias = categoriaDao.listarCatDoParticipante(result.getInt("id"));
                 participante.setCategorias(listCategorias);
                 lista.add(participante);
@@ -52,12 +53,13 @@ public class ParticipanteDao extends Dao implements DaoI<Participante> {
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(
-                    "INSERT INTO PARTICIPANTE(NOME, CPF, EMAIL, TELEFONE)"
-                    + " VALUES(?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    "INSERT INTO PARTICIPANTE(NOME, CPF, EMAIL, TELEFONE , ATIVO)"
+                    + " VALUES(?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getCpf());
             stmt.setString(3, obj.getEmail());
             stmt.setString(4, obj.getTelefone());
+            stmt.setBoolean(5, true);
             ResultSet res;
             Integer idParticipante;
             if (stmt.executeUpdate() > 0) {
@@ -80,12 +82,13 @@ public class ParticipanteDao extends Dao implements DaoI<Participante> {
     public boolean alterar(Participante obj) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
-                    + "UPDATE PARTICIPANTE SET NOME = ? , CPF = ? , EMAIL = ? , TELEFONE = ? WHERE  id = ?");
+                    + "UPDATE PARTICIPANTE SET NOME = ? , CPF = ? , EMAIL = ? , TELEFONE = ? , ATIVO = ? WHERE  id = ?");
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getCpf());
             stmt.setString(3, obj.getEmail());
             stmt.setString(4, obj.getTelefone());
-            stmt.setInt(5, obj.getId());
+            stmt.setBoolean(5, obj.isAtivo());
+            stmt.setInt(6, obj.getId());
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -110,7 +113,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participante> {
         try {
             PreparedStatement stmt = conexao.prepareStatement(""
                     + "SELECT * FROM PARTICIPANTE "
-                    + "WHERE NOME LIKE ?");
+                    + "WHERE NOME LIKE ? and where ativo is true");
             stmt.setString(1, "%" + termo + "%");
             ResultSet result = stmt.executeQuery();
             List<Participante> lista = new ArrayList<>();
@@ -121,6 +124,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participante> {
                 participante.setCpf(result.getString("cpf"));
                 participante.setEmail(result.getString("email"));
                 participante.setTelefone(result.getString("telefone"));
+                participante.setAtivo(result.getBoolean("ativo"));
                 participante.setCategorias(categoriaDao.listarCatDoParticipante(result.getInt("id")));
                 lista.add(participante);
             }
@@ -147,6 +151,7 @@ public class ParticipanteDao extends Dao implements DaoI<Participante> {
                 participante.setCpf(result.getString("cpf"));
                 participante.setEmail(result.getString("email"));
                 participante.setTelefone(result.getString("telefone"));
+                participante.setAtivo(result.getBoolean("ativo"));
                 participante.setCategorias(categoriaDao.listarCatDoParticipante(result.getInt("id")));
                 return participante;
             } else {

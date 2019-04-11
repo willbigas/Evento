@@ -1,14 +1,11 @@
 package evento;
 
 import javax.swing.JFrame;
-import modelo.Usuario;
 import visao.JanelaGerenciarTelas;
 import view.categoria.JanelaGerenciarCategoria;
 import view.participante.JanelaCriarParticipante;
 import view.participante.JanelaVisualizarParticipante;
 import view.participante.JanelaGerenciarParticipante;
-import view.usuario.JanelaCriaUsuario;
-import view.usuario.JanelaGerenciarUsuario;
 import view.usuario.JanelaLoginUsuario;
 
 /**
@@ -38,22 +35,6 @@ public class Principal {
         janelaGerenciarTelas.setExtendedState(JFrame.MAXIMIZED_BOTH);
         janelaGerenciarTelas.setLocationRelativeTo(null);
         janelaGerenciarTelas.setVisible(true);
-    }
-
-    // JANELAS DE USUARIOS //
-    public static void JanelaGerenciarUsuarios() {
-        JanelaGerenciarUsuario janelaGerenciarUsuarios = new JanelaGerenciarUsuario();
-        janelaGerenciarUsuarios.setTitle("GERENCIAR USUARIOS");
-        janelaGerenciarUsuarios.setLocationRelativeTo(null);
-        janelaGerenciarUsuarios.setVisible(true);
-
-    }
-
-    public static void JanelaCadastrarUsuario(Usuario user, int indexSelecionada) {
-        JanelaCriaUsuario janelaCadastrarUsuario = new JanelaCriaUsuario(user, indexSelecionada);
-        janelaCadastrarUsuario.setTitle("CADASTRAR USUARIO");
-        janelaCadastrarUsuario.setLocationRelativeTo(null);
-        janelaCadastrarUsuario.setVisible(true);
     }
 
     // JANELAS DE CATEGORIAS

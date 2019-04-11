@@ -15,6 +15,8 @@ public class Texto {
     public static final String SUCESS_DELETE = "Excluido com Sucesso!";
     public static final String SUCESS_OUT = "Saída gravada com sucesso";
     public static final String SUCESS_IN = "Entrada gravada com sucesso";
+    public static final String SUCESS_DISABLE = "Desativado com Sucesso!";
+    
 
     // Errors
     public static final String ERROR_DELETE = "Erro ao excluir";
@@ -22,6 +24,7 @@ public class Texto {
     public static final String ERROR_EDIT = "Erro ao Editar!";
     public static final String ERROR_IN = "Erro ao gravar Entrada";
     public static final String ERROR_OUT = "Erro ao Gravar a Saida";
+    public static final String ERROR_DISABLE = "Erro ao Desativar!";
 
     // Invalid Inputs
     public static final String ERRO_NAME_INVALID = "Nome Invalido!";

@@ -5,7 +5,7 @@
  */
 package view.participante;
 
-import controle.ParticipanteControl;
+import controle.ParticipanteControle;
 import evento.Principal;
 import util.Mensagem;
 import util.Texto;
@@ -16,14 +16,15 @@ import util.Texto;
  */
 public class JanelaGerenciarParticipante extends javax.swing.JFrame {
 
-    ParticipanteControl PARTICIPANT_CONTROL;
+    ParticipanteControle PARTICIPANT_CONTROL;
+    public static int linhaSelecionada;
 
     /**
      * Creates new form ViewGerenciarUsuarios
      */
     public JanelaGerenciarParticipante() {
         initComponents();
-        PARTICIPANT_CONTROL = new ParticipanteControl();
+        PARTICIPANT_CONTROL = new ParticipanteControle();
         PARTICIPANT_CONTROL.atualizaTabelaParticipante();
     }
 
@@ -130,6 +131,7 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
+      linhaSelecionada =  PARTICIPANT_CONTROL.pegaLinhaSelecionadaParticipante();
         Principal.JanelaCadastrarParticipante();
 
     }//GEN-LAST:event_btNovoActionPerformed
@@ -137,6 +139,7 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
         PARTICIPANT_CONTROL.deletarParticipanteAction();
+        PARTICIPANT_CONTROL.atualizaTabelaParticipante();
 
     }//GEN-LAST:event_btExcluirActionPerformed
 
