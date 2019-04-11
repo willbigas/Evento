@@ -77,6 +77,7 @@ public class ParticipanteControle {
         } else {
             Mensagem.msgError(Texto.ERROR_CREATE);
         }
+        participante = null;
     }
 
     private void criarParticipante() {
@@ -99,33 +100,32 @@ public class ParticipanteControle {
         view.participante.JanelaGerenciarParticipante.tfTelefone.setText(participante.getTelefone());
         listCategorias.clear();
         listCategorias = categoriaDao.listarCatDoParticipante(participante.getId());
+        System.out.println("Lista de Categorias do Participante:" + listCategorias);
         populaAsCategoriasDoParticipante();
         linhaSelecionada = pegaLinhaSelecionadaParticipante();
     }
 
     private void populaAsCategoriasDoParticipante() {
+        JanelaGerenciarParticipante.checkExatas.setSelected(false);
+        JanelaGerenciarParticipante.checkProgramacao.setSelected(false);
+        JanelaGerenciarParticipante.checkLetras.setSelected(false);
+        JanelaGerenciarParticipante.checkCiencias.setSelected(false);
+        
         for (Categoria categoria : listCategorias) {
             if (categoria.getNome().equals(nomeDasCategorias[0])) {
                 JanelaGerenciarParticipante.checkExatas.setSelected(true);
-            } else {
-                JanelaGerenciarParticipante.checkExatas.setSelected(false);
             }
             if (categoria.getNome().equals(nomeDasCategorias[1])) {
                 JanelaGerenciarParticipante.checkProgramacao.setSelected(true);
-            } else {
-                JanelaGerenciarParticipante.checkProgramacao.setSelected(true);
             }
-            if (categoria.getNome().equals(nomeDasCategorias[0])) {
+            if (categoria.getNome().equals(nomeDasCategorias[2])) {
                 JanelaGerenciarParticipante.checkLetras.setSelected(true);
-            } else {
-                JanelaGerenciarParticipante.checkLetras.setSelected(false);
             }
-            if (categoria.getNome().equals(nomeDasCategorias[0])) {
-                JanelaGerenciarParticipante.checkCiencias.setSelected(true);
-            } else {
+            if (categoria.getNome().equals(nomeDasCategorias[3])) {
                 JanelaGerenciarParticipante.checkCiencias.setSelected(true);
             }
         }
+        listCategorias.clear();
     }
 
     public void deletarParticipanteAction() {
@@ -139,7 +139,8 @@ public class ParticipanteControle {
         } else {
             Mensagem.msgInfo(Texto.ERROR_DISABLE);
         }
-        atualizaTabelaParticipante();
+        participante = null;
+//        atualizaTabelaParticipante();
     }
 
     public int pegaLinhaSelecionadaParticipante() {
@@ -148,7 +149,6 @@ public class ParticipanteControle {
 
     public void varrendoCheckBoxs() {
         listCategorias.clear();
-        Categoria categoriaSelecionada;
         List<JCheckBox> checks = new ArrayList<>();
         checks.add(view.participante.JanelaGerenciarParticipante.checkExatas);
         checks.add(view.participante.JanelaGerenciarParticipante.checkProgramacao);
@@ -161,8 +161,8 @@ public class ParticipanteControle {
             if (checkAtual.isSelected()) {
                 for (int i = 0; i < 4; i++) {
                     if (checkAtual.getName().equals(nomeDasCategorias[i])) {
-                        categoriaSelecionada = new Categoria();
-                        categoriaSelecionada.setId(i);
+                        Categoria categoriaSelecionada = new Categoria();
+                        categoriaSelecionada.setId(i + 1);
                         categoriaSelecionada.setCodigoParticipante(participante.getId());
                         categoriaSelecionada.setNome(nomeDasCategorias[i]);
                         listCategorias.add(categoriaSelecionada);
