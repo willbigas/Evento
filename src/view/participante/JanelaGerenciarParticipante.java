@@ -1,6 +1,7 @@
 package view.participante;
 
 import controle.ParticipanteControle;
+import evento.Principal;
 
 /**
  *
@@ -8,15 +9,15 @@ import controle.ParticipanteControle;
  */
 public class JanelaGerenciarParticipante extends javax.swing.JFrame {
 
-    ParticipanteControle PARTICIPANT_CONTROL;
+    ParticipanteControle participanteControle;
 
     /**
      * Creates new form ViewGerenciarUsuarios
      */
     public JanelaGerenciarParticipante() {
         initComponents();
-        PARTICIPANT_CONTROL = new ParticipanteControle();
-        PARTICIPANT_CONTROL.atualizaTabelaParticipante();
+        participanteControle = new ParticipanteControle();
+        participanteControle.atualizaTabelaParticipante();
     }
 
     /**
@@ -40,6 +41,7 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -118,10 +120,17 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
         jLabel8.setText("[Participante]");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        jLabel9.setText("[Categoria]");
+        jLabel9.setText("[Categorias]");
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         jLabel10.setText("[Pesquisar Participantes]");
+
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,39 +179,52 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
                                             .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jLabel8))
-                                .addGap(36, 36, 36)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(checkCiencias)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(checkProgramacao)
-                                                .addComponent(checkLetras, javax.swing.GroupLayout.Alignment.LEADING))
-                                            .addComponent(checkExatas)
-                                            .addComponent(jLabel9))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(47, 47, 47)
+                                    .addComponent(checkCiencias)
+                                    .addComponent(checkExatas)
+                                    .addComponent(checkProgramacao)
+                                    .addComponent(checkLetras)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btSalvar)
-                                .addGap(11, 11, 11))))
+                                .addGap(17, 17, 17))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton1)
+                        .addGap(71, 71, 71)
                         .addComponent(jLabel2)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btSalvar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(checkExatas)
+                                .addGap(6, 6, 6)
+                                .addComponent(checkProgramacao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(checkLetras)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(checkCiencias)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                            .addComponent(tfNome)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -215,21 +237,7 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkExatas)
-                        .addGap(6, 6, 6)
-                        .addComponent(checkProgramacao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkLetras)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkCiencias)
-                            .addComponent(btSalvar))))
-                .addGap(18, 18, 18)
+                            .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -250,27 +258,29 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
-        PARTICIPANT_CONTROL.criarParticipanteAction();
+        participanteControle.criarParticipanteAction();
 
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        // TODO add your handling code here:
-        PARTICIPANT_CONTROL.deletarParticipanteAction();
-        PARTICIPANT_CONTROL.atualizaTabelaParticipante();
+        participanteControle.deletarParticipanteAction();
+//        participanteControle.atualizaTabelaParticipante();
 
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
-        // TODO add your handling code here:
-        PARTICIPANT_CONTROL.carregaCamposVisualizarAction();
+        participanteControle.carregaCamposVisualizarAction();
     }//GEN-LAST:event_btVisualizarActionPerformed
 
     private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
-        // TODO add your handling code here:
-        PARTICIPANT_CONTROL.pesquisarAction();
+        participanteControle.pesquisarAction();
     }//GEN-LAST:event_tfPesquisarKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Principal.JanelaCadastrarParticipante();
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,6 +356,7 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
     public static final javax.swing.JCheckBox checkExatas = new javax.swing.JCheckBox();
     public static final javax.swing.JCheckBox checkLetras = new javax.swing.JCheckBox();
     public static final javax.swing.JCheckBox checkProgramacao = new javax.swing.JCheckBox();
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

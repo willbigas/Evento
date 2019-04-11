@@ -93,6 +93,11 @@ public class ParticipanteControle {
     }
 
     public void carregaCamposVisualizarAction() {
+        if (pegaLinhaSelecionadaParticipante() == -1) {
+            Mensagem.msgInfo(Texto.NOT_SELECTED_INPUT);
+            return;
+        }
+
         participante = participanteTable.getObject(pegaLinhaSelecionadaParticipante());
         view.participante.JanelaGerenciarParticipante.tfCpf.setText(participante.getCpf());
         view.participante.JanelaGerenciarParticipante.tfEmail.setText(participante.getEmail());
@@ -129,6 +134,10 @@ public class ParticipanteControle {
     }
 
     public void deletarParticipanteAction() {
+        if (pegaLinhaSelecionadaParticipante() == -1) {
+            Mensagem.msgInfo(Texto.NOT_SELECTED_INPUT);
+            return;
+        }
         participante = participanteTable.getObject(pegaLinhaSelecionadaParticipante());
         participante.setAtivo(false);
         if (participanteDao.alterar(participante)) {
