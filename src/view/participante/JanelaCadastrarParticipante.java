@@ -173,7 +173,7 @@ public class JanelaCadastrarParticipante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        participanteControle.criarParticipanteAction();
+        participanteControle.criarParticipanteDoCriarAction();
 
     }//GEN-LAST:event_btSalvarActionPerformed
 

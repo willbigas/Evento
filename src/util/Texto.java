@@ -16,7 +16,6 @@ public class Texto {
     public static final String SUCESS_OUT = "Saída gravada com sucesso";
     public static final String SUCESS_IN = "Entrada gravada com sucesso";
     public static final String SUCESS_DISABLE = "Desativado com Sucesso!";
-    
 
     // Errors
     public static final String ERROR_DELETE = "Erro ao excluir";
@@ -42,6 +41,7 @@ public class Texto {
     public static final String ACTION_IRREVERSIBLE = "Você deseja Realmente excluir? esta acao e irreversivel";
     public static final String CATEGORY_DEPENDENCY = "Existem Categorias vinculadas a esse Participante,"
             + " Por favor navegue até o contexto de Categorias e Remova as dependencias!";
+    public static final String ACTION_DISABLE = "Você deseja Realmente Desativar? Esta acao e irreversivel neste contexto";
 
     // Nothing found
     public static final String NOTHING_FOUND_VALUE = "Nenhum valor total encontrado!";

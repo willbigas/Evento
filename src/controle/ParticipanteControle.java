@@ -5,11 +5,13 @@ import dao.ParticipanteDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import modelo.Categoria;
 import modelo.Participante;
 import modelo.tablemodel.ParticipanteTableModel;
 import util.Mensagem;
 import util.Texto;
+import view.participante.JanelaCadastrarParticipante;
 import view.participante.JanelaGerenciarParticipante;
 
 /**
@@ -54,18 +56,51 @@ public class ParticipanteControle {
         participanteTable.addListOfObject(listParticipantes);
     }
 
-    private void pegaCamposCriarParticipante() {
+    private boolean pegaCamposGerenciarParticipante() {
+
         campoNome = view.participante.JanelaGerenciarParticipante.tfNome.getText();
         campoEmail = view.participante.JanelaGerenciarParticipante.tfEmail.getText();
         campoCpf = view.participante.JanelaGerenciarParticipante.tfCpf.getText();
         campoTelefone = view.participante.JanelaGerenciarParticipante.tfTelefone.getText();
+        if (campoNome.isEmpty() || campoEmail.isEmpty() || campoCpf.isEmpty() || campoTelefone.isEmpty()) {
+            Mensagem.msgInfo(Texto.EMPTY_INPUT);
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
-    public void criarParticipanteAction() {
-        pegaCamposCriarParticipante();
-        criarParticipante();
-        int idInserido = participanteDao.cadastrar(participante);
-        criaNovoParticipante(idInserido);
+    private boolean pegaCamposCadastrarParticipante() {
+        campoNome = view.participante.JanelaCadastrarParticipante.tfNome.getText();
+        campoEmail = view.participante.JanelaCadastrarParticipante.tfEmail.getText();
+        campoCpf = view.participante.JanelaCadastrarParticipante.tfCpf.getText();
+        campoTelefone = view.participante.JanelaCadastrarParticipante.tfTelefone.getText();
+        if (campoNome.isEmpty() || campoEmail.isEmpty() || campoCpf.isEmpty() || campoTelefone.isEmpty()) {
+            Mensagem.msgInfo(Texto.EMPTY_INPUT);
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    public void criarParticipanteDoGerenciarAction() {
+        if (pegaCamposGerenciarParticipante()) {
+            criarParticipante();
+            int idInserido = participanteDao.cadastrar(participante);
+            criaNovoParticipante(idInserido);
+        }
+
+    }
+
+    public void criarParticipanteDoCriarAction() {
+        if (pegaCamposCadastrarParticipante()) {
+            criarParticipante();
+            int idInserido = participanteDao.cadastrar(participante);
+            criaNovoParticipante(idInserido);
+        }
+
     }
 
     private void criaNovoParticipante(int idInserido) {
@@ -73,6 +108,8 @@ public class ParticipanteControle {
             participante.setId(idInserido);
             participanteTable.addObject(participante);
             listParticipantes.add(participante);
+            limpaCamposCadastrarParticipante();
+            limpaCamposGerenciarParticipante();
             Mensagem.msgInfo(Texto.SUCESS_CREATE);
         } else {
             Mensagem.msgError(Texto.ERROR_CREATE);
@@ -111,11 +148,7 @@ public class ParticipanteControle {
     }
 
     private void populaAsCategoriasDoParticipante() {
-        JanelaGerenciarParticipante.checkExatas.setSelected(false);
-        JanelaGerenciarParticipante.checkProgramacao.setSelected(false);
-        JanelaGerenciarParticipante.checkLetras.setSelected(false);
-        JanelaGerenciarParticipante.checkCiencias.setSelected(false);
-
+        removeSelecaoChecksGerenciar();
         for (Categoria categoria : listCategorias) {
             if (categoria.getNome().equals(nomeDasCategorias[0])) {
                 JanelaGerenciarParticipante.checkExatas.setSelected(true);
@@ -133,9 +166,26 @@ public class ParticipanteControle {
         listCategorias.clear();
     }
 
+    private void removeSelecaoChecksGerenciar() {
+        JanelaGerenciarParticipante.checkExatas.setSelected(false);
+        JanelaGerenciarParticipante.checkProgramacao.setSelected(false);
+        JanelaGerenciarParticipante.checkLetras.setSelected(false);
+        JanelaGerenciarParticipante.checkCiencias.setSelected(false);
+    }
+
+    private void removeSelecaoChecksCadastrar() {
+        JanelaCadastrarParticipante.checkExatas.setSelected(false);
+        JanelaCadastrarParticipante.checkProgramacao.setSelected(false);
+        JanelaCadastrarParticipante.checkLetras.setSelected(false);
+        JanelaCadastrarParticipante.checkCiencias.setSelected(false);
+    }
+
     public void deletarParticipanteAction() {
         if (pegaLinhaSelecionadaParticipante() == -1) {
             Mensagem.msgInfo(Texto.NOT_SELECTED_INPUT);
+            return;
+        }
+        if (Mensagem.msgConfirm(Texto.ACTION_DISABLE) == JOptionPane.NO_OPTION) {
             return;
         }
         participante = participanteTable.getObject(pegaLinhaSelecionadaParticipante());
@@ -187,5 +237,21 @@ public class ParticipanteControle {
         listParticipantes = participanteDao.pesquisarPorTermo(JanelaGerenciarParticipante.tfPesquisar.getText());
         participanteTable.clear();
         participanteTable.addListOfObject(listParticipantes);
+    }
+
+    public void limpaCamposCadastrarParticipante() {
+        view.participante.JanelaCadastrarParticipante.tfCpf.setText(null);
+        view.participante.JanelaCadastrarParticipante.tfEmail.setText(null);
+        view.participante.JanelaCadastrarParticipante.tfNome.setText(null);
+        view.participante.JanelaCadastrarParticipante.tfTelefone.setText(null);
+        removeSelecaoChecksCadastrar();
+    }
+
+    public void limpaCamposGerenciarParticipante() {
+        view.participante.JanelaGerenciarParticipante.tfCpf.setText(null);
+        view.participante.JanelaGerenciarParticipante.tfEmail.setText(null);
+        view.participante.JanelaGerenciarParticipante.tfNome.setText(null);
+        view.participante.JanelaGerenciarParticipante.tfTelefone.setText(null);
+        removeSelecaoChecksGerenciar();
     }
 }
