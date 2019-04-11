@@ -132,14 +132,14 @@ public class ParticipantControl {
         participante.setCategorias(listCategorias);
     }
     
-    public void loadFieldsViewParticipantAction() {
+    public void carregaCamposVisualizarAction() {
         participanteTable = new ParticipantTableModel();
         atualizaTabelaParticipante();
         participante = participanteTable.getObject(JanelaGerenciarParticipante.tblParticipante.getSelectedRow());
         linhaSelecionada = pegaLinhaSelecionadaParticipante();
     }
     
-    public void changeFieldsOnView() {
+    public void modificaCamposNoVisualizar() {
         categoriaTable = new CategoryTableModel();
         JanelaVisualizarParticipante.tblCategoriaParticipante.setModel(categoriaTable);
         view.participant.JanelaVisualizarParticipante.lblCodigoParticipant.setText(String.valueOf(participante.getId()));

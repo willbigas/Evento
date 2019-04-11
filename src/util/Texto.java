@@ -26,6 +26,7 @@ public class Texto {
     // Invalid Inputs
     public static final String ERRO_NAME_INVALID = "Nome Invalido!";
     public static final String ERROR_VALUE_INVALID = "Valor Invalido!";
+    public static final String ERROR_LOGIN_INCORRECT = "Usuario ou Senha incorretos!";
 
     // Empty values
     public static final String EMPTY_INPUT = "Algum dos campos estão vazios";

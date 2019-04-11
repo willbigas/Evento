@@ -7,6 +7,8 @@ package view.participant;
 
 import control.ParticipantControl;
 import evento.Main;
+import util.Mensagem;
+import util.Texto;
 
 /**
  *
@@ -39,6 +41,7 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Pesquisar:");
 
@@ -139,9 +142,14 @@ public class JanelaGerenciarParticipante extends javax.swing.JFrame {
 
     private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
         // TODO add your handling code here:
-        PARTICIPANT_CONTROL.loadFieldsViewParticipantAction();
+       int indexSelecionada = PARTICIPANT_CONTROL.pegaLinhaSelecionadaParticipante();
+       if (indexSelecionada == -1) {
+           Mensagem.msgInfo(Texto.NOT_SELECTED_INPUT);
+           return;
+       }
+        PARTICIPANT_CONTROL.carregaCamposVisualizarAction();
         Main.JanelaEditarParticipante();
-        PARTICIPANT_CONTROL.changeFieldsOnView();
+        PARTICIPANT_CONTROL.modificaCamposNoVisualizar();
     }//GEN-LAST:event_btVisualizarActionPerformed
 
     /**

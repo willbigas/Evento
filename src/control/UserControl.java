@@ -7,6 +7,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.User;
 import model.tablemodel.UserTableModel;
+import util.Mensagem;
+import util.Texto;
 import view.user.JanelaGerenciarUsuario;
 
 /**
@@ -69,11 +71,13 @@ public class UserControl {
         return false;
     }
 
-    public void efetuaLoginAction() {
+    public boolean efetuaLoginAction() {
         if (validaLogin()) {
             Main.JanelaPrincipal();
+            return true;
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario ou Senha incorretos!");
+            Mensagem.msgInfo(Texto.ERROR_LOGIN_INCORRECT);
+            return false;
         }
     }
 

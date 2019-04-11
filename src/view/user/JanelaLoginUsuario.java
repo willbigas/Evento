@@ -7,7 +7,7 @@ import control.UserControl;
  * @author William
  */
 public class JanelaLoginUsuario extends javax.swing.JFrame {
-    
+
     UserControl USUARIO_CONTROL;
 
     /**
@@ -32,6 +32,7 @@ public class JanelaLoginUsuario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Login:");
 
@@ -100,9 +101,11 @@ public class JanelaLoginUsuario extends javax.swing.JFrame {
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        USUARIO_CONTROL.efetuaLoginAction();
-        
+        boolean conseguiuLogar = USUARIO_CONTROL.efetuaLoginAction();
+        if (conseguiuLogar) {
+            this.dispose();
+        }
+
     }//GEN-LAST:event_btEntrarActionPerformed
 
     /**
