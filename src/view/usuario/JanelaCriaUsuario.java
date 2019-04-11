@@ -5,8 +5,8 @@
  */
 package view.usuario;
 
-import control.UsuarioControl;
-import model.Usuario;
+import controle.UsuarioControl;
+import modelo.Usuario;
 
 /**
  *

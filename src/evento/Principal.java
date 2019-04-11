@@ -1,8 +1,8 @@
 package evento;
 
 import javax.swing.JFrame;
-import model.Usuario;
-import view.JanelaGerenciarTelas;
+import modelo.Usuario;
+import visao.JanelaGerenciarTelas;
 import view.categoria.JanelaGerenciarCategoria;
 import view.participante.JanelaCriarParticipante;
 import view.participante.JanelaVisualizarParticipante;

@@ -1,14 +1,14 @@
-package control;
+package controle;
 
 import dao.CategoriaDao;
 import dao.ParticipanteDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import model.Categoria;
-import model.Participante;
-import model.tablemodel.CategoriaTableModel;
-import model.tablemodel.ParticipanteTableModel;
+import modelo.Categoria;
+import modelo.Participante;
+import modelo.tablemodel.CategoriaTableModel;
+import modelo.tablemodel.ParticipanteTableModel;
 import util.Mensagem;
 import util.Texto;
 import view.participante.JanelaCriarParticipante;

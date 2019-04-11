@@ -5,7 +5,7 @@
  */
 package view.participante;
 
-import control.ParticipanteControl;
+import controle.ParticipanteControl;
 
 /**
  *

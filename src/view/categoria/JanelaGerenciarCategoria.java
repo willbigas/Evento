@@ -1,6 +1,6 @@
 package view.categoria;
 
-import control.CategoriaControl;
+import controle.CategoriaControl;
 
 /**
  *

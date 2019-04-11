@@ -1,6 +1,6 @@
 package view.usuario;
 
-import control.UsuarioControl;
+import controle.UsuarioControl;
 
 /**
  *

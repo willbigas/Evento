@@ -6,7 +6,7 @@ import java.util.List;
  *
  * @author Alunos
  */
-public interface ActionsTableModel<E> {
+public interface AcoesTableModel<E> {
 
     public void addObject(E obj);
 

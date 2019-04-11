@@ -1,8 +1,8 @@
 package view.usuario;
 
-import control.UsuarioControl;
+import controle.UsuarioControl;
 import evento.Principal;
-import model.Usuario;
+import modelo.Usuario;
 
 /**
  *

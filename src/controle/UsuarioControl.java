@@ -1,12 +1,12 @@
-package control;
+package controle;
 
 import dao.UsuarioDao;
 import evento.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Usuario;
-import model.tablemodel.UsuarioTableModel;
+import modelo.Usuario;
+import modelo.tablemodel.UsuarioTableModel;
 import util.Mensagem;
 import util.Texto;
 import view.usuario.JanelaGerenciarUsuario;

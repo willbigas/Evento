@@ -1,6 +1,6 @@
 package dao;
 
-import factory.Connections;
+import fabrica.Conexao;
 import java.sql.Connection;
 
 
@@ -12,7 +12,7 @@ public class Dao {
     protected Connection conexao;
 
     public Dao() {
-        conexao = Connections.getConnection();
+        conexao = Conexao.pegaConexao();
     }
     
 }

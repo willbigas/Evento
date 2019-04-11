@@ -1,12 +1,12 @@
-package model.tablemodel;
+package modelo.tablemodel;
 
-import interfaces.ActionsTableModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import model.Participante;
+import modelo.Participante;
+import interfaces.AcoesTableModel;
 
-public class ParticipanteTableModel extends AbstractTableModel implements ActionsTableModel<Participante> {
+public class ParticipanteTableModel extends AbstractTableModel implements AcoesTableModel<Participante> {
 
     // Constantes representando o índice das colunas
     private static final int ID = 0;

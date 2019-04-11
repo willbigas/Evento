@@ -1,11 +1,11 @@
-package control;
+package controle;
 
 import dao.CategoriaDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Categoria;
-import model.tablemodel.CategoriaTableModel;
+import modelo.Categoria;
+import modelo.tablemodel.CategoriaTableModel;
 import util.Mensagem;
 import util.Texto;
 import view.categoria.JanelaGerenciarCategoria;
